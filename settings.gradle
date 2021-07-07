@@ -1,0 +1,2 @@
+rootProject.name='Planet Fitness'
+include ':app'
