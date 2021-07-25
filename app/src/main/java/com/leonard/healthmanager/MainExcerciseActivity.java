@@ -50,6 +50,8 @@ import java.util.ArrayList;
 
 import kr.pe.burt.android.lib.faimageview.FAImageView;
 
+import static com.leonard.healthmanager.general.MyApplication.intersialsRandomdAdIdsGenerator;
+
 public class MainExcerciseActivity extends AppCompatActivity {
     public AdRequest A;
     public AdRequest B;
@@ -513,9 +515,9 @@ public class MainExcerciseActivity extends AppCompatActivity {
 
     private void setAdmodAds() {
         this.y = new InterstitialAd(this);
-        this.y.setAdUnitId(getString(R.string.interstitial_key));
+        this.y.setAdUnitId(intersialsRandomdAdIdsGenerator());
         this.z = new InterstitialAd(this);
-        this.z.setAdUnitId(getString(R.string.interstitial_key));
+        this.z.setAdUnitId(intersialsRandomdAdIdsGenerator());
         this.A = new Builder().build();
         this.y.setAdListener(new AdListener() {
             public void onAdClosed() {

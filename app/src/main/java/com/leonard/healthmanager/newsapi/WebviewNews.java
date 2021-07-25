@@ -21,6 +21,7 @@ import com.leonard.healthmanager.R;
 
 import java.net.URISyntaxException;
 
+import static com.leonard.healthmanager.general.MyApplication.bannerRandomdAdIdsGenerator;
 import static com.leonard.healthmanager.newsapi.NewsCast.isInternetAvailable;
 
 
@@ -108,7 +109,7 @@ public class WebviewNews extends AppCompatActivity {
         LinearLayout adContainer = findViewById(R.id.normal_ad_include);
         com.google.android.gms.ads.AdView adView = new com.google.android.gms.ads.AdView(this);
         adView.setAdSize(com.google.android.gms.ads.AdSize.SMART_BANNER);
-        adView.setAdUnitId(getString(R.string.banner_ad_nine));
+        adView.setAdUnitId(bannerRandomdAdIdsGenerator());
 
         // Initiate a generic request to load it with an ad
         AdRequest adRequest = new AdRequest.Builder().build();

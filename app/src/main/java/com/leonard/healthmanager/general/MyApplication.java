@@ -13,6 +13,7 @@ import android.os.AsyncTask;
 import android.os.Build.VERSION;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
+import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 import androidx.multidex.MultiDex;
@@ -27,9 +28,11 @@ import com.zplesac.connectionbuddy.ConnectionBuddy;
 import com.zplesac.connectionbuddy.ConnectionBuddyConfiguration;
 
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 import java.util.concurrent.ExecutionException;
 
 import io.github.inflationx.calligraphy3.CalligraphyConfig;
@@ -230,8 +233,40 @@ public class MyApplication extends Application implements ActivityLifecycleCallb
     public void initInterstitialAd() {
         if (!this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
             interstitial = new InterstitialAd(this);
-            interstitial.setAdUnitId(getResources().getString(R.string.interstitial_key));
+            //interstitial.setAdUnitId(getResources().getString(R.string.interstitial_key));
+            interstitial.setAdUnitId(intersialsRandomdAdIdsGenerator());
             interstitial.loadAd(new AdRequest.Builder().build());
         }
+    }
+
+    public static String bannerRandomdAdIdsGenerator () {
+        Random randomGenerator = new Random();
+        ArrayList sample = new ArrayList() {{
+            add("ca-app-pub-3940256099942544/6300978111");
+            add("ca-app-pub-3940256099942544/6300978111");
+            add("ca-app-pub-3940256099942544/6300978111");
+            add("ca-app-pub-3940256099942544/6300978111");
+        }};
+        return (String) sample.get(randomGenerator.nextInt(sample.size()));
+    }
+
+    public static String nativeRandomdAdIdGenerator () {
+        Random randomGenerator = new Random();
+        ArrayList sample = new ArrayList() {{
+            add("ca-app-pub-3940256099942544/2247696110");
+            add("ca-app-pub-3940256099942544/2247696110");
+        }};
+        return (String) sample.get(randomGenerator.nextInt(sample.size()));
+    }
+
+    public static String intersialsRandomdAdIdsGenerator () {
+        Random randomGenerator = new Random();
+        ArrayList sample = new ArrayList() {{
+            add("ca-app-pub-3940256099942544/1033173712");
+            add("ca-app-pub-3940256099942544/1033173712");
+            add("ca-app-pub-3940256099942544/1033173712");
+            add("ca-app-pub-3940256099942544/1033173712");
+        }};
+        return (String) sample.get(randomGenerator.nextInt(sample.size()));
     }
 }

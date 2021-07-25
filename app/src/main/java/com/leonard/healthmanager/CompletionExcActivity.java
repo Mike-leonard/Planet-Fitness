@@ -38,6 +38,8 @@ import com.leonard.healthmanager.utils.Constants;
 
 import java.util.List;
 
+import static com.leonard.healthmanager.general.MyApplication.nativeRandomdAdIdGenerator;
+
 public class CompletionExcActivity extends Activity {
 
 
@@ -210,7 +212,7 @@ public class CompletionExcActivity extends Activity {
     public void a() {
         this.nativeAdContainer = (LinearLayout) findViewById(R.id.nativeAdContainer);
         this.k = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-        this.admobAdsObject = new AdmobAds(this.j, this.nativeAdContainer, getString(R.string.g_native_two));
+        this.admobAdsObject = new AdmobAds(this.j, this.nativeAdContainer, nativeRandomdAdIdGenerator());
         this.admobAdsObject.refreshAd();
     }
 

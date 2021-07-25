@@ -12,5 +12,5 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/ll_footer_menu"
         app:adSize="BANNER"
-        app:adUnitId="@string/banner_ad" />
+        app:adUnitId="@string/banner_ad_three" />
 </LinearLayout>

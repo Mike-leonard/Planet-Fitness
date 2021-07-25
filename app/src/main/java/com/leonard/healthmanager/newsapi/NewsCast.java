@@ -52,6 +52,8 @@ import java.util.ArrayList;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
+import static com.leonard.healthmanager.general.MyApplication.bannerRandomdAdIdsGenerator;
+
 public class NewsCast extends AppCompatActivity {
 
     // someone else
@@ -320,7 +322,7 @@ public class NewsCast extends AppCompatActivity {
         LinearLayout adContainer = findViewById(R.id.normal_ad_include);
         com.google.android.gms.ads.AdView adView = new com.google.android.gms.ads.AdView(this);
         adView.setAdSize(com.google.android.gms.ads.AdSize.SMART_BANNER);
-        adView.setAdUnitId(getString(R.string.banner_ad_eight));
+        adView.setAdUnitId(bannerRandomdAdIdsGenerator());
 
         // Initiate a generic request to load it with an ad
         AdRequest adRequest = new AdRequest.Builder().build();

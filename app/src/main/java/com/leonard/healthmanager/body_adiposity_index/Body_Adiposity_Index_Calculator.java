@@ -38,6 +38,8 @@ import java.util.ArrayList;
 
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
+import static com.leonard.healthmanager.general.MyApplication.bannerRandomdAdIdsGenerator;
+
 
 public class Body_Adiposity_Index_Calculator extends Activity {
     String TAG = getClass().getSimpleName();
@@ -319,7 +321,7 @@ public class Body_Adiposity_Index_Calculator extends Activity {
         LinearLayout adContainer = findViewById(R.id.normal_ad_include);
         com.google.android.gms.ads.AdView adView = new com.google.android.gms.ads.AdView(this);
         adView.setAdSize(com.google.android.gms.ads.AdSize.SMART_BANNER);
-        adView.setAdUnitId(getString(R.string.banner_ad_two));
+        adView.setAdUnitId(bannerRandomdAdIdsGenerator());
 
         // Initiate a generic request to load it with an ad
         AdRequest adRequest = new AdRequest.Builder().build();

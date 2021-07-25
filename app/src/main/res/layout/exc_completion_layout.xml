@@ -11,7 +11,7 @@
         android:id="@+id/appBarLayout"
         android:layout_marginTop="-35dp"
         android:layout_width="match_parent"
-        android:background="@mipmap/workout_complete"
+        android:background="@mipmap/workout_banner_newer"
         android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.Toolbar

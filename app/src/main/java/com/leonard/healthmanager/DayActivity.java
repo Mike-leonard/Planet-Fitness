@@ -28,6 +28,7 @@ import com.google.android.gms.ads.InterstitialAd;
 import com.leonard.healthmanager.adapters.IndividualDayAdapter;
 import com.leonard.healthmanager.adapters.WorkoutData;
 import com.leonard.healthmanager.database.DatabaseOperations;
+import com.leonard.healthmanager.general.MyApplication;
 import com.leonard.healthmanager.listners.RecyclerItemClickListener;
 import com.leonard.healthmanager.listners.RecyclerItemClickListener.onItemClickListener;
 
@@ -36,6 +37,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import static com.leonard.healthmanager.general.MyApplication.intersialsRandomdAdIdsGenerator;
 
 public class DayActivity extends AppCompatActivity {
     public LinearLayout container;
@@ -65,7 +68,9 @@ public class DayActivity extends AppCompatActivity {
 
     private void setAdmodAds() {
         this.w = new InterstitialAd(this);
-        this.w.setAdUnitId(getString(R.string.interstitial_key));
+        //hsn
+        //this.w.setAdUnitId(getString(R.string.interstitial_key));
+        this.w.setAdUnitId(intersialsRandomdAdIdsGenerator());
         this.x = new Builder().build();
         this.w.setAdListener(new AdListener() {
             public void onAdClosed() {

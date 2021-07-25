@@ -7,15 +7,6 @@
     <string name="banner_ad">ca-app-pub-3940256099942544/6300978111</string>
     <string name="banner_ad_two">ca-app-pub-3940256099942544/6300978111</string>
     <string name="banner_ad_three">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="banner_ad_four">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="banner_ad_five">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="banner_ad_six">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="banner_ad_seven">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="banner_ad_eight">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="banner_ad_nine">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="g_native">ca-app-pub-3940256099942544/2247696110</string>
-    <string name="g_native_two">ca-app-pub-3940256099942544/2247696110</string>
-    <string name="interstitial_key">ca-app-pub-3940256099942544/1033173712</string>
 
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>

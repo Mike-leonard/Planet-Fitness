@@ -29,6 +29,8 @@ import org.json.JSONObject;
 
 import kr.pe.burt.android.lib.faimageview.FAImageView;
 
+import static com.leonard.healthmanager.general.MyApplication.nativeRandomdAdIdGenerator;
+
 public class ExcDetailsActivity extends AppCompatActivity {
     public int Dayvalue;
     public LinearLayout adView;
@@ -103,7 +105,7 @@ public class ExcDetailsActivity extends AppCompatActivity {
     public void b() {
         this.nativeAdContainer = (LinearLayout) findViewById(R.id.nativeAdContainer);
         this.o = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-        this.admobAdsObject = new AdmobAds(this.n, this.nativeAdContainer, getString(R.string.g_native));
+        this.admobAdsObject = new AdmobAds(this.n, this.nativeAdContainer, nativeRandomdAdIdGenerator());
         this.admobAdsObject.refreshAd();
     }
 

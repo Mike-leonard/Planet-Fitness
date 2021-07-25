@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="-30dp"
-        android:background="@mipmap/workout_banner"
+        android:background="@mipmap/workout_banner_newer"
         android:fitsSystemWindows="true">
 
         <androidx.appcompat.widget.Toolbar
@@ -40,7 +40,7 @@
             android:text="Workout"
             android:layout_marginLeft="20dp"
             android:textSize="20dp"
-            android:textColor="@color/white"
+            android:textColor="@color/dot_dark_screen"
             android:fontFamily="@font/gothic"
             android:textStyle=""/>
 
