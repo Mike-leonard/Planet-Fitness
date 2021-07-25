@@ -25,7 +25,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="20dp"
         android:padding="5dp"
-        android:src="@mipmap/left_arrow" />
+        android:src="@drawable/ic_chevron_left_white_24dp" />
 
 
 
@@ -40,7 +40,7 @@
         android:layout_marginTop="-80dp"
         android:layout_marginRight="@dimen/text_15"
         android:orientation="horizontal"
-        android:background="@drawable/shadowfile"
+        android:background="@drawable/a2_grad_black"
         android:elevation="20dp">
 
 
@@ -93,7 +93,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_margin="10dp"
                 android:text="@string/bmr_Calculator"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="@dimen/textsize_16" />
 
             <LinearLayout
@@ -250,9 +250,12 @@
 
     </LinearLayout>
 
-
-
-
+    <LinearLayout
+        android:id="@+id/normal_ad_include"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"/>
 
     <!--<include
         android:id="@+id/ad_layout"
@@ -262,17 +265,4 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true" />-->
 
-<!--
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_alignParentBottom="true">
-        <com.google.android.gms.ads.AdView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:adSize="BANNER"
-            app:adUnitId="@string/banner_ad"/>
-
-    </LinearLayout>-->
 </RelativeLayout>

@@ -23,7 +23,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimary">
+                android:background="#25262A">
 
                 <TextView
                     android:id="@+id/textrate"
@@ -109,7 +109,7 @@
                 android:layout_marginRight="20dp"
                 android:background="@drawable/button"
                 android:text="Rate"
-                android:textColor="#000000"
+                android:textColor="#FFEB3B"
                 android:typeface="monospace" />
 
             <Button

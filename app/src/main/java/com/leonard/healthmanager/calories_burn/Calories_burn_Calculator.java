@@ -11,11 +11,13 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -33,10 +35,12 @@ import com.zplesac.connectionbuddy.interfaces.NetworkRequestCheckListener;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
+
 
 public class Calories_burn_Calculator extends Activity {
     String TAG = getClass().getSimpleName();
-    AdView adView;
+    //AdView adView;
     ArrayAdapter<String> adapter_distance;
     ArrayAdapter<String> adapter_runwalk;
     ArrayAdapter<String> adapter_weight;
@@ -73,7 +77,8 @@ public class Calories_burn_Calculator extends Activity {
 
 
     public void attachBaseContext(Context context) {
-        super.attachBaseContext(uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper.wrap(context));
+        //super.attachBaseContext(uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper.wrap(context));
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(context));
     }
 
 
@@ -94,10 +99,10 @@ public class Calories_burn_Calculator extends Activity {
         this.tv_distance_unit = (TextView) findViewById(R.id.tv_distance_unit);
         this.tv_runwalk_unit = (TextView) findViewById(R.id.tv_runwalk_unit);
         this.tv_search_burn_calories = (TextView) findViewById(R.id.tv_search_burn_calories);
-        this.adView = (AdView) findViewById(R.id.adView);
+       /* this.adView = (AdView) findViewById(R.id.adView);
         AdView mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        mAdView.loadAd(adRequest);*/
         this.et_weight.setTypeface(this.typefaceManager.getLight());
         this.et_distance.setTypeface(this.typefaceManager.getLight());
         this.tv_runwalk.setTypeface(this.typefaceManager.getLight());
@@ -155,6 +160,8 @@ public class Calories_burn_Calculator extends Activity {
         this.tv_weightunit.setOnClickListener(showPopupWindow_Weight());
         this.tv_distance_unit.setOnClickListener(showPopupWindow_distance());
         this.tv_runwalk_unit.setOnClickListener(showPopupWindow_runwalk());
+
+        googleBannerView();
     }
 
 
@@ -410,7 +417,59 @@ public class Calories_burn_Calculator extends Activity {
     }
 
     public void onBackPressed() {
-        this.adView.setVisibility(8);
+        //this.adView.setVisibility(8);
         ActivityCompat.finishAfterTransition(this);
+    }
+
+    private void googleBannerView () {
+        LinearLayout adContainer = findViewById(R.id.normal_ad_include);
+        com.google.android.gms.ads.AdView adView = new com.google.android.gms.ads.AdView(this);
+        adView.setAdSize(com.google.android.gms.ads.AdSize.SMART_BANNER);
+        adView.setAdUnitId(getString(R.string.banner_ad_three));
+
+        // Initiate a generic request to load it with an ad
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
+
+        // Place the ad view.
+        LinearLayout.LayoutParams params = new LinearLayout
+                .LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT);
+        adContainer.addView(adView, params);
+
+        adView.setAdListener(new com.google.android.gms.ads.AdListener() {
+            @Override
+            public void onAdClosed() {
+                super.onAdClosed();
+            }
+
+            @Override
+            public void onAdFailedToLoad(int i) {
+                super.onAdFailedToLoad(i);
+            }
+
+            @Override
+            public void onAdOpened() {
+                super.onAdOpened();
+            }
+
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+
+            }
+
+            @Override
+            public void onAdClicked() {
+                super.onAdClicked();
+
+            }
+
+            @Override
+            public void onAdImpression() {
+                super.onAdImpression();
+            }
+        });
+
     }
 }

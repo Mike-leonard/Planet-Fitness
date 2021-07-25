@@ -16,6 +16,8 @@ import com.leonard.healthmanager.utils.GlobalFunction;
 import com.leonard.healthmanager.utils.SharedPreferenceManager;
 import com.leonard.healthmanager.utils.TypefaceManager;
 
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
+
 
 public class Smoking_Risk_Result extends Activity {
     String TAG = getClass().getSimpleName();
@@ -30,7 +32,8 @@ public class Smoking_Risk_Result extends Activity {
 
 
     public void attachBaseContext(Context context) {
-        super.attachBaseContext(uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper.wrap(context));
+        //super.attachBaseContext(uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper.wrap(context));
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(context));
     }
 
 

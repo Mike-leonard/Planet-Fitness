@@ -11,7 +11,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@mipmap/helth_bg">
+        android:background="@mipmap/calculator_banner_2">
 
     </RelativeLayout>
 
@@ -50,7 +50,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="#323752">
 
 
 

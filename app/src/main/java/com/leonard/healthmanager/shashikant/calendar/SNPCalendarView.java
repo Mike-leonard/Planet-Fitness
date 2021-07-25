@@ -71,7 +71,9 @@ public class SNPCalendarView extends LinearLayout {
 
     /* access modifiers changed from: 0000 */
     public void init(Context context) {
-        this.view = ((LayoutInflater) getContext().getSystemService("layout_inflater")).inflate(R.layout.snp_calendarview, null, false);
+        this.view = ((LayoutInflater) getContext()
+                .getSystemService("layout_inflater"))
+                .inflate(R.layout.snp_calendarview, null, false);
         this.month = (GregorianCalendar) GregorianCalendar.getInstance();
         this.month.setTimeInMillis(Util.dateToLong(getInitialDate()));
         this.currentSelectedDate = new SimpleDateFormat("yyyy-MM-dd", Util.getLocale()).format(this.month.getTime());

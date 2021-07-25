@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#e1e1e1"
+    tools:context=".newsapi.NewsCast">
+
+    <LinearLayout
+        android:id="@+id/web_loader"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="invisible">
+        <!--<WebView
+            android:id="@+id/web_loader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"/>-->
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/no_internet_louyt"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="@drawable/no_internet"
+        android:gravity="center_horizontal"
+        android:backgroundTint="@color/line_color"
+        android:backgroundTintMode="multiply"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/retry_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Retry"
+            android:layout_marginTop="267dp"
+            android:background="@drawable/a2_grad"
+            android:textColor="@color/white"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/recyc_data_shower"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycle_news_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/normal_ad_include"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>

@@ -21,7 +21,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginTop="30dp"
             android:padding="8dp"
-            android:src="@mipmap/left_arrow" />
+            android:src="@drawable/ic_chevron_left_white_24dp" />
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="match_parent"
@@ -81,7 +81,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="@string/Exercise"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
 
                     <TextView
@@ -92,7 +92,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="@string/Approximate_Calories_Burned"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
                 </LinearLayout>
 
@@ -109,7 +109,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="@string/Walking"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
 
                     <TextView
@@ -120,7 +120,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="@string/_100_calories_burned_per_mile"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
                 </LinearLayout>
 
@@ -137,7 +137,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="@string/Jogging"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
 
                     <TextView
@@ -148,7 +148,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="@string/_120_calories_burned_per_mile"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
                 </LinearLayout>
 
@@ -165,7 +165,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="@string/Swimming"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
 
                     <TextView
@@ -176,7 +176,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="@string/_100_calories_burned_in_20min"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
                 </LinearLayout>
 
@@ -193,7 +193,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="@string/Bicycling"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
 
                     <TextView
@@ -204,7 +204,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="@string/_100_calories_burned_in_20min"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
                 </LinearLayout>
 
@@ -222,7 +222,7 @@
                         android:padding="5dp"
                         android:singleLine="true"
                         android:text="@string/Aerobic_exercise"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
 
                     <TextView
@@ -233,7 +233,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="@string/_100_calories_burned_in_20min"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
                 </LinearLayout>
 
@@ -251,7 +251,7 @@
                         android:padding="5dp"
                         android:singleLine="true"
                         android:text="@string/Gardening"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
 
                     <TextView
@@ -262,7 +262,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="@string/_100_calories_burned_in_30min"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
                 </LinearLayout>
             </LinearLayout>

@@ -41,7 +41,8 @@
         <Preference android:title="@string/pref_title_notification_motivation_alert_texts">
             <intent
                 android:targetClass="com.leonard.healthmanager.WalkandStep.activities.MotivationAlertTextsActivity"
-                android:targetPackage="com.leonard.healthmanager.WalkandStep" />
+                android:targetPackage="com.leonard.healthmanager" />
+            <!--<intent android:action="com.leonard.healthmanager.WalkandStep.activities.MotivationAlertTextsActivity"/>-->
         </Preference>
     </PreferenceCategory>
 </PreferenceScreen>

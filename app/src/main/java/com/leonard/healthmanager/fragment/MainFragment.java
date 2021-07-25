@@ -62,7 +62,7 @@ public class MainFragment extends Fragment {
     RelativeLayout rel_one, rel_two, rel_three;
 
 
-    private int[] myImageList = new int[]{R.drawable.banner_1, R.mipmap.banner_calculator, R.mipmap.banner_3, R.mipmap.img_reminder};
+    private int[] myImageList = new int[]{R.drawable.banner_one, R.mipmap.total_app, R.mipmap.step_counter, R.mipmap.rect_doc};
 
 
     private SharedPreferences sharedPref;

@@ -32,8 +32,12 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
-import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
-import uk.co.chrisjenx.calligraphy.CalligraphyConfig.Builder;
+import io.github.inflationx.calligraphy3.CalligraphyConfig;
+import io.github.inflationx.calligraphy3.CalligraphyInterceptor;
+import io.github.inflationx.viewpump.ViewPump;
+
+/*import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig.Builder;*/
 
 
 public class MyApplication extends Application implements ActivityLifecycleCallbacks {
@@ -121,7 +125,16 @@ public class MyApplication extends Application implements ActivityLifecycleCallb
 
     public void onCreate() {
         super.onCreate();
-        CalligraphyConfig.initDefault(new Builder().setDefaultFontPath(getString(R.string.font_light)).setFontAttrId(R.attr.fontPath).build());
+        /*CalligraphyConfig.initDefault(new Builder()
+                .setDefaultFontPath(getString(R.string.font_light))
+                .setFontAttrId(R.attr.fontPath).build());*/
+        ViewPump.init(ViewPump.builder()
+                .addInterceptor(new CalligraphyInterceptor(
+                        new CalligraphyConfig.Builder()
+                                .setDefaultFontPath(getString(R.string.font_light))
+                                .setFontAttrId(R.attr.fontPath)
+                                .build()))
+                .build());
         this.sharedPreferenceManager = new SharedPreferenceManager(this);
         registerActivityLifecycleCallbacks(this);
         initInterstitialAd();

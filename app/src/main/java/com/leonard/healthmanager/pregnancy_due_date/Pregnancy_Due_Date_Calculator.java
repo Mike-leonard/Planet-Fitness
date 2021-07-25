@@ -32,6 +32,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
+
 
 public class Pregnancy_Due_Date_Calculator extends Activity {
     String TAG = getClass().getSimpleName();
@@ -50,7 +52,8 @@ public class Pregnancy_Due_Date_Calculator extends Activity {
 
 
     public void attachBaseContext(Context context) {
-        super.attachBaseContext(uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper.wrap(context));
+        //super.attachBaseContext(uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper.wrap(context));
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(context));
     }
 
 

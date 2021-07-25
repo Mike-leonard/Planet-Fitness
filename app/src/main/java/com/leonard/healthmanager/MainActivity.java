@@ -9,6 +9,7 @@ import android.os.Build.VERSION;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.os.StrictMode.ThreadPolicy.Builder;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -34,6 +35,7 @@ import com.leonard.healthmanager.fragment.Fragment_Reminder;
 import com.leonard.healthmanager.fragment.Fragment_Walk_and_Step;
 import com.leonard.healthmanager.fragment.Fragment_Workout;
 import com.leonard.healthmanager.fragment.MainFragment;
+import com.leonard.healthmanager.fragment.Workout;
 
 public class MainActivity extends AppCompatActivity implements OnNavigationItemSelectedListener {
     BottomNavigationView bottomNavigation;
@@ -133,8 +135,30 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         openFragment(MainFragment.newInstance(str2 ,str2 ,this ));
         ((AdView) findViewById(R.id.adView)).loadAd(new AdRequest.Builder().build());
 
-
+        //hsn
+        onNewIntent(getIntent());
     }
+
+    // new line of code hsn
+    @Override
+    protected void onNewIntent(Intent intent) {
+        //super.onNewIntent(intent);
+        Bundle extras = intent.getExtras();
+        if(extras != null){
+            if(extras.containsKey("notify")) {
+                loadFragmentworkout(new Workout());
+            } else if (extras.containsKey("widgets")) {
+                loadFragment_water(new Fragment_Walk_and_Step());
+            } else if (extras.containsKey("water")) {
+                openFragment(new MainFragment(this));
+            }
+        }
+    }
+    // end of new line
+   /* https://stackoverflow.com/questions/8610880/how-do-i-create-an-android-intent-that-carries-data/8610916#8610916
+    https://stackoverflow.com/questions/40780144/how-to-open-fragment-on-click-of-push-notification
+    https://stackoverflow.com/questions/39383157/how-to-open-particular-fragment-on-the-click-of-the-push-notification-message/39383447*/
+
 
     public void openFragment(Fragment fragment) {
         FragmentTransaction beginTransaction = getSupportFragmentManager().beginTransaction();
@@ -184,7 +208,7 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
             Intent intent2 = new Intent("android.intent.action.SEND");
             intent2.setType("text/plain");
             StringBuilder sb3 = new StringBuilder();
-            sb3.append("Best Free Health & Fitness app download now.\n Thnak You!\n  https://play.google.com/store/apps/details?id=" + getPackageName());
+            sb3.append("Best Planet Fitness app download now.\n Thnak You!\n  https://play.google.com/store/apps/details?id=" + getPackageName());
             sb3.append(getApplicationContext().getPackageName());
             String sb4 = sb3.toString();
             intent2.putExtra(str2, "Share App");
@@ -229,11 +253,15 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         });
         ((Button) dialog.findViewById(R.id.btnyes)).setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                dialog.dismiss();
-                MainActivity.this.finish();
-                System.exit(1);
 
-
+                try {
+                    dialog.dismiss();
+                    MainActivity.this.finish();
+                    System.exit(1);
+                    //android.os.Process.killProcess(android.os.Process.myPid());
+                } catch (Exception e){
+                    Log.e("exit_exp", e.getMessage());
+                }
             }
         });
         dialog.show();

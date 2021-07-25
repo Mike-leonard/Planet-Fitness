@@ -85,7 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="0dp"
             android:layout_marginEnd="0dp"
-            android:background="#FFFFFF"
+            android:background="#393F62"
             android:visibility="visible"
             sweet:itemIconTint="@drawable/selector"
             sweet:itemTextColor="@drawable/selector1"
@@ -100,5 +100,6 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         sweet:headerLayout="@layout/nav_header_main"
-        sweet:menu="@menu/activity_main_drawer" />
+        sweet:menu="@menu/activity_main_drawer"
+        android:background="#e1e1e1"/>
 </androidx.drawerlayout.widget.DrawerLayout>

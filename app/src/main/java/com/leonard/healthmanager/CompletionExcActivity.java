@@ -210,7 +210,7 @@ public class CompletionExcActivity extends Activity {
     public void a() {
         this.nativeAdContainer = (LinearLayout) findViewById(R.id.nativeAdContainer);
         this.k = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-        this.admobAdsObject = new AdmobAds(this.j, this.nativeAdContainer, getString(R.string.g_native));
+        this.admobAdsObject = new AdmobAds(this.j, this.nativeAdContainer, getString(R.string.g_native_two));
         this.admobAdsObject.refreshAd();
     }
 

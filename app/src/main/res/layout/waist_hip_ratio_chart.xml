@@ -20,7 +20,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginTop="30dp"
             android:padding="8dp"
-            android:src="@mipmap/left_arrow" />
+            android:src="@drawable/ic_chevron_left_white_24dp" />
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="match_parent"
@@ -83,7 +83,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="@string/health_risk_title"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
 
                         <TextView
@@ -94,7 +94,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="@string/Female"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
 
 
@@ -107,7 +107,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="@string/Male"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
                     </LinearLayout>
 
@@ -131,7 +131,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="@string/Low"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
 
                         <TextView
@@ -142,7 +142,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="@string/whr_chart_woman1"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
 
                         <TextView
@@ -153,7 +153,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="@string/whr_chart_man1"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
                     </LinearLayout>
 
@@ -170,7 +170,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="@string/Moderate"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
 
                         <TextView
@@ -181,7 +181,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="@string/whr_chart_woman2"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
 
                         <TextView
@@ -192,7 +192,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="@string/whr_chart_man2"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
                     </LinearLayout>
 
@@ -209,7 +209,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="@string/High"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
 
                         <TextView
@@ -220,7 +220,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="@string/whr_chart_woman3"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
 
                         <TextView
@@ -231,7 +231,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="@string/whr_chart_man3"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
                     </LinearLayout>
                 </LinearLayout>

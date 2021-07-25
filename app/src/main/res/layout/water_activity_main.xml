@@ -14,7 +14,7 @@
         android:id="@+id/banner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@mipmap/water_banner_1212">
+        android:background="@mipmap/water_ban">
 
     </RelativeLayout>
 
@@ -115,7 +115,8 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="#393F62">
 
                 <RelativeLayout
                     android:id="@+id/progress_data"
@@ -130,7 +131,7 @@
                         android:layout_marginLeft="@dimen/text_15"
                         android:text="2000"
                         android:layout_marginRight="5dp"
-                        android:textColor="@color/colorPrimaryDark"
+                        android:textColor="#51B9EE"
                         android:textSize="25sp"
                         android:textStyle="bold" />
 
@@ -140,7 +141,7 @@
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@+id/tvIntook"
                         android:text="/3500 ml"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="25sp"
 
                         />
@@ -168,7 +169,7 @@
                         app:progressBackgroundColor="#98EEF4"
                         app:progressBarHeight="10dp"
                         app:progressColor="@color/colorSkyBlue"
-                        app:textColor="@color/black"
+                        app:textColor="@color/white"
                         app:textMargin="5dp"
                         app:textSize="15sp"
                         app:totalProgress="130" />
@@ -196,7 +197,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="#EBEBEB">
 
             <View
                 style="@style/DividerHorizontal"
@@ -217,7 +219,7 @@
                     android:id="@+id/op50ml"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:background="?attr/selectableItemBackground"
+                    android:background="#393F62"
                     android:clickable="true"
                     android:gravity="center"
                     android:orientation="vertical"
@@ -225,6 +227,7 @@
                     app:layout_constraintEnd_toStartOf="@+id/op100ml"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
+                    <!--android:background="?attr/selectableItemBackground"-->
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -236,7 +239,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="50 ml"
-                        android:textColor="@color/colorBlack" />
+                        android:textColor="@color/textColor" />
                 </LinearLayout>
 
                 <View
@@ -253,7 +256,7 @@
                     android:id="@+id/op100ml"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:background="?attr/selectableItemBackground"
+                    android:background="#393F62"
                     android:clickable="true"
                     android:gravity="center"
                     android:orientation="vertical"
@@ -272,7 +275,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="100 ml"
-                        android:textColor="@color/colorBlack" />
+                        android:textColor="@color/textColor" />
 
                 </LinearLayout>
 
@@ -280,7 +283,7 @@
                     android:id="@+id/op150ml"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:background="?attr/selectableItemBackground"
+                    android:background="#393F62"
                     android:clickable="true"
                     android:gravity="center"
                     android:orientation="vertical"
@@ -300,7 +303,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="150 ml"
-                        android:textColor="@color/colorBlack" />
+                        android:textColor="@color/textColor" />
 
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -330,7 +333,7 @@
                     android:id="@+id/op200ml"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:background="?attr/selectableItemBackground"
+                    android:background="#393F62"
                     android:clickable="true"
                     android:gravity="center"
                     android:orientation="vertical"
@@ -349,7 +352,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="200 ml"
-                        android:textColor="@color/colorBlack" />
+                        android:textColor="@color/textColor" />
 
                 </LinearLayout>
 
@@ -357,7 +360,7 @@
                     android:id="@+id/op250ml"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:background="?attr/selectableItemBackground"
+                    android:background="#393F62"
                     android:clickable="true"
                     android:gravity="center"
                     android:orientation="vertical"
@@ -377,7 +380,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="250 ml"
-                        android:textColor="@color/colorBlack" />
+                        android:textColor="@color/textColor" />
 
                 </LinearLayout>
 
@@ -385,7 +388,7 @@
                     android:id="@+id/opCustom"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:background="?attr/selectableItemBackground"
+                    android:background="#393F62"
                     android:clickable="true"
                     android:gravity="center"
                     android:orientation="vertical"
@@ -405,7 +408,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="Custom"
-                        android:textColor="@color/colorBlack" />
+                        android:textColor="@color/textColor" />
 
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import com.leonard.healthmanager.R;
 
 import com.leonard.healthmanager.Water_MainActivity;
+import com.leonard.healthmanager.newsapi.NewsCast;
 import com.leonard.healthmanager.pill_reminder.Pill_MainActivity;
 
 public class Fragment_Reminder extends Fragment {
@@ -56,9 +57,23 @@ public class Fragment_Reminder extends Fragment {
             }
         });
 
+        ImageView button2 = (ImageView) inflate.findViewById(R.id.set_news);
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 =  new Intent(getActivity(), NewsCast.class);
+                startActivity(intent1);
+
+            }
+        });
+
 
         return inflate;
     }
 
 
 }
+
+//86a1e11d6207491fb9c5fefe2d05d1d7
+
+//https://newsapi.org/docs/client-libraries/java

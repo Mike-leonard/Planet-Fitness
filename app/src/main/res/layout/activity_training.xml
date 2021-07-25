@@ -35,6 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:background="#323752"
         android:orientation="horizontal">
 
         <RelativeLayout
@@ -68,7 +69,7 @@
                     android:layout_toEndOf="@+id/imageView8"
                     android:layout_toRightOf="@+id/imageView8"
                     android:text="00:00:00"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/white"
                     android:textIsSelectable="false"
                     android:textSize="36sp" />
 
@@ -82,7 +83,7 @@
                     android:layout_toEndOf="@+id/training_duration"
                     android:layout_toRightOf="@+id/training_duration"
                     android:text="@string/training_card_duration"
-                    android:textColor="@color/black" />
+                    android:textColor="#ECECEC" />
             </RelativeLayout>
         </RelativeLayout>
 
@@ -119,7 +120,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true">
+                android:layout_centerVertical="true"
+                android:background="#323752">
 
                 <ImageView
                     android:id="@+id/imageView4"
@@ -140,7 +142,7 @@
                     android:layout_centerInParent="true"
                     android:text="0.07"
                     android:layout_marginTop="15dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="35sp" />
 
                 <TextView
@@ -153,7 +155,7 @@
                     android:layout_toEndOf="@+id/training_distance"
                     android:layout_toRightOf="@+id/training_distance"
                     android:text="@string/training_card_distance_km"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:textColor="@color/textColor" />
                 </RelativeLayout>
             </RelativeLayout>
             </androidx.cardview.widget.CardView>
@@ -174,7 +176,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true">
+                android:layout_centerVertical="true"
+                android:background="#323752">
 
                 <ImageView
                     android:id="@+id/imageView6"
@@ -195,7 +198,7 @@
                     android:layout_centerInParent="true"
                     android:text="0.07"
                     android:layout_marginTop="15dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="35sp" />
 
                 <TextView
@@ -207,7 +210,7 @@
                     android:layout_toEndOf="@+id/training_velocity"
                     android:layout_toRightOf="@+id/training_velocity"
                     android:text="@string/training_velocity"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:textColor="@color/textColor" />
                 </RelativeLayout>
             </RelativeLayout>
             </androidx.cardview.widget.CardView>
@@ -240,7 +243,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true">
+                android:layout_centerVertical="true"
+                android:background="#323752">
 
 
 
@@ -264,7 +268,7 @@
                     android:layout_centerInParent="true"
                     android:text="0.07"
                     android:layout_marginTop="15dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="35sp"/>
 
                 <TextView
@@ -275,7 +279,7 @@
                     android:layout_toEndOf="@+id/training_calories"
                     android:layout_toRightOf="@+id/training_calories"
                     android:text="@string/training_card_calories"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:textColor="@color/textColor" />
                 </RelativeLayout>
             </RelativeLayout>
             </androidx.cardview.widget.CardView>
@@ -296,7 +300,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true">
+                android:layout_centerVertical="true"
+                android:background="#323752">
 
                 <ImageView
                     android:id="@+id/imageView3"
@@ -319,7 +324,7 @@
                     android:layout_centerInParent="true"
                     android:text="0.07"
                     android:layout_marginTop="15dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="35sp"/>
 
                 <TextView
@@ -331,7 +336,7 @@
                     android:layout_toEndOf="@+id/training_steps"
                     android:layout_toRightOf="@+id/training_steps"
                     android:text="@string/steps"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:textColor="@color/textColor" />
                 </RelativeLayout>
             </RelativeLayout>
             </androidx.cardview.widget.CardView>

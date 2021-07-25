@@ -21,6 +21,8 @@ import com.zplesac.connectionbuddy.ConnectionBuddy;
 import com.zplesac.connectionbuddy.interfaces.NetworkRequestCheckListener;
 import java.io.PrintStream;
 
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
+
 
 public class Alcohol_Result extends Activity {
     Double BACinPer;
@@ -36,7 +38,8 @@ public class Alcohol_Result extends Activity {
 
 
     public void attachBaseContext(Context context) {
-        super.attachBaseContext(uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper.wrap(context));
+        //super.attachBaseContext(uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper.wrap(context));
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(context));
     }
 
 

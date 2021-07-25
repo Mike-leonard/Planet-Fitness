@@ -23,7 +23,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="30dp"
         android:padding="10dp"
-        android:src="@mipmap/left_arrow" />
+        android:src="@drawable/ic_chevron_left_white_24dp" />
 
     <TextView
         android:id="@+id/tv_title"
@@ -84,7 +84,7 @@
                         android:maxLines="1"
                         android:padding="5dp"
                         android:text="@string/Blood_Pressure_Category"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
 
                     <TextView
@@ -95,7 +95,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="@string/Systolic_mmHg"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
                 </LinearLayout>
 
@@ -112,7 +112,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="@string/Normal"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
 
                     <TextView
@@ -123,7 +123,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="&lt;120"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
                 </LinearLayout>
 
@@ -140,7 +140,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="@string/Prehypertension"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
 
                     <TextView
@@ -151,7 +151,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="120-139"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
                 </LinearLayout>
 
@@ -168,7 +168,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="@string/Hypertension_Stage1"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
 
                     <TextView
@@ -179,7 +179,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="140-159"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
                 </LinearLayout>
 
@@ -196,7 +196,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="@string/Hypertension_Stage2"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
 
                     <TextView
@@ -207,7 +207,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="160-180"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
                 </LinearLayout>
 
@@ -224,7 +224,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="@string/Hypertensive_Crisis"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
 
                     <TextView
@@ -235,7 +235,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="&gt;180"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
                 </LinearLayout>
             </LinearLayout>
@@ -276,7 +276,7 @@
                         android:maxLines="1"
                         android:padding="5dp"
                         android:text="@string/Blood_Pressure_Category"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/textColor" />
 
                     <TextView
                         android:id="@+id/tv_bodayfat_classification_man"
@@ -286,7 +286,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="@string/Diastolic_mmHg"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/textColor" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -302,7 +302,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="@string/Normal"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/textColor" />
 
                     <TextView
                         android:id="@+id/tv_essential_fat_man"
@@ -312,7 +312,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="&lt;80"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/textColor" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -328,7 +328,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="@string/Prehypertension"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/textColor" />
 
                     <TextView
                         android:id="@+id/tv_athletes_man"
@@ -338,7 +338,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="80-89"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/textColor" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -354,7 +354,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="@string/Hypertension_Stage1"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/textColor" />
 
                     <TextView
                         android:id="@+id/tv_fitness_man"
@@ -364,7 +364,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="90-99"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/textColor" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -380,7 +380,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="@string/Hypertension_Stage2"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/textColor" />
 
                     <TextView
                         android:id="@+id/tv_acceptable_man"
@@ -390,7 +390,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="100-110"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/textColor" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -406,7 +406,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="@string/Hypertensive_Crisis"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/textColor" />
 
                     <TextView
                         android:id="@+id/tv_acceptable_man1"
@@ -416,7 +416,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="&gt;110"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/textColor" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

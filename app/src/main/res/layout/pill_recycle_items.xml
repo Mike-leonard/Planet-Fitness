@@ -16,7 +16,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/transperent"
+            android:background="#e1e1e1"
             >
 
             <ImageView

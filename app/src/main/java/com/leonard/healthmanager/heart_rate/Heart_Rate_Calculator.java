@@ -10,8 +10,10 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -25,6 +27,8 @@ import com.leonard.healthmanager.utils.TypefaceManager;
 import com.zplesac.connectionbuddy.ConnectionBuddy;
 import com.zplesac.connectionbuddy.interfaces.NetworkRequestCheckListener;
 import java.io.PrintStream;
+
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
 
 public class Heart_Rate_Calculator extends Activity {
@@ -54,7 +58,7 @@ public class Heart_Rate_Calculator extends Activity {
     public static double target_heart_rate90;
     public static double target_heart_rate95;
     String TAG = getClass().getSimpleName();
-    AdView adView;
+    //AdView adView;
     EditText et_age;
     EditText et_heart_rate;
     GlobalFunction globalFunction;
@@ -66,7 +70,8 @@ public class Heart_Rate_Calculator extends Activity {
 
 
     public void attachBaseContext(Context context) {
-        super.attachBaseContext(uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper.wrap(context));
+        //super.attachBaseContext(uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper.wrap(context));
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(context));
     }
 
 
@@ -87,10 +92,10 @@ public class Heart_Rate_Calculator extends Activity {
         this.et_age.setTypeface(this.typefaceManager.getLight());
         this.et_heart_rate.setTypeface(this.typefaceManager.getLight());
         this.tv_heartrate.setTypeface(this.typefaceManager.getBold());
-        this.adView = (AdView) findViewById(R.id.adView);
+       /* this.adView = (AdView) findViewById(R.id.adView);
         AdView mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        mAdView.loadAd(adRequest);*/
         this.iv_back.setOnClickListener(new OnClickListener() {
             public void onClick(View view) {
                 Heart_Rate_Calculator.this.onBackPressed();
@@ -122,6 +127,7 @@ public class Heart_Rate_Calculator extends Activity {
                 }
             }
         });
+        googleBannerView();
     }
 
     public void calculate() {
@@ -312,7 +318,59 @@ public class Heart_Rate_Calculator extends Activity {
     }
 
     public void onBackPressed() {
-        this.adView.setVisibility(8);
+        //this.adView.setVisibility(8);
         ActivityCompat.finishAfterTransition(this);
+    }
+
+    private void googleBannerView () {
+        LinearLayout adContainer = findViewById(R.id.normal_ad_include);
+        com.google.android.gms.ads.AdView adView = new com.google.android.gms.ads.AdView(this);
+        adView.setAdSize(com.google.android.gms.ads.AdSize.SMART_BANNER);
+        adView.setAdUnitId(getString(R.string.banner_ad_seven));
+
+        // Initiate a generic request to load it with an ad
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
+
+        // Place the ad view.
+        LinearLayout.LayoutParams params = new LinearLayout
+                .LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT);
+        adContainer.addView(adView, params);
+
+        adView.setAdListener(new com.google.android.gms.ads.AdListener() {
+            @Override
+            public void onAdClosed() {
+                super.onAdClosed();
+            }
+
+            @Override
+            public void onAdFailedToLoad(int i) {
+                super.onAdFailedToLoad(i);
+            }
+
+            @Override
+            public void onAdOpened() {
+                super.onAdOpened();
+            }
+
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+
+            }
+
+            @Override
+            public void onAdClicked() {
+                super.onAdClicked();
+
+            }
+
+            @Override
+            public void onAdImpression() {
+                super.onAdImpression();
+            }
+        });
+
     }
 }

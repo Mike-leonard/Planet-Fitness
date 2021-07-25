@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="-30dp"
-            android:background="@mipmap/workout_banner">
+            android:background="@mipmap/workout_banner_newer">
 
 
             <androidx.appcompat.widget.Toolbar
@@ -39,7 +39,7 @@
                     android:gravity="start"
                     android:text="Toolbar Title"
                     android:textAlignment="textStart"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
                     android:visibility="gone" />
             </androidx.appcompat.widget.Toolbar>
@@ -54,7 +54,7 @@
                 android:gravity="start"
                 android:text="Toolbar Title"
                 android:textAlignment="textStart"
-                android:textColor="@color/white"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="20sp" />
 
             <TextView
@@ -65,21 +65,20 @@
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/gothic"
                 android:text="Workout"
-                android:textColor="@color/white"
+                android:textColor="@color/colorBlack"
                 android:textSize="15sp" />
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardviewone"
-
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/text_15"
             android:layout_marginTop="-25dp"
-
             android:layout_marginBottom="-20dp"
             android:layout_marginRight="@dimen/text_15"
             android:orientation="horizontal"
+            app:cardBackgroundColor="#e1e1e1"
             app:cardCornerRadius="20dp"
             app:cardElevation="20dip">
 
@@ -101,7 +100,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="-30dp"
-                android:background="@color/white"
+                android:background="#e1e1e1"
                 android:layout_marginRight="5dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="45dp"

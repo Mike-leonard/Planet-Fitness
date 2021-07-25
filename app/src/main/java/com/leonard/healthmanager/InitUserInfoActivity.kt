@@ -10,6 +10,8 @@ import android.os.Handler
 import android.text.TextUtils
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.webkit.WebView
+import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.leonard.healthmanager.utils.AppUtils
@@ -133,6 +135,13 @@ class InitUserInfoActivity : AppCompatActivity() {
             }
         }
 
+ /*       web_container_drink.settings.loadsImagesAutomatically = true
+        web_container_drink.settings.javaScriptEnabled = true
+        web_container_drink.settings.loadWithOverviewMode = true
+        web_container_drink.settings.useWideViewPort = true
+        web_container_drink.loadUrl("file:///android_asset/giphy.gif")*/
+
+
     }
 
     override fun onBackPressed() {
@@ -150,4 +159,5 @@ class InitUserInfoActivity : AppCompatActivity() {
 
         Handler().postDelayed({ doubleBackToExitPressedOnce = false }, 1000)
     }
+
 }

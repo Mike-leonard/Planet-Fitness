@@ -22,7 +22,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="20dp"
         android:padding="5dp"
-        android:src="@mipmap/left_arrow" />
+        android:src="@drawable/ic_chevron_left_white_24dp" />
 
 
 
@@ -88,7 +88,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_margin="10dp"
                 android:text="@string/Menstrual_Ovulation_Calculator"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="@dimen/textsize_16" />
 
             <TextView
@@ -101,8 +101,8 @@
                 android:inputType="numberDecimal"
                 android:paddingLeft="5dp"
                 android:text="@string/Select_first_day_of_last_menstrual"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
                 android:textSize="@dimen/textsize_14" />
 
             <com.leonard.healthmanager.shashikant.calendar.SNPCalendarView
@@ -123,7 +123,7 @@
                 android:layout_margin="5dp"
                 android:gravity="center"
                 android:text="@string/Selct_cycle_days"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="@dimen/textsize_14" />
 
             <TextView

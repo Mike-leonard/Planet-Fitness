@@ -48,6 +48,7 @@ public class GifImageView extends View {
 
     public void onMeasure(int i, int i2) {
         setMeasuredDimension(this.mWidth, this.mHeight);
+
     }
 
 

@@ -1,6 +1,5 @@
 
 package com.leonard.healthmanager.WalkandStep.receivers;
-
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
@@ -12,8 +11,8 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.widget.RemoteViews;
 
+import com.leonard.healthmanager.MainActivity;
 import com.leonard.healthmanager.R;
-import com.leonard.healthmanager.WalkandStep.activities.MainActivity;
 
 import com.leonard.healthmanager.WalkandStep.activities.TrainingActivity;
 import com.leonard.healthmanager.WalkandStep.models.StepCount;
@@ -53,6 +52,8 @@ public class WidgetReceiver extends AppWidgetProvider {
             int dataSet = sharedPref.getInt(context.getString(R.string.pref_widget_data_set) + appWidgetId, -1);
             // Create an Intent to launch SplashActivity on click on widget
             Intent intent = new Intent(context, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.putExtra("widgets", "widg");
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
             rv.setOnClickPendingIntent(R.id.widget, pendingIntent);
             // add intents to buttons

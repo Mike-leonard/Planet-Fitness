@@ -279,8 +279,15 @@ class Water_MainActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
 
-        startActivity(Intent(this, MainActivity::class.java))
-        finish()
+        super.onBackPressed()
+
+      /*  val intent = Intent(this, MainActivity::class.java).apply {
+            putExtra("water", "wat")
+        }
+        //hsn
+        //startActivity(Intent(this, MainActivity::class.java))
+        startActivity(intent)
+        finish()*/
 
 //        if (doubleBackToExitPressedOnce) {
 //            super.onBackPressed()

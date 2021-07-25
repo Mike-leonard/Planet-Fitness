@@ -4,7 +4,6 @@
     package="com.leonard.healthmanager"
     android:installLocation="internalOnly">
 
-
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -25,15 +24,12 @@
 
     <uses-feature
         android:name="android.hardware.vibrate"
-        android:required="false" />
-
-
-    <!--    work out-->
+        android:required="false" /> <!-- work out -->
     <permission
         android:name="com.leonard.healthmanager.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
-    <uses-permission android:name="com.leonard.healthmanager.permission.C2D_MESSAGE" />
 
+    <uses-permission android:name="com.leonard.healthmanager.permission.C2D_MESSAGE" />
 
     <supports-screens
         android:anyDensity="true"
@@ -43,7 +39,7 @@
         android:xlargeScreens="true" />
 
     <application
-        android:name="com.leonard.healthmanager.general.MyApplication"
+        android:name=".general.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/logo1"
         android:killAfterRestore="true"
@@ -59,641 +55,702 @@
             android:value="@string/admob_app_id" />
 
         <activity
-            android:name="com.leonard.healthmanager.general.Splash"
+            android:name=".general.Splash"
             android:theme="@style/Theme.Design.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
         <activity
-            android:name="com.leonard.healthmanager.StatsActivity"
+            android:name=".StatsActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/MainTheme"></activity>
+            android:theme="@style/MainTheme" />
         <activity
-            android:name="com.leonard.healthmanager.InitUserInfoActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.leonard.healthmanager.Water_MainActivity"
+            android:name=".InitUserInfoActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/MainTheme"></activity>
+            android:theme="@style/MotivationTheme" />
+        <activity
+            android:name=".Water_MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/MainTheme" />
 
-        <receiver android:name="com.leonard.healthmanager.recievers.NotifierReceiver" />
-
-        <receiver android:name="com.leonard.healthmanager.recievers.BootReceiver">
+        <receiver android:name=".recievers.NotifierReceiver" />
+        <receiver android:name=".recievers.BootReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
 
         <activity
-            android:name="com.leonard.healthmanager.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme1" />
+        <activity
+            android:name=".general.Home_page"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
-            android:name="com.leonard.healthmanager.general.Home_page"
+            android:name=".bmi.BMI_Calculator"
             android:launchMode="singleTop"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
 
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
-            android:name="com.leonard.healthmanager.bmi.BMI_Calculator"
+            android:name=".bmi.BMI_Chart"
             android:launchMode="singleTop"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.bmi.BMI_Chart"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.bmi.BMI_Result"
-            android:launchMode="singleTop"
-            android:theme="@style/LLDialog">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.body_fat.Bodyfat_Calculator"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.body_fat.Bodyfat_Result"
-            android:launchMode="singleTop"
-            android:theme="@style/LLDialog">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.body_fat.Body_Fat_Chart"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.calories_burn.Calories_burn_Calculator"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.calories_burn.Calories_Burn_Result"
-            android:launchMode="singleTop"
-            android:theme="@style/LLDialog">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.calories_burn.Calories_Burn_Chart"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.child_growth.Child_Growth_Calculator"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.child_growth.Child_growth_result"
-            android:launchMode="singleTop"
-            android:theme="@style/LLDialog">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.blood_donation.Blood_Donation_Calculator"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.blood_donation.Blood_Donation_Result"
-            android:launchMode="singleTop"
-            android:theme="@style/LLDialog">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.calories_intake.Daily_Calories_Intake_Calculator"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.calories_intake.Daily_Calories_Intake_Result"
-            android:launchMode="singleTop"
-            android:theme="@style/LLDialog">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.calories_intake.Daily_Calories_Intake_Chart"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.children_height_growth.Children_Height_Growth_Prediction_Calculator"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.children_height_growth.Children_Predicted_Height_Result"
-            android:launchMode="singleTop"
-            android:theme="@style/LLDialog">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.pregnancy_due_date.Pregnancy_Due_Date_Calculator"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.ideal_body_weight.Ideal_Body_Weight_Calculator"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.ideal_body_weight.Ideal_Body_Weight_Result"
-            android:launchMode="singleTop"
-            android:theme="@style/LLDialog">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.heart_rate.Heart_Rate_Calculator"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.heart_rate.Heart_Rate_Result"
-            android:launchMode="singleTop"
-            android:theme="@style/LLDialog">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.heart_rate.Heart_Rate_Chart"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.blood_pressure.BloodPressure_Calculator"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.blood_pressure.Bloodpressure_Chart"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.blood_pressure.BloodPressure_Result"
-            android:launchMode="singleTop"
-            android:theme="@style/LLDialog">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.alcohol.Alcohol_Chart"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.alcohol.Alcohol_Calculator"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.alcohol.Alcohol_Result"
-            android:launchMode="singleTop"
-            android:theme="@style/LLDialog">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.trademill.Trademill_Calculator"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.trademill.Trademill_Result"
-            android:launchMode="singleTop"
-            android:theme="@style/LLDialog">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.daily_water.Daily_WaterIntake_Calculator"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.daily_water.Daily_WaterIntake_Result"
-            android:launchMode="singleTop"
-            android:theme="@style/LLDialog">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.smoking_cost.Smokincost_Calculator"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.smoking_cost.SmokingCost_Result"
-            android:launchMode="singleTop"
-            android:theme="@style/LLDialog">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.sugar.Sugar_calculator"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.sugar.Sugar_Chart"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.sugar.Sugar_Result"
-            android:launchMode="singleTop"
-            android:theme="@style/LLDialog">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.menstrual_and_ovulation.Menstrual_Ovulation_Calculator"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.smoking_risk.Smoking_Risk_Calculator"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.menstrual_and_ovulation.Menstrual_and_ovulation_Result"
-            android:launchMode="singleTop"
-            android:theme="@style/LLDialog">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.smoking_risk.Smoking_Risk_Result"
-            android:launchMode="singleTop"
-            android:theme="@style/LLDialog">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.BMR.bmr_calculator"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.BMR.BMR_Result"
-            android:launchMode="singleTop"
-            android:theme="@style/LLDialog">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.blood_volume.Blood_Volume_Calculator"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.blood_volume.BloodVolume_Result"
-            android:launchMode="singleTop"
-            android:theme="@style/LLDialog">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.body_adiposity_index.Body_Adiposity_Index_Calculator"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.body_adiposity_index.Body_Adiposity_Index_Result"
-            android:launchMode="singleTop"
-            android:theme="@style/LLDialog">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.body_adiposity_index.Body_Adiposity_Index_Chart"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.body_frame_size.Body_Frame_Size_Calculator"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.body_frame_size.BodyFrame_Result"
-            android:launchMode="singleTop"
-            android:theme="@style/LLDialog">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.Body_Surface_Area_Calculator.C1376Body_Surface_Area_Calculator"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.Body_Surface_Area_Calculator.BodySurfaceArea_Result"
-            android:launchMode="singleTop"
-            android:theme="@style/LLDialog">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.chest_hip_ratio.Chest_Hip_Ratio_Calculator"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.chest_hip_ratio.Chest_Hip_Ratio_Result"
-            android:launchMode="singleTop"
-            android:theme="@style/LLDialog">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.cholestrol.Cholestrol_Calculator"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.cholestrol.Cholestrol_Result"
-            android:launchMode="singleTop"
-            android:theme="@style/LLDialog">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.lean_body_mass.Lean_Body_Mass_Calculator"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.lean_body_mass.Lean_Body_Mass_Result"
-            android:launchMode="singleTop"
-            android:theme="@style/LLDialog">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.waist_height_ratio.Waist_Height_Ratio_Calculator"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.waist_height_ratio.Waist_Height_Ratio_Result"
-            android:launchMode="singleTop"
-            android:theme="@style/LLDialog">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.waist_hip_ratio.Waist_Hip_Ratio_Calculator"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.waist_hip_ratio.Waist_Hip_Ratio_Result"
-            android:launchMode="singleTop"
-            android:theme="@style/LLDialog">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.leonard.healthmanager.waist_hip_ratio.Waist_Hip_Ratio_Chart"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
 
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".bmi.BMI_Result"
+            android:launchMode="singleTop"
+            android:theme="@style/LLDialog">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".body_fat.Bodyfat_Calculator"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".body_fat.Bodyfat_Result"
+            android:launchMode="singleTop"
+            android:theme="@style/LLDialog">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".body_fat.Body_Fat_Chart"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".calories_burn.Calories_burn_Calculator"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".calories_burn.Calories_Burn_Result"
+            android:launchMode="singleTop"
+            android:theme="@style/LLDialog">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".calories_burn.Calories_Burn_Chart"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".child_growth.Child_Growth_Calculator"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".child_growth.Child_growth_result"
+            android:launchMode="singleTop"
+            android:theme="@style/LLDialog">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".blood_donation.Blood_Donation_Calculator"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".blood_donation.Blood_Donation_Result"
+            android:launchMode="singleTop"
+            android:theme="@style/LLDialog">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".calories_intake.Daily_Calories_Intake_Calculator"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".calories_intake.Daily_Calories_Intake_Result"
+            android:launchMode="singleTop"
+            android:theme="@style/LLDialog">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".calories_intake.Daily_Calories_Intake_Chart"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".children_height_growth.Children_Height_Growth_Prediction_Calculator"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".children_height_growth.Children_Predicted_Height_Result"
+            android:launchMode="singleTop"
+            android:theme="@style/LLDialog">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".pregnancy_due_date.Pregnancy_Due_Date_Calculator"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ideal_body_weight.Ideal_Body_Weight_Calculator"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ideal_body_weight.Ideal_Body_Weight_Result"
+            android:launchMode="singleTop"
+            android:theme="@style/LLDialog">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".heart_rate.Heart_Rate_Calculator"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".heart_rate.Heart_Rate_Result"
+            android:launchMode="singleTop"
+            android:theme="@style/LLDialog">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".heart_rate.Heart_Rate_Chart"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".blood_pressure.BloodPressure_Calculator"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".blood_pressure.Bloodpressure_Chart"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".blood_pressure.BloodPressure_Result"
+            android:launchMode="singleTop"
+            android:theme="@style/LLDialog">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".alcohol.Alcohol_Chart"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".alcohol.Alcohol_Calculator"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".alcohol.Alcohol_Result"
+            android:launchMode="singleTop"
+            android:theme="@style/LLDialog">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".trademill.Trademill_Calculator"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".trademill.Trademill_Result"
+            android:launchMode="singleTop"
+            android:theme="@style/LLDialog">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".daily_water.Daily_WaterIntake_Calculator"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".daily_water.Daily_WaterIntake_Result"
+            android:launchMode="singleTop"
+            android:theme="@style/LLDialog">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".smoking_cost.Smokincost_Calculator"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".smoking_cost.SmokingCost_Result"
+            android:launchMode="singleTop"
+            android:theme="@style/LLDialog">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".sugar.Sugar_calculator"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".sugar.Sugar_Chart"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".sugar.Sugar_Result"
+            android:launchMode="singleTop"
+            android:theme="@style/LLDialog">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".menstrual_and_ovulation.Menstrual_Ovulation_Calculator"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".smoking_risk.Smoking_Risk_Calculator"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".menstrual_and_ovulation.Menstrual_and_ovulation_Result"
+            android:launchMode="singleTop"
+            android:theme="@style/LLDialog">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".smoking_risk.Smoking_Risk_Result"
+            android:launchMode="singleTop"
+            android:theme="@style/LLDialog">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".BMR.bmr_calculator"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".BMR.BMR_Result"
+            android:launchMode="singleTop"
+            android:theme="@style/LLDialog">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".blood_volume.Blood_Volume_Calculator"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".blood_volume.BloodVolume_Result"
+            android:launchMode="singleTop"
+            android:theme="@style/LLDialog">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".body_adiposity_index.Body_Adiposity_Index_Calculator"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".body_adiposity_index.Body_Adiposity_Index_Result"
+            android:launchMode="singleTop"
+            android:theme="@style/LLDialog">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".body_adiposity_index.Body_Adiposity_Index_Chart"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".body_frame_size.Body_Frame_Size_Calculator"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".body_frame_size.BodyFrame_Result"
+            android:launchMode="singleTop"
+            android:theme="@style/LLDialog">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Body_Surface_Area_Calculator.C1376Body_Surface_Area_Calculator"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Body_Surface_Area_Calculator.BodySurfaceArea_Result"
+            android:launchMode="singleTop"
+            android:theme="@style/LLDialog">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".chest_hip_ratio.Chest_Hip_Ratio_Calculator"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".chest_hip_ratio.Chest_Hip_Ratio_Result"
+            android:launchMode="singleTop"
+            android:theme="@style/LLDialog">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".cholestrol.Cholestrol_Calculator"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".cholestrol.Cholestrol_Result"
+            android:launchMode="singleTop"
+            android:theme="@style/LLDialog">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".lean_body_mass.Lean_Body_Mass_Calculator"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".lean_body_mass.Lean_Body_Mass_Result"
+            android:launchMode="singleTop"
+            android:theme="@style/LLDialog">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".waist_height_ratio.Waist_Height_Ratio_Calculator"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".waist_height_ratio.Waist_Height_Ratio_Result"
+            android:launchMode="singleTop"
+            android:theme="@style/LLDialog">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".waist_hip_ratio.Waist_Hip_Ratio_Calculator"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".waist_hip_ratio.Waist_Hip_Ratio_Result"
+            android:launchMode="singleTop"
+            android:theme="@style/LLDialog">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".waist_hip_ratio.Waist_Hip_Ratio_Chart"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
 
         <receiver
-            android:name="com.leonard.healthmanager.notification.NotificationBroadcastReciever"
+            android:name=".notification.NotificationBroadcastReciever"
             android:exported="true" />
-
 
         <meta-data
             android:name="io.fabric.ApiKey"
@@ -741,15 +798,13 @@
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
             </intent-filter>
-        </receiver>
-        <!--        <service-->
-        <!--            android:name="com.google.firebase.iid.FirebaseInstanceIdService"-->
-        <!--            android:exported="true">-->
-        <!--            <intent-filter android:priority="-500">-->
-        <!--                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />-->
-        <!--            </intent-filter>-->
-        <!--        </service>-->
-
+        </receiver> <!-- <service -->
+        <!-- android:name="com.google.firebase.iid.FirebaseInstanceIdService" -->
+        <!-- android:exported="true"> -->
+        <!-- <intent-filter android:priority="-500"> -->
+        <!-- <action android:name="com.google.firebase.INSTANCE_ID_EVENT" /> -->
+        <!-- </intent-filter> -->
+        <!-- </service> -->
         <service
             android:name="com.google.firebase.messaging.FirebaseMessagingService"
             android:exported="true"
@@ -759,43 +814,29 @@
             </intent-filter>
         </service>
 
-
         <provider
             android:name="com.google.firebase.provider.FirebaseInitProvider"
             android:authorities="com.leonard.healthmanager.firebaseinitprovider"
             android:exported="false"
-            android:initOrder="100" />
-
-
-        <!--        pill_reminder-->
-
+            android:initOrder="100" /> <!-- pill_reminder -->
         <activity
-            android:name="com.leonard.healthmanager.pill_reminder.Pill_MainActivity"
-            android:theme="@style/AppTheme_pill1">
-
-        </activity>
-
+            android:name=".pill_reminder.Pill_MainActivity"
+            android:theme="@style/AppTheme_pill1" />
         <activity
-            android:name="com.leonard.healthmanager.pill_reminder.ReminderAddActivity"
+            android:name=".pill_reminder.ReminderAddActivity"
             android:label="@string/title_activity_add_reminder"
             android:theme="@style/AppTheme_pill2" />
-
         <activity
-            android:name="com.leonard.healthmanager.pill_reminder.ReminderEditActivity"
+            android:name=".pill_reminder.ReminderEditActivity"
             android:label="@string/title_activity_edit_reminder"
             android:theme="@style/AppTheme_pill2" />
 
-
-        <receiver android:name="com.leonard.healthmanager.pill_reminder.AlarmReceiver" />
-
-        <receiver android:name="com.leonard.healthmanager.pill_reminder.BootReceiver">
+        <receiver android:name=".pill_reminder.AlarmReceiver" />
+        <receiver android:name=".pill_reminder.BootReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
-        </receiver>
-
-
-        <!--        workout Plan-->
+        </receiver> <!-- workout Plan -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@mipmap/ic_stat_name" />
@@ -807,34 +848,32 @@
             android:value="@string/default_notification_channel_id" />
 
         <activity
-            android:name="com.leonard.healthmanager.fragment.Workout"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-
-        <activity
-            android:name="com.leonard.healthmanager.DayActivity"
+            android:name=".fragment.Workout"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.leonard.healthmanager.RestDayActivity"
+            android:name=".DayActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.leonard.healthmanager.CompletionExcActivity"
+            android:name=".RestDayActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.leonard.healthmanager.ExcDetailsActivity"
+            android:name=".CompletionExcActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.leonard.healthmanager.MainExcerciseActivity"
+            android:name=".ExcDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MainExcerciseActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <receiver
-            android:name="com.leonard.healthmanager.alarm.alarmmanagerdemo.NotificationPublisher"
+            android:name=".alarm.alarmmanagerdemo.NotificationPublisher"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
@@ -842,25 +881,8 @@
                 <action android:name="android.intent.action.TIME_SET" />
             </intent-filter>
         </receiver>
-
         <receiver
-            android:name="com.leonard.healthmanager.receiver.BootReceiver"
-            android:enabled="true"
-            android:exported="true">
-            <intent-filter>
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
-                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
-                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />
-                <action android:name="android.intent.action.REBOOT" />
-            </intent-filter>
-        </receiver>
-
-
-        <receiver
-            android:name="com.leonard.healthmanager.receiver.DailyBrodcast"
+            android:name=".receiver.BootReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
@@ -874,126 +896,146 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name="com.leonard.healthmanager.receiver.NotificationReceiver"
+            android:name=".receiver.DailyBrodcast"
             android:enabled="true"
-            android:exported="true" />
+            android:exported="true">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
 
-
-        <!--        walk and step-->
-
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="android.intent.action.REBOOT" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".receiver.NotificationReceiver"
+            android:enabled="true"
+            android:exported="true" /> <!-- walk and step -->
         <activity
-            android:name="com.leonard.healthmanager.WalkandStep.activities.MainActivity"
+            android:name=".WalkandStep.activities.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme_walk.NoActionBar_walk"></activity>
-
+            android:theme="@style/AppTheme_walk.NoActionBar_walk" />
         <activity
-            android:name="com.leonard.healthmanager.WalkandStep.activities.TrainingActivity"
+            android:name=".WalkandStep.activities.TrainingActivity"
             android:label="@string/activity_title_training"
-            android:parentActivityName="com.leonard.healthmanager.WalkandStep.activities.TrainingOverviewActivity">
+            android:parentActivityName=".WalkandStep.activities.TrainingOverviewActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.leonard.healthmanager.WalkandStep.activities.TrainingOverviewActivity" />
         </activity>
         <activity
-            android:name="com.leonard.healthmanager.WalkandStep.activities.TrainingOverviewActivity"
+            android:name=".WalkandStep.activities.TrainingOverviewActivity"
             android:label="@string/activity_title_training"
-            android:parentActivityName="com.leonard.healthmanager.WalkandStep.activities.MainActivity">
+            android:parentActivityName=".WalkandStep.activities.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.leonard.healthmanager.WalkandStep.activities.MainActivity" />
         </activity>
         <activity
-            android:name="com.leonard.healthmanager.WalkandStep.activities.PreferencesActivity"
+            android:name=".WalkandStep.activities.PreferencesActivity"
             android:label="@string/action_settings"
-            android:parentActivityName="com.leonard.healthmanager.WalkandStep.activities.MainActivity">
+            android:parentActivityName=".WalkandStep.activities.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.leonard.healthmanager.WalkandStep.activities.MainActivity" />
         </activity>
         <activity
-            android:name="com.leonard.healthmanager.WalkandStep.activities.MotivationAlertTextsActivity"
+            android:name=".WalkandStep.activities.MotivationAlertTextsActivity"
             android:label="@string/activity_title_motivation_alerts"
-            android:parentActivityName="com.leonard.healthmanager.WalkandStep.activities.PreferencesActivity">
+            android:parentActivityName=".WalkandStep.activities.PreferencesActivity"
+            android:theme="@style/MotivationTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.leonard.healthmanager.WalkandStep.activities.PreferencesActivity" />
         </activity>
         <activity
-            android:name="com.leonard.healthmanager.WalkandStep.activities.WalkingModesActivity"
+            android:name=".WalkandStep.activities.WalkingModesActivity"
             android:configChanges="orientation|screenSize|keyboard"
             android:label="@string/activity_title_walking_modes"
-            android:parentActivityName="com.leonard.healthmanager.WalkandStep.activities.PreferencesActivity">
+            android:parentActivityName=".WalkandStep.activities.PreferencesActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.leonard.healthmanager.WalkandStep.activities.PreferencesActivity" />
         </activity>
         <activity
-            android:name="com.leonard.healthmanager.WalkandStep.activities.WalkingModeLearningActivity"
+            android:name=".WalkandStep.activities.WalkingModeLearningActivity"
             android:label="@string/activity_title_walking_modes"
-            android:parentActivityName="com.leonard.healthmanager.WalkandStep.activities.WalkingModesActivity">
+            android:parentActivityName=".WalkandStep.activities.WalkingModesActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.leonard.healthmanager.WalkandStep.activities.WalkingModesActivity" />
         </activity>
         <activity
-            android:name="com.leonard.healthmanager.WalkandStep.activities.DistanceMeasurementActivity"
+            android:name=".WalkandStep.activities.DistanceMeasurementActivity"
             android:label="@string/action_distance_measurement"
-            android:parentActivityName="com.leonard.healthmanager.WalkandStep.activities.MainActivity">
+            android:parentActivityName=".WalkandStep.activities.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.leonard.healthmanager.WalkandStep.activities.MainActivity" />
         </activity>
-        <activity android:name="com.leonard.healthmanager.WalkandStep.activities.WidgetConfigureActivity">
+        <activity android:name=".WalkandStep.activities.WidgetConfigureActivity">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".newsapi.NewsCast"
+            android:label="Planet Fitness - News"
+            android:theme="@style/MotivationTheme"></activity>
 
-        <receiver android:name="com.leonard.healthmanager.WalkandStep.receivers.OnBootCompletedBroadcastReceiver">
+        <activity android:name=".newsapi.WebviewNews"
+            android:label="Planet Fitness - News"
+            android:theme="@style/MotivationTheme"></activity>
+
+        <receiver android:name=".WalkandStep.receivers.OnBootCompletedBroadcastReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-        <receiver android:name="com.leonard.healthmanager.WalkandStep.receivers.OnShutdownBroadcastReceiver">
+        <receiver android:name=".WalkandStep.receivers.OnShutdownBroadcastReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.ACTION_SHUTDOWN" />
                 <!-- this is for some htc devices (and others) -->
                 <action android:name="android.intent.action.QUICKBOOT_POWEROFF" />
             </intent-filter>
         </receiver>
-        <receiver android:name="com.leonard.healthmanager.WalkandStep.receivers.OnPackageReplacedBroadcastReceiver">
+        <receiver android:name=".WalkandStep.receivers.OnPackageReplacedBroadcastReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
             </intent-filter>
         </receiver>
         <receiver
-            android:name="com.leonard.healthmanager.WalkandStep.receivers.StepCountPersistenceReceiver"
+            android:name=".WalkandStep.receivers.StepCountPersistenceReceiver"
             android:enabled="true"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.leonard.healthmanager.WALKING_MODE_CHANGED" />
             </intent-filter>
         </receiver>
-        <receiver android:name="com.leonard.healthmanager.WalkandStep.receivers.WidgetReceiver">
+        <receiver android:name=".WalkandStep.receivers.WidgetReceiver">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
+
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/appwidget_provider" />
         </receiver>
+        <receiver android:name=".WalkandStep.receivers.MotivationAlertReceiver" />
+        <receiver android:name=".WalkandStep.receivers.HardwareStepCountReceiver" />
 
-        <receiver android:name="com.leonard.healthmanager.WalkandStep.receivers.MotivationAlertReceiver" />
-        <receiver android:name="com.leonard.healthmanager.WalkandStep.receivers.HardwareStepCountReceiver" />
-
-        <service android:name="com.leonard.healthmanager.WalkandStep.services.HardwareStepCounterService" />
-        <service android:name="com.leonard.healthmanager.WalkandStep.services.MovementSpeedService" />
-        <service android:name="com.leonard.healthmanager.WalkandStep.services.AccelerometerStepDetectorService" />
+        <service android:name=".WalkandStep.services.HardwareStepCounterService" />
+        <service android:name=".WalkandStep.services.MovementSpeedService" />
+        <service android:name=".WalkandStep.services.AccelerometerStepDetectorService" />
         <service
-            android:name="com.leonard.healthmanager.WalkandStep.services.HardwareStepDetectorService"
+            android:name=".WalkandStep.services.HardwareStepDetectorService"
             android:stopWithTask="false" />
 
-
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
     </application>
 
 </manifest>

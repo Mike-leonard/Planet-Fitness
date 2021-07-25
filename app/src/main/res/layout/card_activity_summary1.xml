@@ -19,7 +19,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="#323752">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -86,6 +87,7 @@
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:src="@mipmap/step_2"
+                    android:tint="@color/white"
                     android:layout_alignParentRight="true"
 
                     />
@@ -95,7 +97,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:text="Walk &amp; Steps"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:fontFamily="@font/gothic"
                     android:textSize="16dp"
                     android:layout_marginLeft="5dp"
@@ -175,7 +177,7 @@
                                 android:singleLine="true"
                                 android:text="00"
                                 android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:textColor="@color/dot_dark_screen" />
+                                android:textColor="@color/white" />
 
 
                             <TextView
@@ -187,7 +189,7 @@
                                 android:layout_marginTop="8dp"
                                 android:text="Walk Step Report"
                                 android:layout_marginBottom="10dp"
-                                android:textColor="@color/grey_calendar"
+                                android:textColor="@color/textColor"
                                 android:typeface="serif" />
 
                         </RelativeLayout>

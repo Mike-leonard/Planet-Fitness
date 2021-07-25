@@ -21,7 +21,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginTop="30dp"
             android:padding="8dp"
-            android:src="@mipmap/left_arrow" />
+            android:src="@drawable/ic_chevron_left_white_24dp" />
 
     <TextView
         android:id="@+id/tv_title"
@@ -76,7 +76,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_16" />
                 </LinearLayout>
 
@@ -103,7 +103,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_16" />
                 </LinearLayout>
 
@@ -130,7 +130,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_16" />
                 </LinearLayout>
 
@@ -165,7 +165,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="@string/Age"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/textColor" />
 
                         <TextView
                             android:id="@+id/tv_sedentary"
@@ -175,7 +175,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="@string/Sedentary"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/textColor" />
 
                         <TextView
                             android:id="@+id/tv_lowactivity"
@@ -185,7 +185,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="@string/Low_Activity"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/textColor" />
 
                         <TextView
                             android:id="@+id/tv_Active"
@@ -195,7 +195,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="@string/Active"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/textColor" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -210,7 +210,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="2-3 yrs"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14"
                             android:textStyle="bold" />
 
@@ -222,7 +222,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="1100"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
 
                         <TextView
@@ -233,7 +233,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="1250"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
 
                         <TextView
@@ -244,7 +244,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="1400"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
                     </LinearLayout>
 
@@ -260,7 +260,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="4-5 yrs"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14"
                             android:textStyle="bold" />
 
@@ -272,7 +272,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="1200"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
 
                         <TextView
@@ -283,7 +283,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="1350"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
 
                         <TextView
@@ -294,7 +294,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="1500"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
                     </LinearLayout>
 
@@ -310,7 +310,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="6-7 yrs"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14"
                             android:textStyle="bold" />
 
@@ -322,7 +322,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="1300"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
 
                         <TextView
@@ -333,7 +333,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="1500"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
 
                         <TextView
@@ -344,7 +344,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="1700"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
                     </LinearLayout>
 
@@ -360,7 +360,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="8-9 yrs"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14"
                             android:textStyle="bold" />
 
@@ -372,7 +372,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="1400"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
 
                         <TextView
@@ -383,7 +383,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="1600"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
 
                         <TextView
@@ -394,7 +394,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="1850"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
                     </LinearLayout>
 
@@ -410,7 +410,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="10-11 yrs"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14"
                             android:textStyle="bold" />
 
@@ -422,7 +422,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="1500"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
 
                         <TextView
@@ -433,7 +433,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="1800"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
 
                         <TextView
@@ -444,7 +444,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="2050"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
                     </LinearLayout>
 
@@ -460,7 +460,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="12-13 yrs"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14"
                             android:textStyle="bold" />
 
@@ -472,7 +472,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="1700"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
 
                         <TextView
@@ -483,7 +483,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="2000"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
 
                         <TextView
@@ -494,7 +494,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="2250"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
                     </LinearLayout>
 
@@ -510,7 +510,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="14-16 yrs"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14"
                             android:textStyle="bold" />
 
@@ -522,7 +522,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="1750"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
 
                         <TextView
@@ -533,7 +533,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="2100"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
 
                         <TextView
@@ -544,7 +544,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="2350"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
                     </LinearLayout>
 
@@ -560,7 +560,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="17-18 yrs"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14"
                             android:textStyle="bold" />
 
@@ -572,7 +572,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="1750"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
 
                         <TextView
@@ -583,7 +583,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="2100"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
 
                         <TextView
@@ -594,7 +594,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="2400"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
                     </LinearLayout>
 
@@ -610,7 +610,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="19-30 yrs"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14"
                             android:textStyle="bold" />
 
@@ -622,7 +622,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="1900"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
 
                         <TextView
@@ -633,7 +633,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="2100"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
 
                         <TextView
@@ -644,7 +644,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="2350"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
                     </LinearLayout>
 
@@ -660,7 +660,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="31-50 yrs"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14"
                             android:textStyle="bold" />
 
@@ -672,7 +672,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="1800"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
 
                         <TextView
@@ -683,7 +683,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="2000"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
 
                         <TextView
@@ -694,7 +694,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="2250"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
                     </LinearLayout>
 
@@ -710,7 +710,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="51-70 yrs"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14"
                             android:textStyle="bold" />
 
@@ -722,7 +722,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="1650"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
 
                         <TextView
@@ -733,7 +733,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="1850"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
 
                         <TextView
@@ -744,7 +744,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="2100"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
                     </LinearLayout>
 
@@ -760,7 +760,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="&gt; 71 yrs"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14"
                             android:textStyle="bold" />
 
@@ -772,7 +772,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="1550"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
 
                         <TextView
@@ -783,7 +783,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="1750"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
 
                         <TextView
@@ -794,7 +794,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="2000"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14" />
                     </LinearLayout>
                 </LinearLayout>
@@ -974,7 +974,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="6-7 yrs"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize_14"
                             android:textStyle="bold" />
 

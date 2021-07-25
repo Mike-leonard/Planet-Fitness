@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view_news"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/text_15"
+        android:layout_marginLeft="@dimen/text_15"
+        android:orientation="horizontal"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="10dip">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/a2_grad">
+            <ImageView
+                android:id="@+id/news_image"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@mipmap/drawer_app"
+                android:scaleType="fitXY"/>
+            <TextView
+                android:id="@+id/txt_news"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Some lorem ispum tezt plut int gere to serrjh djgh hfh hjhf"
+                android:textSize="18sp"
+                android:textColor="@color/white"
+                android:layout_below="@+id/news_image"
+                android:padding="10dp"/>
+
+            <TextView
+                android:id="@+id/txt_nw_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="10 Hour ago"
+                android:textSize="14sp"
+                android:layout_below="@+id/txt_news"
+                android:textColor="@color/textColor"
+                android:textAlignment="textEnd"
+                android:paddingRight="20dp"
+                android:paddingBottom="10dp"/>
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

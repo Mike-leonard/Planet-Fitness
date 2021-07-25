@@ -93,8 +93,17 @@ class NotificationHelper(val ctx: Context) {
     private fun shallNotify(): Boolean {
         val prefs = ctx.getSharedPreferences(AppUtils.USERS_SHARED_PREF, AppUtils.PRIVATE_MODE)
         val sqliteHelper = SqliteHelper(ctx)
+        var percent = 0;
 
-        val percent = sqliteHelper.getIntook(AppUtils.getCurrentDate()!!) * 100 / prefs.getInt(AppUtils.TOTAL_INTAKE, 0)
+        //TODO: 15/07/2021
+        if (prefs.getInt(AppUtils.TOTAL_INTAKE, 0) > 0){
+            percent = sqliteHelper.getIntook(AppUtils.getCurrentDate()!!) * 100 / prefs.getInt(AppUtils.TOTAL_INTAKE, 0)
+            Log.e("tag", percent.toString());
+        } else{
+            percent = sqliteHelper.getIntook(AppUtils.getCurrentDate()!!) * 100
+            Log.e("tag", percent.toString());
+        }
+
 
         var doNotDisturbOff = true
 

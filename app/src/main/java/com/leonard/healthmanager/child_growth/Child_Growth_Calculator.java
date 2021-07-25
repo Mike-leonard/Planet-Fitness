@@ -11,10 +11,12 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -31,6 +33,8 @@ import com.zplesac.connectionbuddy.ConnectionBuddy;
 import com.zplesac.connectionbuddy.interfaces.NetworkRequestCheckListener;
 import java.io.PrintStream;
 import java.util.ArrayList;
+
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
 
 public class Child_Growth_Calculator extends Activity {
@@ -58,7 +62,8 @@ public class Child_Growth_Calculator extends Activity {
 
 
     public void attachBaseContext(Context context) {
-        super.attachBaseContext(uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper.wrap(context));
+        //super.attachBaseContext(uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper.wrap(context));
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(context));
     }
 
 
@@ -77,10 +82,10 @@ public class Child_Growth_Calculator extends Activity {
         this.tv_childmonth = (TextView) findViewById(R.id.tv_childmonth);
         this.tv_search_headcircumference = (TextView) findViewById(R.id.tv_search_headcircumference);
         this.tv_select_age = (TextView) findViewById(R.id.tv_search_headcircumference);
-        this.adView = (AdView) findViewById(R.id.adView);
+        /*this.adView = (AdView) findViewById(R.id.adView);
         AdView mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        mAdView.loadAd(adRequest);*/
         this.tv_childmonth.setOnClickListener(showPopupWindow_month());
         this.tv_child_growth.setTypeface(this.typefaceManager.getBold());
         this.tv_childmonth.setTypeface(this.typefaceManager.getLight());
@@ -213,6 +218,7 @@ public class Child_Growth_Calculator extends Activity {
                 }
             }
         });
+        googleBannerView();
     }
 
     private OnClickListener showPopupWindow_month() {
@@ -826,7 +832,59 @@ public class Child_Growth_Calculator extends Activity {
     }
 
     public void onBackPressed() {
-        this.adView.setVisibility(8);
+       // this.adView.setVisibility(8);
         ActivityCompat.finishAfterTransition(this);
+    }
+
+    private void googleBannerView () {
+        LinearLayout adContainer = findViewById(R.id.normal_ad_include);
+        com.google.android.gms.ads.AdView adView = new com.google.android.gms.ads.AdView(this);
+        adView.setAdSize(com.google.android.gms.ads.AdSize.SMART_BANNER);
+        adView.setAdUnitId(getString(R.string.banner_ad_seven));
+
+        // Initiate a generic request to load it with an ad
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
+
+        // Place the ad view.
+        LinearLayout.LayoutParams params = new LinearLayout
+                .LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT);
+        adContainer.addView(adView, params);
+
+        adView.setAdListener(new com.google.android.gms.ads.AdListener() {
+            @Override
+            public void onAdClosed() {
+                super.onAdClosed();
+            }
+
+            @Override
+            public void onAdFailedToLoad(int i) {
+                super.onAdFailedToLoad(i);
+            }
+
+            @Override
+            public void onAdOpened() {
+                super.onAdOpened();
+            }
+
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+
+            }
+
+            @Override
+            public void onAdClicked() {
+                super.onAdClicked();
+
+            }
+
+            @Override
+            public void onAdImpression() {
+                super.onAdImpression();
+            }
+        });
+
     }
 }

@@ -2,6 +2,7 @@
 package com.leonard.healthmanager.WalkandStep.fragments;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,14 +13,19 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.gms.ads.AdRequest;
 import com.google.android.material.tabs.TabLayout;
+import com.leonard.healthmanager.GifImageView;
 import com.leonard.healthmanager.R;
 import com.leonard.healthmanager.WalkandStep.activities.PreferencesActivity;
 import com.leonard.healthmanager.WalkandStep.utils.StepDetectionServiceHelper;
@@ -47,6 +53,21 @@ public class MainFragment extends Fragment implements SharedPreferences.OnShared
         StepDetectionServiceHelper.startAllIfEnabled(true, getContext());
 
         imageView = (ImageView) view.findViewById(R.id.settle);
+        //((GifImageView) view.findViewById(R.id.GifImageView))
+        // .setGifImageResource(R.drawable.girls_normal_min);
+        /*((GifImageView) view.findViewById(R.id.GifImageView))
+                .onMeasure(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);*/
+
+        /*webView = (WebView) view.findViewById(R.id.web_view);
+        webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
+        webView.getSettings().setLoadsImagesAutomatically(true);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.loadUrl("file:///android_asset/girls_normal.gif");*/
+
+        webViewSetter(view);
+
+
+
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,6 +77,8 @@ public class MainFragment extends Fragment implements SharedPreferences.OnShared
                 startActivity(intent);
             }
         });
+
+
 
 //        StepDetectionServiceHelper.startAllIfEnabled(true,
 //                getActivity().getApplicationContext());
@@ -202,5 +225,23 @@ public class MainFragment extends Fragment implements SharedPreferences.OnShared
     public void onAttach(Activity activity) {
         StepDetectionServiceHelper.startAllIfEnabled(true, getActivity().getApplicationContext());
         super.onAttach(activity);
+    }
+
+    private void webViewSetter (View view) {
+
+        LinearLayout adContainer = view.findViewById(R.id.web_container);
+        WebView webView = new WebView(getActivity().getApplicationContext());
+        webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
+        webView.getSettings().setLoadsImagesAutomatically(true);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setLoadWithOverviewMode(true);
+        webView.getSettings().setUseWideViewPort(true);
+        webView.loadUrl("file:///android_asset/girls_normal.gif");
+
+        // Place the ad view.
+        LinearLayout.LayoutParams params = new LinearLayout
+                .LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+        adContainer.addView(webView, params);
     }
 }

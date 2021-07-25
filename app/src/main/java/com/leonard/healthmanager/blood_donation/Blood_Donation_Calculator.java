@@ -10,7 +10,9 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -31,14 +33,16 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
+
 
 public class Blood_Donation_Calculator extends Activity {
     String TAG = getClass().getSimpleName();
-    AdView adView;
+    //AdView adView;
     String eligieble_date;
     GlobalFunction globalFunction;
     ImageView iv_back;
-    SNPCalendarView mFCalendarView;
+    //SNPCalendarView mFCalendarView;
     String prev_date;
     SharedPreferenceManager sharedPreferenceManager;
     String todays_date;
@@ -49,28 +53,29 @@ public class Blood_Donation_Calculator extends Activity {
 
 
     public void attachBaseContext(Context context) {
-        super.attachBaseContext(uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper.wrap(context));
+        //super.attachBaseContext(uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper.wrap(context));
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(context));
     }
 
 
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        setContentView(R.layout.blood_donation_calculator);
+        setContentView(R.layout.blood_donation_calculator_new);
         this.globalFunction = new GlobalFunction(this);
         this.sharedPreferenceManager = new SharedPreferenceManager(this);
         this.typefaceManager = new TypefaceManager(getAssets(), this);
         this.globalFunction.set_locale_language();
         this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
-        this.mFCalendarView = (SNPCalendarView) findViewById(R.id.mFCalendarView);
+        //this.mFCalendarView = (SNPCalendarView) findViewById(R.id.mFCalendarView);
         this.tv_search_date = (TextView) findViewById(R.id.tv_search_date);
         this.tv_date = (TextView) findViewById(R.id.tv_date);
         this.tv_blood_donation = (TextView) findViewById(R.id.tv_blood_donation);
         this.iv_back = (ImageView) findViewById(R.id.iv_back);
-        this.adView = (AdView) findViewById(R.id.adView);
+        /*this.adView = (AdView) findViewById(R.id.adView);
 
         AdView mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        mAdView.loadAd(adRequest);*/
 
         this.tv_blood_donation.setTypeface(this.typefaceManager.getBold());
         this.tv_search_date.setTypeface(this.typefaceManager.getBold());
@@ -106,7 +111,7 @@ public class Blood_Donation_Calculator extends Activity {
                 Blood_Donation_Calculator.this.startActivity(intent);
             }
         });
-        this.mFCalendarView.setOnCalendarViewListener(new onSNPCalendarViewListener() {
+        /*this.mFCalendarView.setOnCalendarViewListener(new onSNPCalendarViewListener() {
             public void onDisplayedMonthChanged(int i, int i2, String str) {
             }
 
@@ -122,7 +127,9 @@ public class Blood_Donation_Calculator extends Activity {
                     e.printStackTrace();
                 }
             }
-        });
+        });*/
+        calendarViewEvent();
+        googleBannerView();
     }
 
     private String getDateTime() {
@@ -160,7 +167,7 @@ public class Blood_Donation_Calculator extends Activity {
 
     public void onBackPressed() {
         super.onBackPressed();
-        this.adView.setVisibility(8);
+        //this.adView.setVisibility(8);
         ActivityCompat.finishAfterTransition(this);
     }
 
@@ -232,5 +239,87 @@ public class Blood_Donation_Calculator extends Activity {
         } else {
             MyApplication.interstitial.show();
         }
+    }
+
+    private void calendarViewEvent () {
+        LinearLayout adContainer = findViewById(R.id.calenderShow);
+        SNPCalendarView snpCalendarViewer = new SNPCalendarView(this);
+
+        // Place the ad view.
+        LinearLayout.LayoutParams params = new LinearLayout
+                .LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT);
+
+
+        snpCalendarViewer.setOnCalendarViewListener(new onSNPCalendarViewListener() {
+            public void onDisplayedMonthChanged(int i, int i2, String str) {
+            }
+
+            public void onDateChanged(String str) {
+                String str2 = "date";
+                try {
+                    StringBuilder sb = new StringBuilder();
+                    sb.append("date->");
+                    sb.append(str);
+                    Log.d(str2, sb.toString());
+                    Blood_Donation_Calculator.this.get_eligieble_date(str);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        adContainer.addView(snpCalendarViewer, params);
+    }
+
+    private void googleBannerView () {
+        LinearLayout adContainer = findViewById(R.id.normal_ad_include);
+        com.google.android.gms.ads.AdView adView = new com.google.android.gms.ads.AdView(this);
+        adView.setAdSize(com.google.android.gms.ads.AdSize.SMART_BANNER);
+        adView.setAdUnitId(getString(R.string.banner_ad_five));
+
+        // Initiate a generic request to load it with an ad
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
+
+        // Place the ad view.
+        LinearLayout.LayoutParams params = new LinearLayout
+                .LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT);
+        adContainer.addView(adView, params);
+
+        adView.setAdListener(new com.google.android.gms.ads.AdListener() {
+            @Override
+            public void onAdClosed() {
+                super.onAdClosed();
+            }
+
+            @Override
+            public void onAdFailedToLoad(int i) {
+                super.onAdFailedToLoad(i);
+            }
+
+            @Override
+            public void onAdOpened() {
+                super.onAdOpened();
+            }
+
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+
+            }
+
+            @Override
+            public void onAdClicked() {
+                super.onAdClicked();
+
+            }
+
+            @Override
+            public void onAdImpression() {
+                super.onAdImpression();
+            }
+        });
+
     }
 }

@@ -15,7 +15,9 @@
         android:layout_marginLeft="-5dp"
         android:layout_marginTop="-20dp"
         android:layout_marginRight="-5dp"
-        android:background="@mipmap/banner_reminder">
+        android:backgroundTint="#C68B9F"
+        android:backgroundTintMode="multiply"
+        android:background="@mipmap/banner_reminder_top">
 
         <ImageView
             android:id="@+id/i1"
@@ -28,12 +30,13 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Set Reminder"
+            android:text="Set Reminder's &amp; New's"
             android:textColor="@color/white"
             android:textSize="@dimen/text_18"
             android:layout_below="@+id/i1"
             android:layout_marginLeft="@dimen/text_20"
             android:layout_marginTop="10dp"
+            android:textStyle="bold"
             android:fontFamily="@font/gothic"/>
 
     </RelativeLayout>
@@ -46,8 +49,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-       >
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:id="@+id/relaa1"
@@ -61,7 +63,32 @@
                 android:id="@+id/set_water"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@mipmap/set_water" />
+                android:backgroundTint="#D4D5D8"
+                android:backgroundTintMode="multiply"
+                android:background="@mipmap/set_water_co" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Remind you to drink\n water on time"
+                android:textColor="@color/white"
+                android:layout_marginStart="35dp"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="30dp"
+                android:textStyle="bold"
+                android:textSize="15dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:padding="10dp"
+                android:layout_below="@+id/set_water"
+                android:layout_marginTop="-60dp"
+                android:layout_marginLeft="25dp"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="Water Reminder"/>
 
             <ImageView
                 android:id="@+id/butoon_plus"
@@ -75,6 +102,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/relaa2"
             android:layout_below="@+id/relaa1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -86,7 +114,21 @@
                 android:id="@+id/set_medicion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@mipmap/set_medication" />
+                android:backgroundTint="#DEDFE4"
+                android:backgroundTintMode="multiply"
+                android:background="@mipmap/medication" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:padding="10dp"
+                android:layout_below="@+id/set_medicion"
+                android:layout_marginTop="-85dp"
+                android:layout_marginLeft="25dp"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="Medication Reminder"/>
 
             <ImageView
                 android:id="@+id/butoon_plus1"
@@ -94,7 +136,46 @@
                 android:layout_height="45dp"
                 android:layout_below="@+id/set_medicion"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="-60dp"
+                android:layout_marginTop="-85dp"
+                android:layout_marginRight="25dp"
+                android:background="@mipmap/add_22" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relaa3"
+            android:layout_below="@+id/relaa2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp">
+
+            <ImageView
+                android:id="@+id/set_news"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#DEDFE4"
+                android:backgroundTintMode="multiply"
+                android:background="@mipmap/news_update" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:padding="10dp"
+                android:layout_below="@+id/set_news"
+                android:layout_marginTop="-70dp"
+                android:layout_marginLeft="25dp"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="Health News"/>
+
+            <ImageView
+                android:id="@+id/butoon_go_health"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_below="@+id/set_news"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="-70dp"
                 android:layout_marginRight="25dp"
                 android:background="@mipmap/add_22" />
         </RelativeLayout>

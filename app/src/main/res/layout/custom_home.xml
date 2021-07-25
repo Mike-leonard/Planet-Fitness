@@ -21,7 +21,8 @@
             android:layout_height="50dp"
             android:layout_centerHorizontal="true"
             android:layout_margin="@dimen/text_15"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@mipmap/ic_launcher"
+            android:tint="@color/textColor"/>
 
 
         <TextView
@@ -37,7 +38,7 @@
             android:layout_marginLeft="3dp"
             android:gravity="center_vertical"
             android:text="dfkdf"
-            android:textColor="@color/black"
+            android:textColor="@color/textColor"
             android:textSize="16dp" />
     </RelativeLayout>
 </RelativeLayout>

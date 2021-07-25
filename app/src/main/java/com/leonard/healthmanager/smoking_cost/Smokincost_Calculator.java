@@ -29,6 +29,8 @@ import com.zplesac.connectionbuddy.ConnectionBuddy;
 import com.zplesac.connectionbuddy.interfaces.NetworkRequestCheckListener;
 import java.io.PrintStream;
 
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
+
 
 public class Smokincost_Calculator extends AppCompatActivity {
     String TAG = getClass().getSimpleName();
@@ -49,7 +51,8 @@ public class Smokincost_Calculator extends AppCompatActivity {
 
 
     public void attachBaseContext(Context context) {
-        super.attachBaseContext(uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper.wrap(context));
+        //super.attachBaseContext(uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper.wrap(context));
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(context));
     }
 
 

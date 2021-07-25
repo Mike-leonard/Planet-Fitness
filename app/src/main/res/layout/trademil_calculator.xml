@@ -21,11 +21,11 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="20dp"
         android:padding="5dp"
-        android:src="@mipmap/left_arrow" />
+        android:src="@drawable/ic_chevron_left_white_24dp" />
 
 
 
-    <androidx.cardview.widget.CardView
+    <LinearLayout
         android:id="@+id/cardviewone"
         android:layout_marginBottom="60dp"
         android:layout_width="match_parent"
@@ -35,7 +35,7 @@
         android:layout_marginTop="-80dp"
         android:layout_marginRight="@dimen/text_15"
         android:orientation="horizontal"
-        app:cardCornerRadius="20dp"
+        android:background="@drawable/a2_grad_black"
         app:cardElevation="20dip">
 
 
@@ -44,7 +44,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/ad_layout"
+        android:layout_above="@+id/normal_ad_include"
         android:layout_below="@+id/tv_trademill">
 
         <LinearLayout
@@ -86,7 +86,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_margin="10dp"
                 android:text="@string/Bruce_trade_mill"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="@dimen/textsize_16" />
 
             <EditText
@@ -149,19 +149,18 @@
                 android:background="@drawable/a3_grad"
                 android:gravity="center"
                 android:text="@string/Calculate_Bruce_Trade_Mill"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/textColor"
                 android:textSize="@dimen/textsize_14" />
         </LinearLayout>
     </ScrollView>
 
-    </androidx.cardview.widget.CardView>
-    <include
-        android:id="@+id/ad_layout"
-        layout="@layout/native_ad"
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/normal_ad_include"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="top|center_vertical|center_horizontal|center" />
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"/>
 </RelativeLayout>

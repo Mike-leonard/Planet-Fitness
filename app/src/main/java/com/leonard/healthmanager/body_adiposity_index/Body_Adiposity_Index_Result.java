@@ -24,6 +24,8 @@ import com.zplesac.connectionbuddy.ConnectionBuddy;
 import com.zplesac.connectionbuddy.interfaces.NetworkRequestCheckListener;
 import java.io.PrintStream;
 
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
+
 
 public class Body_Adiposity_Index_Result extends Activity {
     String TAG = getClass().getSimpleName();
@@ -41,7 +43,8 @@ public class Body_Adiposity_Index_Result extends Activity {
 
 
     public void attachBaseContext(Context context) {
-        super.attachBaseContext(uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper.wrap(context));
+        //super.attachBaseContext(uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper.wrap(context));
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(context));
     }
 
 

@@ -66,7 +66,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="vertical"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="#87242841">
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -111,7 +112,7 @@
                 android:fontFamily="@font/gothic"
                 android:gravity="center_vertical"
                 android:layout_marginLeft="10dp"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:layout_height="wrap_content"/>
 
             <RelativeLayout
@@ -144,7 +145,7 @@
 
                     <TextView
                         android:id="@+id/date_text"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:layout_width="wrap_content"
                         android:textSize="15dp"
                         android:layout_height="wrap_content"
@@ -155,7 +156,7 @@
                         android:id="@+id/set_date"
                         android:textSize="15dp"
                         android:text="gfgdgdg"
-                        android:textColor="@color/grey_calendar"
+                        android:textColor="@color/textColor"
                         android:layout_height="wrap_content"/>
 
                 </LinearLayout>
@@ -192,7 +193,7 @@
 
                     <TextView
                         android:id="@+id/time_text"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:layout_width="wrap_content"
                         android:textSize="15dp"
                         android:layout_height="wrap_content"
@@ -203,7 +204,7 @@
                         android:id="@+id/set_time"
                         android:textSize="15dp"
                         android:text="sdgfsrg"
-                        android:textColor="@color/grey_calendar"
+                        android:textColor="@color/textColor"
                         android:layout_height="wrap_content"/>
 
                 </LinearLayout>
@@ -239,7 +240,7 @@
 
                     <TextView
                         android:id="@+id/repeat_text"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:layout_width="wrap_content"
                         android:textSize="15dp"
                         android:layout_height="wrap_content"
@@ -250,7 +251,7 @@
                         android:id="@+id/set_repeat"
                         android:textSize="15dp"
                         android:text="kjdfhadf"
-                        android:textColor="@color/grey_calendar"
+                        android:textColor="@color/textColor"
                         android:layout_height="wrap_content"/>
 
                 </LinearLayout>
@@ -300,7 +301,7 @@
 
                     <TextView
                         android:id="@+id/repeat_no_text"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:layout_width="wrap_content"
                         android:textSize="15dp"
                         android:layout_height="wrap_content"
@@ -311,7 +312,7 @@
                         android:id="@+id/set_repeat_no"
                         android:textSize="15dp"
                         android:text="hsdghf"
-                        android:textColor="@color/grey_calendar"
+                        android:textColor="@color/textColor"
                         android:layout_height="wrap_content"/>
 
                 </LinearLayout>
@@ -349,7 +350,7 @@
 
                     <TextView
                         android:id="@+id/repeat_type_text"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:layout_width="wrap_content"
                         android:textSize="15dp"
                         android:layout_height="wrap_content"
@@ -360,7 +361,7 @@
                         android:id="@+id/set_repeat_type"
                         android:textSize="15dp"
                         android:text="ghdgfs"
-                        android:textColor="@color/grey_calendar"
+                        android:textColor="@color/textColor"
                         android:layout_height="wrap_content"/>
 
                 </LinearLayout>

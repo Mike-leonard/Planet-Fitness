@@ -269,7 +269,7 @@ class BottomSheetFragment(val mCtx: Context) : BottomSheetDialogFragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == Activity.RESULT_OK && requestCode == 999) {
 
-            val uri = data!!.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI) as Uri
+            val uri = data!!.getParcelableExtra<Uri>(RingtoneManager.EXTRA_RINGTONE_PICKED_URI)!! as Uri
             currentToneUri = uri.toString()
             sharedPref.edit().putString(AppUtils.NOTIFICATION_TONE_URI_KEY, currentToneUri).apply()
             val ringtone = RingtoneManager.getRingtone(mCtx, uri)

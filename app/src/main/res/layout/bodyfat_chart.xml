@@ -21,7 +21,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginTop="30dp"
             android:padding="8dp"
-            android:src="@mipmap/left_arrow" />
+            android:src="@drawable/ic_chevron_left_white_24dp" />
 
         <TextView
             android:id="@+id/tv_title"
@@ -84,7 +84,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="@string/Fat_Level"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
 
                     <TextView
@@ -95,7 +95,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="@string/Men_fat"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
 
                     <TextView
@@ -106,7 +106,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="@string/Women_fat"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
                 </LinearLayout>
 
@@ -123,7 +123,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="@string/Very_Low"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
 
                     <TextView
@@ -134,7 +134,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="7-10"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
 
                     <TextView
@@ -145,7 +145,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="14-17"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
                 </LinearLayout>
 
@@ -162,7 +162,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="@string/Low"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
 
                     <TextView
@@ -173,7 +173,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="10-13"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
 
                     <TextView
@@ -184,7 +184,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="17-20"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
                 </LinearLayout>
 
@@ -201,7 +201,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="@string/Average"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
 
                     <TextView
@@ -212,7 +212,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="13-17"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
 
                     <TextView
@@ -223,7 +223,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="20-27"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
                 </LinearLayout>
 
@@ -240,7 +240,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="@string/High"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
 
                     <TextView
@@ -251,7 +251,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="17-25"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
 
                     <TextView
@@ -262,7 +262,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="27-31"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
                 </LinearLayout>
 
@@ -279,7 +279,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="@string/Very_High"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
 
                     <TextView
@@ -290,7 +290,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="&gt; 25"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
 
                     <TextView
@@ -301,7 +301,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="&gt; 31"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
                 </LinearLayout>
             </LinearLayout>
@@ -339,7 +339,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="@string/Classification"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
 
                     <TextView
@@ -350,7 +350,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="@string/Men_fat"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
 
                     <TextView
@@ -361,7 +361,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="@string/Women_fat"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
                 </LinearLayout>
 
@@ -378,7 +378,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="@string/Essential_Fat"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
 
                     <TextView
@@ -389,7 +389,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="2-4 %"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
 
                     <TextView
@@ -400,7 +400,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="10-12 %"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
                 </LinearLayout>
 
@@ -417,7 +417,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="@string/Athletes"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
 
                     <TextView
@@ -428,7 +428,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="6-13 %"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
 
                     <TextView
@@ -439,7 +439,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="14-20 %"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
                 </LinearLayout>
 
@@ -456,7 +456,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="@string/Fitness"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
 
                     <TextView
@@ -467,7 +467,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="14-17 %"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
 
                     <TextView
@@ -478,7 +478,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="21-24 %"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
                 </LinearLayout>
 
@@ -495,7 +495,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="@string/Acceptable"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
 
                     <TextView
@@ -506,7 +506,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="18-25 %"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
 
                     <TextView
@@ -517,7 +517,7 @@
                         android:gravity="fill"
                         android:padding="5dp"
                         android:text="25-31 %"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize_14" />
                 </LinearLayout>
             </LinearLayout>

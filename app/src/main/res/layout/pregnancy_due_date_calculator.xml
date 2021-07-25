@@ -23,10 +23,10 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="20dp"
         android:padding="5dp"
-        android:src="@mipmap/left_arrow" />
+        android:src="@drawable/ic_chevron_left_white_24dp" />
 
 
-    <androidx.cardview.widget.CardView
+    <LinearLayout
         android:id="@+id/cardviewone"
         android:layout_marginBottom="60dp"
         android:layout_width="match_parent"
@@ -36,14 +36,14 @@
         android:layout_marginTop="-80dp"
         android:layout_marginRight="@dimen/text_15"
         android:orientation="horizontal"
-        app:cardCornerRadius="20dp"
+        android:background="@drawable/a2_grad_black"
         app:cardElevation="20dip">
 
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/ad_layout"
+            android:layout_above="@+id/normal_ad_include"
             android:layout_below="@+id/tv_pregnancy">
 
             <LinearLayout
@@ -86,7 +86,7 @@
                     android:layout_margin="10dp"
                     android:text="@string/Pregnancy_Due_Date_Calculator"
                     android:textAlignment="center"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/textsize_16" />
 
 
@@ -100,8 +100,8 @@
                     android:inputType="numberDecimal"
                     android:paddingLeft="5dp"
                     android:text="@string/Select_date_of_Last_Menstrual_Period"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
                     android:textSize="@dimen/textsize_14" />
 
                 <com.leonard.healthmanager.shashikant.calendar.SNPCalendarView
@@ -132,7 +132,7 @@
             </LinearLayout>
         </ScrollView>
 
-    </androidx.cardview.widget.CardView>
+    </LinearLayout>
 
     <include
         android:id="@+id/ad_layout"

@@ -10,10 +10,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build.VERSION;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat.BigPictureStyle;
 import androidx.core.app.NotificationCompat.Builder;
 
 
+import com.leonard.healthmanager.MainActivity;
 import com.leonard.healthmanager.R;
 import com.leonard.healthmanager.fragment.Workout;
 
@@ -32,11 +34,25 @@ public class NotificationReceiver extends BroadcastReceiver {
 
     public void onReceive(Context context, Intent intent) {
         createNotificationChannel(context);
-        Bitmap decodeResource = BitmapFactory.decodeResource(context.getResources(), R.drawable.banner_1);
+
+        Bitmap decodeResource = BitmapFactory.decodeResource(context.getResources(), R.drawable.banner_one);
+
+        //hsn
+        //new workout
+        intent =new Intent(context, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("notify", "nty");
+        PendingIntent pendingIntent = PendingIntent
+                .getActivity(context,100,
+                        intent, 134217728);
+
         ((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE))
                 .notify(100, new Builder(context, "reminder_notification")
-                        .setContentIntent(PendingIntent.getActivity(context, 100,
-                                new Intent(context, Workout.class), 134217728))
+                        //hsn
+                        //old
+                        //.setContentIntent(PendingIntent.getActivity(context, 100,
+                         //       new Intent(context, Workout.class), 134217728))
+                        .setContentIntent(pendingIntent)
                         .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_stat_name))
                         .setSmallIcon(R.drawable.ic_stat_name).setContentTitle("Hey! it's Workout time")
                         .setVibrate(new long[]{0, 500, 1000})

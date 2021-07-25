@@ -20,6 +20,8 @@ import com.leonard.healthmanager.utils.TypefaceManager;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
+
 
 public class Menstrual_and_ovulation_Result extends Activity {
     String TAG = getClass().getSimpleName();
@@ -39,7 +41,8 @@ public class Menstrual_and_ovulation_Result extends Activity {
 
 
     public void attachBaseContext(Context context) {
-        super.attachBaseContext(uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper.wrap(context));
+        //super.attachBaseContext(uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper.wrap(context));
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(context));
     }
 
 
