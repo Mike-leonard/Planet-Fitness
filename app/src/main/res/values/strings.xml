@@ -2,11 +2,15 @@
     <string name="app_name">Planet Fitness</string>
 
 
-    <string name="admob_app_id">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="admob_app_id">ca-app-pub-2957577039807154~2089406596</string>
 
-    <string name="banner_ad">ca-app-pub-3940256099942544/6300978111</string>
+    <!--<string name="banner_ad">ca-app-pub-3940256099942544/6300978111</string>
     <string name="banner_ad_two">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="banner_ad_three">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="banner_ad_three">ca-app-pub-3940256099942544/6300978111</string>-->
+
+    <string name="banner_ad">ca-app-pub-2957577039807154/2253058123</string>
+    <string name="banner_ad_two">ca-app-pub-2957577039807154/5214904011</string>
+    <string name="banner_ad_three">ca-app-pub-2957577039807154/7696956496</string>
 
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -386,7 +390,7 @@
     <string name="inch">inch</string>
     <string name="install_now_btn">Install Now</string>
 
-    <string name="invite_friends_share_other_message">Hi,\10Check Out Health Calculator Pro.\10 Download Now https://play.google.com/store/apps/details?id=com.pragma.offshore.bmicalculator</string>
+    <string name="invite_friends_share_other_message">Hi,\10Check Out Music Application for relaxation.\10 Download Now https://play.google.com/store/apps/details?id=com.leonard.musicplay</string>
     <string name="italian">Italian</string>
     <string name="japanese">Japanese</string>
     <string name="kg">kg</string>

@@ -242,10 +242,17 @@ public class MyApplication extends Application implements ActivityLifecycleCallb
     public static String bannerRandomdAdIdsGenerator () {
         Random randomGenerator = new Random();
         ArrayList sample = new ArrayList() {{
-            add("ca-app-pub-3940256099942544/6300978111");
-            add("ca-app-pub-3940256099942544/6300978111");
-            add("ca-app-pub-3940256099942544/6300978111");
-            add("ca-app-pub-3940256099942544/6300978111");
+     /*       add("ca-app-pub-8329902046519331/4561192113");
+            add("ca-app-pub-8329902046519331/2438711219");
+            add("ca-app-pub-8329902046519331/4232699684");
+            add("ca-app-pub-8329902046519331/4944335491");
+            add("ca-app-pub-8329902046519331/4725963208");*/
+
+            add("ca-app-pub-2957577039807154/5453936536");
+            add("ca-app-pub-2957577039807154/7696956496");
+            add("ca-app-pub-2957577039807154/5214904011");
+            add("ca-app-pub-2957577039807154/8818466471");
+            add("ca-app-pub-2957577039807154/2253058123");
         }};
         return (String) sample.get(randomGenerator.nextInt(sample.size()));
     }
@@ -253,8 +260,15 @@ public class MyApplication extends Application implements ActivityLifecycleCallb
     public static String nativeRandomdAdIdGenerator () {
         Random randomGenerator = new Random();
         ArrayList sample = new ArrayList() {{
-            add("ca-app-pub-3940256099942544/2247696110");
-            add("ca-app-pub-3940256099942544/2247696110");
+          /*  add("ca-app-pub-8329902046519331/9293454676");
+            add("ca-app-pub-8329902046519331/6667291339");
+            add("ca-app-pub-8329902046519331/7078710098");*/
+
+            add("ca-app-pub-2957577039807154/8372099131");
+            add("ca-app-pub-2957577039807154/3518678961");
+            add("ca-app-pub-2957577039807154/6867445777");
+            add("ca-app-pub-2957577039807154/6484302390");
+            add("ca-app-pub-2957577039807154/8727322355");
         }};
         return (String) sample.get(randomGenerator.nextInt(sample.size()));
     }
@@ -262,10 +276,16 @@ public class MyApplication extends Application implements ActivityLifecycleCallb
     public static String intersialsRandomdAdIdsGenerator () {
         Random randomGenerator = new Random();
         ArrayList sample = new ArrayList() {{
-            add("ca-app-pub-3940256099942544/1033173712");
-            add("ca-app-pub-3940256099942544/1033173712");
-            add("ca-app-pub-3940256099942544/1033173712");
-            add("ca-app-pub-3940256099942544/1033173712");
+         /*   add("ca-app-pub-8329902046519331/1551885397");
+            add("ca-app-pub-8329902046519331/7597229625");
+            add("ca-app-pub-8329902046519331/2536474631");
+            add("ca-app-pub-8329902046519331/9513301742");
+            add("ca-app-pub-8329902046519331/3177077811");*/
+
+            add("ca-app-pub-2957577039807154/7457923978");
+            add("ca-app-pub-2957577039807154/7860608026");
+            add("ca-app-pub-2957577039807154/1295199672");
+            add("ca-app-pub-2957577039807154/2416709659");
         }};
         return (String) sample.get(randomGenerator.nextInt(sample.size()));
     }

@@ -7,24 +7,24 @@ import android.os.Handler;
 //import com.anjlab.android.iab.p004v3.BillingProcessor;
 //import com.anjlab.android.iab.p004v3.BillingProcessor.IBillingHandler;
 //import com.anjlab.android.iab.p004v3.TransactionDetails;
-import com.anjlab.android.iab.v3.BillingProcessor;
-import com.anjlab.android.iab.v3.TransactionDetails;
+/*import com.anjlab.android.iab.v3.BillingProcessor;
+import com.anjlab.android.iab.v3.TransactionDetails;*/
 import com.google.android.gms.ads.MobileAds;
 import com.leonard.healthmanager.MainActivity;
 import com.leonard.healthmanager.R;
 import com.leonard.healthmanager.utils.GlobalFunction;
 import com.leonard.healthmanager.utils.SharedPreferenceManager;
 
-public class Splash extends Activity implements BillingProcessor.IBillingHandler {
+public class Splash extends Activity  {
     String TAG = getClass().getSimpleName();
-    BillingProcessor billingProcessor;
+    //BillingProcessor billingProcessor;
     GlobalFunction globalFunction;
     SharedPreferenceManager sharedPreferenceManager;
 
     public void onBillingError(int i, Throwable th) {
     }
 
-    public void onProductPurchased(String str, TransactionDetails transactionDetails) {
+    public void onProductPurchased(String str /*TransactionDetails transactionDetails*/) {
     }
 
     public void onPurchaseHistoryRestored() {
@@ -35,10 +35,10 @@ public class Splash extends Activity implements BillingProcessor.IBillingHandler
         super.onCreate(bundle);
         this.globalFunction = new GlobalFunction(this);
         this.sharedPreferenceManager = new SharedPreferenceManager(this);
-        MobileAds.initialize(this, getString(R.string.admob_app_id));
+        MobileAds.initialize(this, getResources().getString(R.string.admob_app_id));
         setContentView(R.layout.splash);
         if (this.globalFunction.isConnectingToInternet()) {
-            this.billingProcessor = new BillingProcessor(this, getString(R.string.base64), this);
+            //this.billingProcessor = new BillingProcessor(this, getString(R.string.base64), this);
         }
         this.globalFunction.set_locale_language();
         new Handler().postDelayed(new Runnable() {
@@ -49,7 +49,7 @@ public class Splash extends Activity implements BillingProcessor.IBillingHandler
         }, (long)2000);
     }
 
-    public void onBillingInitialized() {
+    /*public void onBillingInitialized() {
         if (!this.billingProcessor.loadOwnedPurchasesFromGoogle()) {
             return;
         }
@@ -58,5 +58,5 @@ public class Splash extends Activity implements BillingProcessor.IBillingHandler
         } else {
             this.sharedPreferenceManager.set_Remove_Ad(Boolean.valueOf(false));
         }
-    }
+    }*/
 }

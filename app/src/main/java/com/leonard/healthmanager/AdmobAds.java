@@ -36,13 +36,13 @@ public class AdmobAds {
         this.context = context2;
         this.nativeAdContainer = linearLayout;
         this.ADMOB_AD_UNIT_ID = str;
-        MobileAds.initialize(context2, String.valueOf(R.string.admob_app_id));
+        MobileAds.initialize(context2);
     }
 
     public AdmobAds(Context context2, String str) {
         this.context = context2;
         this.ADMOB_AD_UNIT_ID = str;
-        MobileAds.initialize(context2, String.valueOf(R.string.admob_app_id));
+        MobileAds.initialize(context2);
     }
 
     public void displayAdmobAdOnLoad_Dialog(LinearLayout linearLayout) {
