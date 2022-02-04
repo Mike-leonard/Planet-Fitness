@@ -22,6 +22,8 @@ import com.leonard.healthmanager.utils.TypefaceManager;
 
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
+import static com.leonard.healthmanager.AdConstantControl.bannerAdControl;
+
 
 public class Lean_Body_Mass_Result extends Activity {
     String TAG = getClass().getSimpleName();
@@ -48,14 +50,15 @@ public class Lean_Body_Mass_Result extends Activity {
         this.typefaceManager = new TypefaceManager(getAssets(), this);
         this.sharedPreferenceManager = new SharedPreferenceManager(this);
         this.globalFunction = new GlobalFunction(this);
-        this.adView = (AdView) findViewById(R.id.adView);
-        AdView mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+
+        // banner ad control
+        View rootView = getWindow().getDecorView().getRootView();
+        bannerAdControl(this, R.id.normal_ad_include, rootView);
+
         this.iv_close = (ImageView) findViewById(R.id.iv_close);
         this.rl_main = (LinearLayout) findViewById(R.id.rl_main);
 //        this.rl_main.setBackgroundResource(R.drawable.popup_background_gradient4);
-        this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
+        //this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
         this.extras = getIntent().getExtras();
         this.lean_body_mass = this.extras.getDouble("lean_body_mass");
         this.tv_ans_bmr = (TextView) findViewById(R.id.tv_ans_bmr);
@@ -63,23 +66,7 @@ public class Lean_Body_Mass_Result extends Activity {
         if (VERSION.SDK_INT >= 21) {
             getWindow().addFlags(67108864);
         }
-        if (this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
-            this.adView.setVisibility(8);
-        } else {
-            this.adView.setVisibility(0);
-            this.adView.loadAd(new Builder().build());
-            this.adView.setAdListener(new AdListener() {
-                public void onAdLoaded() {
-                    super.onAdLoaded();
-                    Lean_Body_Mass_Result.this.adView.setVisibility(0);
-                }
 
-                public void onAdFailedToLoad(int i) {
-                    super.onAdFailedToLoad(i);
-                    Lean_Body_Mass_Result.this.adView.setVisibility(8);
-                }
-            });
-        }
         StringBuilder sb = new StringBuilder();
         sb.append("");
         sb.append(this.lean_body_mass);
@@ -100,10 +87,5 @@ public class Lean_Body_Mass_Result extends Activity {
 
     public void onResume() {
         super.onResume();
-        if (!this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
-            this.adView.setVisibility(0);
-        } else {
-            this.adView.setVisibility(8);
-        }
     }
 }

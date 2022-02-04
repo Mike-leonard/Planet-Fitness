@@ -30,12 +30,13 @@ import java.io.PrintStream;
 
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
-import static com.leonard.healthmanager.general.MyApplication.bannerRandomdAdIdsGenerator;
+import static com.leonard.healthmanager.AdConstantControl.adControl;
+import static com.leonard.healthmanager.AdConstantControl.bannerAdControl;
+
 
 
 public class BloodPressure_Calculator extends Activity {
     String TAG = getClass().getSimpleName();
-    //AdView adView;
     String diastolic_val;
     EditText et_diastolic_pressure;
     EditText et_systolic_pressure;
@@ -66,18 +67,12 @@ public class BloodPressure_Calculator extends Activity {
         this.tv_bloodpressure = (TextView) findViewById(R.id.tv_bloodpressure);
         this.tv_calculate_bloodpressure = (TextView) findViewById(R.id.tv_calculate_bloodpressure);
         this.iv_back = (ImageView) findViewById(R.id.iv_back);
-/*        this.adView = (AdView) findViewById(R.id.adView);
-
-        AdView mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);*/
-
         this.tv_bloodpressure.setTypeface(this.typefaceManager.getBold());
         this.tv_calculate_bloodpressure.setTypeface(this.typefaceManager.getBold());
         if (VERSION.SDK_INT >= 21) {
             getWindow().addFlags(67108864);
         }
-        this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
+        //this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
         this.iv_back.setOnClickListener(new OnClickListener() {
             public void onClick(View view) {
                 BloodPressure_Calculator.this.onBackPressed();
@@ -99,7 +94,7 @@ public class BloodPressure_Calculator extends Activity {
                     sb.append(random);
                     printStream.println(sb.toString());
                     if (random == 2) {
-                        BloodPressure_Calculator.this.showIntertitial();
+                        adControl(BloodPressure_Calculator.this);
                         return;
                     }
                     Intent intent = new Intent(BloodPressure_Calculator.this, BloodPressure_Result.class);
@@ -109,48 +104,16 @@ public class BloodPressure_Calculator extends Activity {
                 }
             }
         });
-        googleBannerView();
+        //googleBannerView();
+        // banner ad control
+        View rootView = getWindow().getDecorView().getRootView();
+        bannerAdControl(this, R.id.normal_ad_include, rootView);
+
     }
 
 
     public void onResume() {
         super.onResume();
-        if (!this.sharedPreferenceManager.get_Remove_Ad().booleanValue() && MyApplication.interstitial != null && !MyApplication.interstitial.isLoaded() && !MyApplication.interstitial.isLoading()) {
-            ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                public void onNoResponse() {
-                }
-
-                public void onResponseObtained() {
-                    MyApplication.interstitial.loadAd(new Builder().build());
-                }
-            });
-        }
-        if (!this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
-            MyApplication.interstitial.setAdListener(new AdListener() {
-                public void onAdClosed() {
-                    super.onAdClosed();
-                    MyApplication.interstitial.loadAd(new Builder().build());
-                    Intent intent = new Intent(BloodPressure_Calculator.this, BloodPressure_Result.class);
-                    intent.putExtra("systolic_val", BloodPressure_Calculator.this.systolic_val);
-                    intent.putExtra("diastolic_val", BloodPressure_Calculator.this.diastolic_val);
-                    BloodPressure_Calculator.this.startActivity(intent);
-                }
-
-                public void onAdFailedToLoad(int i) {
-                    super.onAdFailedToLoad(i);
-                    if (MyApplication.interstitial != null && !MyApplication.interstitial.isLoading()) {
-                        ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                            public void onNoResponse() {
-                            }
-
-                            public void onResponseObtained() {
-                                MyApplication.interstitial.loadAd(new Builder().build());
-                            }
-                        });
-                    }
-                }
-            });
-        }
     }
 
     public boolean onOptionsItemSelected(MenuItem menuItem) {
@@ -162,85 +125,6 @@ public class BloodPressure_Calculator extends Activity {
     }
 
     public void onBackPressed() {
-        //this.adView.setVisibility(8);
         ActivityCompat.finishAfterTransition(this);
-    }
-
-    public void showIntertitial() {
-        if (this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
-            Intent intent = new Intent(this, BloodPressure_Result.class);
-            intent.putExtra("systolic_val", this.systolic_val);
-            intent.putExtra("diastolic_val", this.diastolic_val);
-            startActivity(intent);
-        } else if (MyApplication.interstitial == null || !MyApplication.interstitial.isLoaded()) {
-            if (!MyApplication.interstitial.isLoading()) {
-                ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                    public void onNoResponse() {
-                    }
-
-                    public void onResponseObtained() {
-                        MyApplication.interstitial.loadAd(new Builder().build());
-                    }
-                });
-            }
-            Intent intent2 = new Intent(this, BloodPressure_Result.class);
-            intent2.putExtra("systolic_val", this.systolic_val);
-            intent2.putExtra("diastolic_val", this.diastolic_val);
-            startActivity(intent2);
-        } else {
-            MyApplication.interstitial.show();
-        }
-    }
-
-    private void googleBannerView () {
-        LinearLayout adContainer = findViewById(R.id.normal_ad_include);
-        com.google.android.gms.ads.AdView adView = new com.google.android.gms.ads.AdView(this);
-        adView.setAdSize(com.google.android.gms.ads.AdSize.SMART_BANNER);
-        adView.setAdUnitId(bannerRandomdAdIdsGenerator());
-
-        // Initiate a generic request to load it with an ad
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
-
-        // Place the ad view.
-        LinearLayout.LayoutParams params = new LinearLayout
-                .LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT);
-        adContainer.addView(adView, params);
-
-        adView.setAdListener(new com.google.android.gms.ads.AdListener() {
-            @Override
-            public void onAdClosed() {
-                super.onAdClosed();
-            }
-
-            @Override
-            public void onAdFailedToLoad(int i) {
-                super.onAdFailedToLoad(i);
-            }
-
-            @Override
-            public void onAdOpened() {
-                super.onAdOpened();
-            }
-
-            @Override
-            public void onAdLoaded() {
-                super.onAdLoaded();
-
-            }
-
-            @Override
-            public void onAdClicked() {
-                super.onAdClicked();
-
-            }
-
-            @Override
-            public void onAdImpression() {
-                super.onAdImpression();
-            }
-        });
-
     }
 }

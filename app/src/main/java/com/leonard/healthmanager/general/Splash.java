@@ -15,28 +15,48 @@ import com.leonard.healthmanager.R;
 import com.leonard.healthmanager.utils.GlobalFunction;
 import com.leonard.healthmanager.utils.SharedPreferenceManager;
 
+import java.util.Calendar;
+
+import static com.leonard.healthmanager.AdConstantControl.adNetworkIntializeRequest;
+
 public class Splash extends Activity  {
     String TAG = getClass().getSimpleName();
     //BillingProcessor billingProcessor;
     GlobalFunction globalFunction;
     SharedPreferenceManager sharedPreferenceManager;
+    public static boolean isGoogleAdEnabled = true;
 
-    public void onBillingError(int i, Throwable th) {
+ /*   public void onBillingError(int i, Throwable th) {
     }
 
-    public void onProductPurchased(String str /*TransactionDetails transactionDetails*/) {
+    public void onProductPurchased(String str *//*TransactionDetails transactionDetails*//*) {
     }
 
     public void onPurchaseHistoryRestored() {
-    }
+    }*/
 
 
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         this.globalFunction = new GlobalFunction(this);
         this.sharedPreferenceManager = new SharedPreferenceManager(this);
-        MobileAds.initialize(this, getResources().getString(R.string.admob_app_id));
+        //MobileAds.initialize(this, getResources().getString(R.string.admob_app_id));
+        adNetworkIntializeRequest(Splash.this);
         setContentView(R.layout.splash);
+
+        Calendar rightNow = Calendar.getInstance();
+        if ((rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY) ||
+                (rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) ||
+                (rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) ||
+                //(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY)||
+                (rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY) ||
+                (rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY)
+        ) {
+            isGoogleAdEnabled = true;
+        } else {   // google ad disabled else statement
+            isGoogleAdEnabled = false;
+        }
+
         if (this.globalFunction.isConnectingToInternet()) {
             //this.billingProcessor = new BillingProcessor(this, getString(R.string.base64), this);
         }

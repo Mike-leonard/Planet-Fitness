@@ -20,10 +20,11 @@ import com.leonard.healthmanager.utils.TypefaceManager;
 
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
+import static com.leonard.healthmanager.AdConstantControl.bannerAdControl;
+
 
 public class Daily_WaterIntake_Result extends Activity {
     String TAG = getClass().getSimpleName();
-    AdView adView;
     Bundle extras;
     GlobalFunction globalFunction;
     ImageView iv_close;
@@ -45,13 +46,13 @@ public class Daily_WaterIntake_Result extends Activity {
         this.sharedPreferenceManager = new SharedPreferenceManager(this);
         this.globalFunction = new GlobalFunction(this);
         this.typefaceManager = new TypefaceManager(getAssets(), this);
-        this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
+        //this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
         this.tv_waterintake_result = (TextView) findViewById(R.id.tv_waterintake_result);
         this.iv_close = (ImageView) findViewById(R.id.iv_close);
-        this.adView = (AdView) findViewById(R.id.adView);
-        AdView mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        // banner ad control
+        View rootView = getWindow().getDecorView().getRootView();
+        bannerAdControl(this, R.id.normal_ad_include, rootView);
+
         this.tv_waterintake_result.setTypeface(this.typefaceManager.getLight());
         this.extras = getIntent().getExtras();
         this.water_intake = Double.valueOf(this.extras.getDouble("water_intake"));
@@ -73,23 +74,6 @@ public class Daily_WaterIntake_Result extends Activity {
         this.iv_close.setOnClickListener(new OnClickListener() {
             public void onClick(View view) {
                 Daily_WaterIntake_Result.this.onBackPressed();
-            }
-        });
-        if (this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
-            this.adView.setVisibility(8);
-            return;
-        }
-        this.adView.setVisibility(0);
-        this.adView.loadAd(new Builder().build());
-        this.adView.setAdListener(new AdListener() {
-            public void onAdLoaded() {
-                super.onAdLoaded();
-                Daily_WaterIntake_Result.this.adView.setVisibility(0);
-            }
-
-            public void onAdFailedToLoad(int i) {
-                super.onAdFailedToLoad(i);
-                Daily_WaterIntake_Result.this.adView.setVisibility(8);
             }
         });
     }

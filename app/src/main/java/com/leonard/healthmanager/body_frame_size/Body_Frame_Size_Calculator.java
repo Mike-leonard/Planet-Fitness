@@ -31,6 +31,7 @@ import com.leonard.healthmanager.general.MyApplication;
 import com.leonard.healthmanager.utils.GlobalFunction;
 import com.leonard.healthmanager.utils.SharedPreferenceManager;
 import com.leonard.healthmanager.utils.TypefaceManager;
+import com.leonard.healthmanager.waist_hip_ratio.Waist_Hip_Ratio_Result;
 import com.zplesac.connectionbuddy.ConnectionBuddy;
 import com.zplesac.connectionbuddy.interfaces.NetworkRequestCheckListener;
 import java.io.PrintStream;
@@ -38,14 +39,15 @@ import java.util.ArrayList;
 
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
-import static com.leonard.healthmanager.general.MyApplication.bannerRandomdAdIdsGenerator;
+import static com.leonard.healthmanager.AdConstantControl.adControl;
+import static com.leonard.healthmanager.AdConstantControl.bannerAdControl;
+
 
 //import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 
 public class Body_Frame_Size_Calculator extends Activity {
     String TAG = getClass().getSimpleName();
-   // AdView adView;
     ArrayAdapter<String> adapter_gender;
     ArrayAdapter<String> adapter_height;
     ArrayAdapter<String> adapter_wrist;
@@ -95,14 +97,10 @@ public class Body_Frame_Size_Calculator extends Activity {
         this.sharedPreferenceManager = new SharedPreferenceManager(this);
         this.typefaceManager = new TypefaceManager(getAssets(), this);
         this.globalFunction.set_locale_language();
-        this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
+        //this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
         this.small_bodyframe = getString(R.string.Body_frame_text_small);
         this.medium_bodyframe = getString(R.string.Body_frame_text_medium);
         this.large_bodyframe = getString(R.string.Body_frame_text_large);
-       /* this.adView = (AdView) findViewById(R.id.adView);
-        AdView mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);*/
         this.et_height = (EditText) findViewById(R.id.et_height);
         this.et_weight = (EditText) findViewById(R.id.et_weight);
         this.tv_body_frame = (TextView) findViewById(R.id.tv_body_frame);
@@ -166,7 +164,7 @@ public class Body_Frame_Size_Calculator extends Activity {
                     sb3.append(random);
                     printStream.println(sb3.toString());
                     if (random == 2) {
-                        Body_Frame_Size_Calculator.this.showIntertitial();
+                        adControl(Body_Frame_Size_Calculator.this);
                     } else {
                         Body_Frame_Size_Calculator.this.calculate();
                     }
@@ -178,7 +176,10 @@ public class Body_Frame_Size_Calculator extends Activity {
                 Body_Frame_Size_Calculator.this.onBackPressed();
             }
         });
-        googleBannerView();
+       // googleBannerView();
+        // banner ad control
+        View rootView = getWindow().getDecorView().getRootView();
+        bannerAdControl(this, R.id.normal_ad_include, rootView);
     }
 
     private OnClickListener showPopupWindowHeight(final boolean z) {
@@ -345,116 +346,13 @@ public class Body_Frame_Size_Calculator extends Activity {
     }
 
     public void onBackPressed() {
-        //this.adView.setVisibility(8);
         ActivityCompat.finishAfterTransition(this);
     }
 
-    public void showIntertitial() {
-        if (this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
-            calculate();
-        } else if (MyApplication.interstitial == null || !MyApplication.interstitial.isLoaded()) {
-            if (!MyApplication.interstitial.isLoading()) {
-                ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                    public void onNoResponse() {
-                    }
 
-                    public void onResponseObtained() {
-                        MyApplication.interstitial.loadAd(new Builder().build());
-                    }
-                });
-            }
-            calculate();
-        } else {
-            MyApplication.interstitial.show();
-        }
-    }
 
 
     public void onResume() {
         super.onResume();
-        if (!this.sharedPreferenceManager.get_Remove_Ad().booleanValue() && MyApplication.interstitial != null && !MyApplication.interstitial.isLoaded() && !MyApplication.interstitial.isLoading()) {
-            ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                public void onNoResponse() {
-                }
-
-                public void onResponseObtained() {
-                    MyApplication.interstitial.loadAd(new Builder().build());
-                }
-            });
-        }
-        if (!this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
-            MyApplication.interstitial.setAdListener(new AdListener() {
-                public void onAdClosed() {
-                    super.onAdClosed();
-                    MyApplication.interstitial.loadAd(new Builder().build());
-                    Body_Frame_Size_Calculator.this.calculate();
-                }
-
-                public void onAdFailedToLoad(int i) {
-                    super.onAdFailedToLoad(i);
-                    if (MyApplication.interstitial != null && !MyApplication.interstitial.isLoading()) {
-                        ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                            public void onNoResponse() {
-                            }
-
-                            public void onResponseObtained() {
-                                MyApplication.interstitial.loadAd(new Builder().build());
-                            }
-                        });
-                    }
-                }
-            });
-        }
-    }
-    private void googleBannerView () {
-        LinearLayout adContainer = findViewById(R.id.normal_ad_include);
-        com.google.android.gms.ads.AdView adView = new com.google.android.gms.ads.AdView(this);
-        adView.setAdSize(com.google.android.gms.ads.AdSize.SMART_BANNER);
-        adView.setAdUnitId(bannerRandomdAdIdsGenerator());
-
-        // Initiate a generic request to load it with an ad
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
-
-        // Place the ad view.
-        LinearLayout.LayoutParams params = new LinearLayout
-                .LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT);
-        adContainer.addView(adView, params);
-
-        adView.setAdListener(new com.google.android.gms.ads.AdListener() {
-            @Override
-            public void onAdClosed() {
-                super.onAdClosed();
-            }
-
-            @Override
-            public void onAdFailedToLoad(int i) {
-                super.onAdFailedToLoad(i);
-            }
-
-            @Override
-            public void onAdOpened() {
-                super.onAdOpened();
-            }
-
-            @Override
-            public void onAdLoaded() {
-                super.onAdLoaded();
-
-            }
-
-            @Override
-            public void onAdClicked() {
-                super.onAdClicked();
-
-            }
-
-            @Override
-            public void onAdImpression() {
-                super.onAdImpression();
-            }
-        });
-
     }
 }

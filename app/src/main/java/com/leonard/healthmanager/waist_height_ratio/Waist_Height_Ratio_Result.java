@@ -22,11 +22,12 @@ import com.leonard.healthmanager.utils.TypefaceManager;
 
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
+import static com.leonard.healthmanager.AdConstantControl.bannerAdControl;
+
 
 public class Waist_Height_Ratio_Result extends Activity {
     String Body;
     String TAG = getClass().getSimpleName();
-    AdView adView;
     Bundle extras;
     GlobalFunction globalFunction;
     ImageView iv_close;
@@ -52,15 +53,11 @@ public class Waist_Height_Ratio_Result extends Activity {
         this.typefaceManager = new TypefaceManager(getAssets(), this);
         this.sharedPreferenceManager = new SharedPreferenceManager(this);
         this.globalFunction = new GlobalFunction(this);
-        this.adView = (AdView) findViewById(R.id.adView);
-        AdView mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
         this.rl_main = (RelativeLayout) findViewById(R.id.rl_main);
         this.iv_close = (ImageView) findViewById(R.id.iv_close);
         this.iv_imoji = (ImageView) findViewById(R.id.iv_imoji);
 //        this.rl_main.setBackgroundResource(R.drawable.popup_background_gradient9);
-        this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
+        //this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
         this.extras = getIntent().getExtras();
         this.waist_height_ratio = Double.valueOf(this.extras.getString("waist_height_ratio"));
         this.Body = this.extras.getString("Body");
@@ -74,23 +71,11 @@ public class Waist_Height_Ratio_Result extends Activity {
         if (VERSION.SDK_INT >= 21) {
             getWindow().addFlags(67108864);
         }
-        if (this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
-            this.adView.setVisibility(8);
-        } else {
-            this.adView.setVisibility(0);
-            this.adView.loadAd(new Builder().build());
-            this.adView.setAdListener(new AdListener() {
-                public void onAdLoaded() {
-                    super.onAdLoaded();
-                    Waist_Height_Ratio_Result.this.adView.setVisibility(0);
-                }
 
-                public void onAdFailedToLoad(int i) {
-                    super.onAdFailedToLoad(i);
-                    Waist_Height_Ratio_Result.this.adView.setVisibility(8);
-                }
-            });
-        }
+        // banner ad control
+        View rootView = getWindow().getDecorView().getRootView();
+        bannerAdControl(this, R.id.normal_ad_include, rootView);
+
         StringBuilder sb = new StringBuilder();
         sb.append("");
         sb.append(this.waist_height_ratio);
@@ -136,10 +121,5 @@ public class Waist_Height_Ratio_Result extends Activity {
 
     public void onResume() {
         super.onResume();
-        if (!this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
-            this.adView.setVisibility(0);
-        } else {
-            this.adView.setVisibility(8);
-        }
     }
 }

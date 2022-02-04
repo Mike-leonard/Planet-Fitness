@@ -36,12 +36,13 @@ import java.util.ArrayList;
 
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
-import static com.leonard.healthmanager.general.MyApplication.bannerRandomdAdIdsGenerator;
+import static com.leonard.healthmanager.AdConstantControl.adControl;
+import static com.leonard.healthmanager.AdConstantControl.bannerAdControl;
+
 
 
 public class Child_Growth_Calculator extends Activity {
     String TAG = getClass().getSimpleName();
-    AdView adView;
     ArrayAdapter<String> adapter_month;
     ArrayList<String> arraylist_month = new ArrayList<>();
     GlobalFunction globalFunction;
@@ -76,7 +77,7 @@ public class Child_Growth_Calculator extends Activity {
         this.globalFunction = new GlobalFunction(this);
         this.typefaceManager = new TypefaceManager(getAssets(), this);
         this.globalFunction.set_locale_language();
-        this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
+        //this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
         this.tv_child_growth = (TextView) findViewById(R.id.tv_child_growth);
         this.tv_childmonth = (TextView) findViewById(R.id.tv_childmonth);
         this.tv_search_child_height = (TextView) findViewById(R.id.tv_search_child_height);
@@ -84,10 +85,6 @@ public class Child_Growth_Calculator extends Activity {
         this.tv_childmonth = (TextView) findViewById(R.id.tv_childmonth);
         this.tv_search_headcircumference = (TextView) findViewById(R.id.tv_search_headcircumference);
         this.tv_select_age = (TextView) findViewById(R.id.tv_search_headcircumference);
-        /*this.adView = (AdView) findViewById(R.id.adView);
-        AdView mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);*/
         this.tv_childmonth.setOnClickListener(showPopupWindow_month());
         this.tv_child_growth.setTypeface(this.typefaceManager.getBold());
         this.tv_childmonth.setTypeface(this.typefaceManager.getLight());
@@ -138,7 +135,7 @@ public class Child_Growth_Calculator extends Activity {
                     sb3.append(random);
                     printStream.println(sb3.toString());
                     if (random == 2) {
-                        Child_Growth_Calculator.this.showIntertitial();
+                        adControl(Child_Growth_Calculator.this);
                         return;
                     }
                     Intent intent = new Intent(Child_Growth_Calculator.this, Child_growth_result.class);
@@ -172,7 +169,7 @@ public class Child_Growth_Calculator extends Activity {
                 sb2.append(random);
                 printStream.println(sb2.toString());
                 if (random == 2) {
-                    Child_Growth_Calculator.this.showIntertitial();
+                    adControl(Child_Growth_Calculator.this);
                     return;
                 }
                 Intent intent = new Intent(Child_Growth_Calculator.this, Child_growth_result.class);
@@ -204,7 +201,7 @@ public class Child_Growth_Calculator extends Activity {
                     sb2.append(random);
                     printStream.println(sb2.toString());
                     if (random == 2) {
-                        Child_Growth_Calculator.this.showIntertitial();
+                        adControl(Child_Growth_Calculator.this);
                         return;
                     }
                     Intent intent = new Intent(Child_Growth_Calculator.this, Child_growth_result.class);
@@ -220,7 +217,10 @@ public class Child_Growth_Calculator extends Activity {
                 }
             }
         });
-        googleBannerView();
+        //googleBannerView();
+        // banner ad control
+        View rootView = getWindow().getDecorView().getRootView();
+        bannerAdControl(this, R.id.normal_ad_include, rootView);
     }
 
     private OnClickListener showPopupWindow_month() {
@@ -766,127 +766,11 @@ public class Child_Growth_Calculator extends Activity {
         return true;
     }
 
-    public void showIntertitial() {
-        if (this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
-            Intent intent = new Intent(this, Child_growth_result.class);
-            intent.putExtra("result", this.putext_val);
-            intent.putExtra("age", String.valueOf(this.months));
-            startActivity(intent);
-        } else if (MyApplication.interstitial == null || !MyApplication.interstitial.isLoaded()) {
-            if (!MyApplication.interstitial.isLoading()) {
-                ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                    public void onNoResponse() {
-                    }
-
-                    public void onResponseObtained() {
-                        MyApplication.interstitial.loadAd(new Builder().build());
-                    }
-                });
-            }
-            Intent intent2 = new Intent(this, Child_growth_result.class);
-            intent2.putExtra("result", this.putext_val);
-            intent2.putExtra("age", String.valueOf(this.months));
-            startActivity(intent2);
-        } else {
-            MyApplication.interstitial.show();
-        }
-    }
-
-
     public void onResume() {
         super.onResume();
-        if (!this.sharedPreferenceManager.get_Remove_Ad().booleanValue() && MyApplication.interstitial != null && !MyApplication.interstitial.isLoaded() && !MyApplication.interstitial.isLoading()) {
-            ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                public void onNoResponse() {
-                }
-
-                public void onResponseObtained() {
-                    MyApplication.interstitial.loadAd(new Builder().build());
-                }
-            });
-        }
-        if (!this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
-            MyApplication.interstitial.setAdListener(new AdListener() {
-                public void onAdClosed() {
-                    super.onAdClosed();
-                    MyApplication.interstitial.loadAd(new Builder().build());
-                    Intent intent = new Intent(Child_Growth_Calculator.this, Child_growth_result.class);
-                    intent.putExtra("result", Child_Growth_Calculator.this.putext_val);
-                    intent.putExtra("age", String.valueOf(Child_Growth_Calculator.this.months));
-                    Child_Growth_Calculator.this.startActivity(intent);
-                }
-
-                public void onAdFailedToLoad(int i) {
-                    super.onAdFailedToLoad(i);
-                    if (MyApplication.interstitial != null && !MyApplication.interstitial.isLoading()) {
-                        ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                            public void onNoResponse() {
-                            }
-
-                            public void onResponseObtained() {
-                                MyApplication.interstitial.loadAd(new Builder().build());
-                            }
-                        });
-                    }
-                }
-            });
-        }
     }
 
     public void onBackPressed() {
-       // this.adView.setVisibility(8);
         ActivityCompat.finishAfterTransition(this);
-    }
-
-    private void googleBannerView () {
-        LinearLayout adContainer = findViewById(R.id.normal_ad_include);
-        com.google.android.gms.ads.AdView adView = new com.google.android.gms.ads.AdView(this);
-        adView.setAdSize(com.google.android.gms.ads.AdSize.SMART_BANNER);
-        adView.setAdUnitId(bannerRandomdAdIdsGenerator());
-
-        // Initiate a generic request to load it with an ad
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
-
-        // Place the ad view.
-        LinearLayout.LayoutParams params = new LinearLayout
-                .LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT);
-        adContainer.addView(adView, params);
-
-        adView.setAdListener(new com.google.android.gms.ads.AdListener() {
-            @Override
-            public void onAdClosed() {
-                super.onAdClosed();
-            }
-
-            @Override
-            public void onAdFailedToLoad(int i) {
-                super.onAdFailedToLoad(i);
-            }
-
-            @Override
-            public void onAdOpened() {
-                super.onAdOpened();
-            }
-
-            @Override
-            public void onAdLoaded() {
-                super.onAdLoaded();
-
-            }
-
-            @Override
-            public void onAdClicked() {
-                super.onAdClicked();
-
-            }
-
-            @Override
-            public void onAdImpression() {
-                super.onAdImpression();
-            }
-        });
-
     }
 }

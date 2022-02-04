@@ -20,10 +20,11 @@ import com.leonard.healthmanager.utils.TypefaceManager;
 
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
+import static com.leonard.healthmanager.AdConstantControl.bannerAdControl;
+
 
 public class Body_Adiposity_Index_Chart extends Activity {
     String TAG = getClass().getSimpleName();
-    AdView adView;
     GlobalFunction globalFunction;
     ImageView iv_back;
     SharedPreferenceManager sharedPreferenceManager;
@@ -85,11 +86,11 @@ public class Body_Adiposity_Index_Chart extends Activity {
         this.sharedPreferenceManager = new SharedPreferenceManager(this);
         this.globalFunction = new GlobalFunction(this);
         this.typefaceManager = new TypefaceManager(getAssets(), this);
-        this.adView = (AdView) findViewById(R.id.adView);
-        AdView mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
-        this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
+        // banner ad control
+        View rootView = getWindow().getDecorView().getRootView();
+        bannerAdControl(this, R.id.normal_ad_include, rootView);
+
+        //this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
         this.iv_back = (ImageView) findViewById(R.id.iv_back);
         this.tv_title = (TextView) findViewById(R.id.tv_title);
         this.tv_cal_require = (TextView) findViewById(R.id.tv_cal_require);
@@ -180,23 +181,6 @@ public class Body_Adiposity_Index_Chart extends Activity {
         if (VERSION.SDK_INT >= 21) {
             getWindow().addFlags(67108864);
         }
-        if (this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
-            this.adView.setVisibility(8);
-        } else {
-            this.adView.setVisibility(0);
-            this.adView.loadAd(new Builder().build());
-            this.adView.setAdListener(new AdListener() {
-                public void onAdLoaded() {
-                    super.onAdLoaded();
-                    Body_Adiposity_Index_Chart.this.adView.setVisibility(0);
-                }
-
-                public void onAdFailedToLoad(int i) {
-                    super.onAdFailedToLoad(i);
-                    Body_Adiposity_Index_Chart.this.adView.setVisibility(8);
-                }
-            });
-        }
         this.iv_back.setOnClickListener(new OnClickListener() {
             public void onClick(View view) {
                 Body_Adiposity_Index_Chart.this.onBackPressed();
@@ -207,10 +191,5 @@ public class Body_Adiposity_Index_Chart extends Activity {
 
     public void onResume() {
         super.onResume();
-        if (!this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
-            this.adView.setVisibility(0);
-        } else {
-            this.adView.setVisibility(8);
-        }
     }
 }

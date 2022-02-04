@@ -46,4 +46,36 @@ public class SharedPreferenceManager {
     public String get_Prev_Phone_Language() {
         return this.context.getSharedPreferences(Constants.Loopbots_sharedpreference, 0).getString(Constants.KEY_prev_phone_lang, "en");
     }
+
+
+    /*
+     public static void setPref(String Key, boolean value) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(Key, value);
+        editor.apply();
+    }
+
+    public static Boolean getPref(String Key, boolean value) {
+        return sharedPreferences.getBoolean(Key, value);
+    }
+
+
+    public static void setPref(Context context, String key, String value) {
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit().putString(key, value);
+        editor.apply();
+    }
+    public static String getPref(Context context, String key, String value) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getString(key, value);
+    }
+
+
+    public static void setPref(Context context, String key, Integer value) {
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit().putInt(key, value);
+        editor.apply();
+    }
+
+    public static Integer getPref(Context context, String key, Integer value) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getInt(key, value);
+    }
+*/
 }

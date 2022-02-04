@@ -37,12 +37,13 @@ import java.util.ArrayList;
 
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
-import static com.leonard.healthmanager.general.MyApplication.bannerRandomdAdIdsGenerator;
+import static com.leonard.healthmanager.AdConstantControl.adControl;
+import static com.leonard.healthmanager.AdConstantControl.bannerAdControl;
+
 
 
 public class Children_Height_Growth_Prediction_Calculator extends Activity {
     String TAG = getClass().getSimpleName();
-    //AdView adView;
     ArrayAdapter<String> adapter_gender;
     ArrayAdapter<String> adapter_height;
     ArrayList<String> arraylist_gender = new ArrayList<>();
@@ -86,7 +87,7 @@ public class Children_Height_Growth_Prediction_Calculator extends Activity {
         this.globalFunction = new GlobalFunction(this);
         this.typefaceManager = new TypefaceManager(getAssets(), this);
         this.globalFunction.set_locale_language();
-        this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
+        //this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
         this.iv_back = (ImageView) findViewById(R.id.iv_back);
         this.tv_children_height_growth = (TextView) findViewById(R.id.tv_children_height_growth);
         this.tv_gender = (TextView) findViewById(R.id.tv_gender);
@@ -118,10 +119,6 @@ public class Children_Height_Growth_Prediction_Calculator extends Activity {
         this.tv_heightunit_father.setOnClickListener(showPopupWindowHeight_father());
         this.adapter_gender = new ArrayAdapter<>(this, R.layout.spinner_item, R.id.text1, this.arraylist_gender);
         this.adapter_height = new ArrayAdapter<>(this, R.layout.spinner_item, R.id.text1, this.arraylist_height);
-   /*     this.adView = (AdView) findViewById(R.id.adView);
-        AdView mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);*/
         this.tv_search_predicted_height.setOnClickListener(new OnClickListener() {
             public void onClick(View view) {
                 if (Children_Height_Growth_Prediction_Calculator.this.et_mother_height.getText().toString().trim().equals("") || Children_Height_Growth_Prediction_Calculator.this.et_mother_height.getText().toString().trim().equals(".")) {
@@ -141,7 +138,7 @@ public class Children_Height_Growth_Prediction_Calculator extends Activity {
                     sb.append(random);
                     printStream.println(sb.toString());
                     if (random == 2) {
-                        Children_Height_Growth_Prediction_Calculator.this.showIntertitial();
+                        adControl(Children_Height_Growth_Prediction_Calculator.this);
                     } else {
                         Children_Height_Growth_Prediction_Calculator.this.calculate();
                     }
@@ -153,7 +150,10 @@ public class Children_Height_Growth_Prediction_Calculator extends Activity {
                 Children_Height_Growth_Prediction_Calculator.this.onBackPressed();
             }
         });
-        googleBannerView();
+        //googleBannerView();
+        // banner ad control
+        View rootView = getWindow().getDecorView().getRootView();
+        bannerAdControl(this, R.id.normal_ad_include, rootView);
     }
 
     private OnClickListener showPopupWindow_gender() {
@@ -324,118 +324,11 @@ public class Children_Height_Growth_Prediction_Calculator extends Activity {
         return true;
     }
 
-    public void showIntertitial() {
-        if (this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
-            calculate();
-        } else if (MyApplication.interstitial == null || !MyApplication.interstitial.isLoaded()) {
-            if (!MyApplication.interstitial.isLoading()) {
-                ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                    public void onNoResponse() {
-                    }
-
-                    public void onResponseObtained() {
-                        MyApplication.interstitial.loadAd(new Builder().build());
-                    }
-                });
-            }
-            calculate();
-        } else {
-            MyApplication.interstitial.show();
-        }
-    }
-
-
     public void onResume() {
         super.onResume();
-        if (!this.sharedPreferenceManager.get_Remove_Ad().booleanValue() && MyApplication.interstitial != null && !MyApplication.interstitial.isLoaded() && !MyApplication.interstitial.isLoading()) {
-            ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                public void onNoResponse() {
-                }
-
-                public void onResponseObtained() {
-                    MyApplication.interstitial.loadAd(new Builder().build());
-                }
-            });
-        }
-        if (!this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
-            MyApplication.interstitial.setAdListener(new AdListener() {
-                public void onAdClosed() {
-                    super.onAdClosed();
-                    MyApplication.interstitial.loadAd(new Builder().build());
-                    Children_Height_Growth_Prediction_Calculator.this.calculate();
-                }
-
-                public void onAdFailedToLoad(int i) {
-                    super.onAdFailedToLoad(i);
-                    if (MyApplication.interstitial != null && !MyApplication.interstitial.isLoading()) {
-                        ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                            public void onNoResponse() {
-                            }
-
-                            public void onResponseObtained() {
-                                MyApplication.interstitial.loadAd(new Builder().build());
-                            }
-                        });
-                    }
-                }
-            });
-        }
     }
 
     public void onBackPressed() {
-        //this.adView.setVisibility(8);
         ActivityCompat.finishAfterTransition(this);
-    }
-
-    private void googleBannerView () {
-        LinearLayout adContainer = findViewById(R.id.normal_ad_include);
-        com.google.android.gms.ads.AdView adView = new com.google.android.gms.ads.AdView(this);
-        adView.setAdSize(com.google.android.gms.ads.AdSize.SMART_BANNER);
-        adView.setAdUnitId(bannerRandomdAdIdsGenerator());
-
-        // Initiate a generic request to load it with an ad
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
-
-        // Place the ad view.
-        LinearLayout.LayoutParams params = new LinearLayout
-                .LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT);
-        adContainer.addView(adView, params);
-
-        adView.setAdListener(new com.google.android.gms.ads.AdListener() {
-            @Override
-            public void onAdClosed() {
-                super.onAdClosed();
-            }
-
-            @Override
-            public void onAdFailedToLoad(int i) {
-                super.onAdFailedToLoad(i);
-            }
-
-            @Override
-            public void onAdOpened() {
-                super.onAdOpened();
-            }
-
-            @Override
-            public void onAdLoaded() {
-                super.onAdLoaded();
-
-            }
-
-            @Override
-            public void onAdClicked() {
-                super.onAdClicked();
-
-            }
-
-            @Override
-            public void onAdImpression() {
-                super.onAdImpression();
-            }
-        });
-
     }
 }

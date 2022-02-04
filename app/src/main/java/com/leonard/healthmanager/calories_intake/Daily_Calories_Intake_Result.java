@@ -25,12 +25,14 @@ import java.io.PrintStream;
 
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
+import static com.leonard.healthmanager.AdConstantControl.adControl;
+import static com.leonard.healthmanager.AdConstantControl.bannerAdControl;
+
 
 public class Daily_Calories_Intake_Result extends Activity {
     int BMR;
     String TAG = getClass().getSimpleName();
     String activity_level;
-    AdView adView;
     int cal_togain;
     int cal_tolose;
     Double cal_tomaintain;
@@ -56,7 +58,7 @@ public class Daily_Calories_Intake_Result extends Activity {
         this.sharedPreferenceManager = new SharedPreferenceManager(this);
         this.globalFunction = new GlobalFunction(this);
         this.typefaceManager = new TypefaceManager(getAssets(), this);
-        this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
+        //this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
         this.iv_close = (ImageView) findViewById(R.id.iv_close);
         this.tv_bmr_result = (TextView) findViewById(R.id.tv_bmr_result);
         this.tv_burn_cal = (TextView) findViewById(R.id.tv_burn_cal);
@@ -64,10 +66,11 @@ public class Daily_Calories_Intake_Result extends Activity {
         this.tv_bmr_result.setTypeface(this.typefaceManager.getLight());
         this.tv_burn_cal.setTypeface(this.typefaceManager.getLight());
         this.tv_calories_chart.setTypeface(this.typefaceManager.getBold());
-        this.adView = (AdView) findViewById(R.id.adView);
-        AdView mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+
+        // banner ad control
+        View rootView = getWindow().getDecorView().getRootView();
+        bannerAdControl(this, R.id.normal_ad_include, rootView);
+
         if (VERSION.SDK_INT >= 21) {
             getWindow().addFlags(67108864);
         }
@@ -103,7 +106,7 @@ public class Daily_Calories_Intake_Result extends Activity {
                 sb.append(random);
                 printStream.println(sb.toString());
                 if (random == 2) {
-                    Daily_Calories_Intake_Result.this.showIntertitial();
+                    adControl(Daily_Calories_Intake_Result.this);
                 } else {
                     Daily_Calories_Intake_Result.this.calculate();
                 }
@@ -150,58 +153,5 @@ public class Daily_Calories_Intake_Result extends Activity {
 
     public void onResume() {
         super.onResume();
-        if (!this.sharedPreferenceManager.get_Remove_Ad().booleanValue() && MyApplication.interstitial != null && !MyApplication.interstitial.isLoaded() && !MyApplication.interstitial.isLoading()) {
-            ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                public void onNoResponse() {
-                }
-
-                public void onResponseObtained() {
-                    MyApplication.interstitial.loadAd(new Builder().build());
-                }
-            });
-        }
-        if (!this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
-            MyApplication.interstitial.setAdListener(new AdListener() {
-                public void onAdClosed() {
-                    super.onAdClosed();
-                    MyApplication.interstitial.loadAd(new Builder().build());
-                    Daily_Calories_Intake_Result.this.calculate();
-                }
-
-                public void onAdFailedToLoad(int i) {
-                    super.onAdFailedToLoad(i);
-                    if (MyApplication.interstitial != null && !MyApplication.interstitial.isLoading()) {
-                        ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                            public void onNoResponse() {
-                            }
-
-                            public void onResponseObtained() {
-                                MyApplication.interstitial.loadAd(new Builder().build());
-                            }
-                        });
-                    }
-                }
-            });
-        }
-    }
-
-    public void showIntertitial() {
-        if (this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
-            calculate();
-        } else if (MyApplication.interstitial == null || !MyApplication.interstitial.isLoaded()) {
-            if (!MyApplication.interstitial.isLoading()) {
-                ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                    public void onNoResponse() {
-                    }
-
-                    public void onResponseObtained() {
-                        MyApplication.interstitial.loadAd(new Builder().build());
-                    }
-                });
-            }
-            calculate();
-        } else {
-            MyApplication.interstitial.show();
-        }
     }
 }

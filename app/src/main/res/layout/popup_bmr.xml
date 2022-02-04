@@ -44,11 +44,20 @@
         android:textSize="@dimen/textsize_16"
         android:textStyle="bold" />
 
-    <include
+   <!-- <include
         android:id="@+id/ad_layout"
         layout="@layout/native_ad_popup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_gravity="top|center_vertical|center_horizontal|center" />
+        android:layout_gravity="top|center_vertical|center_horizontal|center" />-->
+
+    <LinearLayout
+        android:id="@+id/normal_ad_include"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"/>
+
 </LinearLayout>

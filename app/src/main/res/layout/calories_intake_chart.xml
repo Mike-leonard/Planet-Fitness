@@ -1466,12 +1466,11 @@
         </LinearLayout>
     </ScrollView>
 
-    <include
-        android:id="@+id/ad_layout"
-        layout="@layout/native_ad"
+    <LinearLayout
+        android:id="@+id/normal_ad_include"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="top|center_vertical|center_horizontal|center" />
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"/>
 </RelativeLayout>

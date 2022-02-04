@@ -23,10 +23,12 @@ import java.io.PrintStream;
 
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
+import static com.leonard.healthmanager.AdConstantControl.adControl;
+import static com.leonard.healthmanager.AdConstantControl.bannerAdControl;
+
 
 public class BloodPressure_Result extends Activity {
     String TAG = getClass().getSimpleName();
-    AdView adView;
     String diastolic_result;
     Float diastolic_val;
     Bundle extras;
@@ -57,12 +59,12 @@ public class BloodPressure_Result extends Activity {
         this.tv_diastolic_ans = (TextView) findViewById(R.id.tv_diastolic_ans);
         this.tv_bloodpressure_chart = (TextView) findViewById(R.id.tv_bloodpressure_chart);
         this.iv_close = (ImageView) findViewById(R.id.iv_close);
-        this.adView = (AdView) findViewById(R.id.adView);
-        AdView mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        // banner ad control
+        View rootView = getWindow().getDecorView().getRootView();
+        bannerAdControl(this, R.id.normal_ad_include, rootView);
+
         this.tv_bloodpressure_chart.setTypeface(this.typefaceManager.getBold());
-        this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
+        //this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
         this.extras = getIntent().getExtras();
         this.systolic_val = Float.valueOf(this.extras.getFloat("systolic_val"));
         this.diastolic_val = Float.valueOf(this.extras.getFloat("diastolic_val"));
@@ -116,7 +118,7 @@ public class BloodPressure_Result extends Activity {
                 sb.append(random);
                 printStream.println(sb.toString());
                 if (random == 2) {
-                    BloodPressure_Result.this.showIntertitial();
+                    adControl(BloodPressure_Result.this);
                     return;
                 }
                 BloodPressure_Result.this.startActivity(new Intent(BloodPressure_Result.this, Bloodpressure_Chart.class));
@@ -127,58 +129,5 @@ public class BloodPressure_Result extends Activity {
 
     public void onResume() {
         super.onResume();
-        if (!this.sharedPreferenceManager.get_Remove_Ad().booleanValue() && MyApplication.interstitial != null && !MyApplication.interstitial.isLoaded() && !MyApplication.interstitial.isLoading()) {
-            ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                public void onNoResponse() {
-                }
-
-                public void onResponseObtained() {
-                    MyApplication.interstitial.loadAd(new Builder().build());
-                }
-            });
-        }
-        if (!this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
-            MyApplication.interstitial.setAdListener(new AdListener() {
-                public void onAdClosed() {
-                    super.onAdClosed();
-                    MyApplication.interstitial.loadAd(new Builder().build());
-                    BloodPressure_Result.this.startActivity(new Intent(BloodPressure_Result.this, Bloodpressure_Chart.class));
-                }
-
-                public void onAdFailedToLoad(int i) {
-                    super.onAdFailedToLoad(i);
-                    if (MyApplication.interstitial != null && !MyApplication.interstitial.isLoading()) {
-                        ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                            public void onNoResponse() {
-                            }
-
-                            public void onResponseObtained() {
-                                MyApplication.interstitial.loadAd(new Builder().build());
-                            }
-                        });
-                    }
-                }
-            });
-        }
-    }
-
-    public void showIntertitial() {
-        if (this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
-            startActivity(new Intent(this, Bloodpressure_Chart.class));
-        } else if (MyApplication.interstitial == null || !MyApplication.interstitial.isLoaded()) {
-            if (!MyApplication.interstitial.isLoading()) {
-                ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                    public void onNoResponse() {
-                    }
-
-                    public void onResponseObtained() {
-                        MyApplication.interstitial.loadAd(new Builder().build());
-                    }
-                });
-            }
-            startActivity(new Intent(this, Bloodpressure_Chart.class));
-        } else {
-            MyApplication.interstitial.show();
-        }
     }
 }

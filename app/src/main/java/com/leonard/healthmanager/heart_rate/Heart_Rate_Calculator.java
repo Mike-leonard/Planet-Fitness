@@ -30,7 +30,9 @@ import java.io.PrintStream;
 
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
-import static com.leonard.healthmanager.general.MyApplication.bannerRandomdAdIdsGenerator;
+import static com.leonard.healthmanager.AdConstantControl.adControl;
+import static com.leonard.healthmanager.AdConstantControl.bannerAdControl;
+
 
 
 public class Heart_Rate_Calculator extends Activity {
@@ -60,7 +62,6 @@ public class Heart_Rate_Calculator extends Activity {
     public static double target_heart_rate90;
     public static double target_heart_rate95;
     String TAG = getClass().getSimpleName();
-    //AdView adView;
     EditText et_age;
     EditText et_heart_rate;
     GlobalFunction globalFunction;
@@ -84,7 +85,7 @@ public class Heart_Rate_Calculator extends Activity {
         this.globalFunction = new GlobalFunction(this);
         this.typefaceManager = new TypefaceManager(getAssets(), this);
         this.globalFunction.set_locale_language();
-        this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
+        //this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
         this.tv_heartrate = (TextView) findViewById(R.id.tv_heartrate);
         this.tv_search_heart_rate = (TextView) findViewById(R.id.tv_search_heart_rate);
         this.et_age = (EditText) findViewById(R.id.et_age);
@@ -94,10 +95,6 @@ public class Heart_Rate_Calculator extends Activity {
         this.et_age.setTypeface(this.typefaceManager.getLight());
         this.et_heart_rate.setTypeface(this.typefaceManager.getLight());
         this.tv_heartrate.setTypeface(this.typefaceManager.getBold());
-       /* this.adView = (AdView) findViewById(R.id.adView);
-        AdView mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);*/
         this.iv_back.setOnClickListener(new OnClickListener() {
             public void onClick(View view) {
                 Heart_Rate_Calculator.this.onBackPressed();
@@ -122,14 +119,17 @@ public class Heart_Rate_Calculator extends Activity {
                     sb.append(random);
                     printStream.println(sb.toString());
                     if (random == 2) {
-                        Heart_Rate_Calculator.this.showIntertitial();
+                        adControl(Heart_Rate_Calculator.this);
                     } else {
                         Heart_Rate_Calculator.this.calculate();
                     }
                 }
             }
         });
-        googleBannerView();
+        //googleBannerView();
+        // banner ad control
+        View rootView = getWindow().getDecorView().getRootView();
+        bannerAdControl(this, R.id.normal_ad_include, rootView);
     }
 
     public void calculate() {
@@ -261,118 +261,11 @@ public class Heart_Rate_Calculator extends Activity {
         return true;
     }
 
-    public void showIntertitial() {
-        if (this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
-            calculate();
-        } else if (MyApplication.interstitial == null || !MyApplication.interstitial.isLoaded()) {
-            if (!MyApplication.interstitial.isLoading()) {
-                ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                    public void onNoResponse() {
-                    }
-
-                    public void onResponseObtained() {
-                        MyApplication.interstitial.loadAd(new Builder().build());
-                    }
-                });
-            }
-            calculate();
-        } else {
-            MyApplication.interstitial.show();
-        }
-    }
-
-
     public void onResume() {
         super.onResume();
-        if (!this.sharedPreferenceManager.get_Remove_Ad().booleanValue() && MyApplication.interstitial != null && !MyApplication.interstitial.isLoaded() && !MyApplication.interstitial.isLoading()) {
-            ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                public void onNoResponse() {
-                }
-
-                public void onResponseObtained() {
-                    MyApplication.interstitial.loadAd(new Builder().build());
-                }
-            });
-        }
-        if (!this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
-            MyApplication.interstitial.setAdListener(new AdListener() {
-                public void onAdClosed() {
-                    super.onAdClosed();
-                    MyApplication.interstitial.loadAd(new Builder().build());
-                    Heart_Rate_Calculator.this.calculate();
-                }
-
-                public void onAdFailedToLoad(int i) {
-                    super.onAdFailedToLoad(i);
-                    if (MyApplication.interstitial != null && !MyApplication.interstitial.isLoading()) {
-                        ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                            public void onNoResponse() {
-                            }
-
-                            public void onResponseObtained() {
-                                MyApplication.interstitial.loadAd(new Builder().build());
-                            }
-                        });
-                    }
-                }
-            });
-        }
     }
 
     public void onBackPressed() {
-        //this.adView.setVisibility(8);
         ActivityCompat.finishAfterTransition(this);
-    }
-
-    private void googleBannerView () {
-        LinearLayout adContainer = findViewById(R.id.normal_ad_include);
-        com.google.android.gms.ads.AdView adView = new com.google.android.gms.ads.AdView(this);
-        adView.setAdSize(com.google.android.gms.ads.AdSize.SMART_BANNER);
-        adView.setAdUnitId(bannerRandomdAdIdsGenerator());
-
-        // Initiate a generic request to load it with an ad
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
-
-        // Place the ad view.
-        LinearLayout.LayoutParams params = new LinearLayout
-                .LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT);
-        adContainer.addView(adView, params);
-
-        adView.setAdListener(new com.google.android.gms.ads.AdListener() {
-            @Override
-            public void onAdClosed() {
-                super.onAdClosed();
-            }
-
-            @Override
-            public void onAdFailedToLoad(int i) {
-                super.onAdFailedToLoad(i);
-            }
-
-            @Override
-            public void onAdOpened() {
-                super.onAdOpened();
-            }
-
-            @Override
-            public void onAdLoaded() {
-                super.onAdLoaded();
-
-            }
-
-            @Override
-            public void onAdClicked() {
-                super.onAdClicked();
-
-            }
-
-            @Override
-            public void onAdImpression() {
-                super.onAdImpression();
-            }
-        });
-
     }
 }

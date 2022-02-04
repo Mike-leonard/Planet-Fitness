@@ -2,15 +2,28 @@
     <string name="app_name">Planet Fitness</string>
 
 
-    <string name="admob_app_id">ca-app-pub-2957577039807154~2089406596</string>
 
-    <!--<string name="banner_ad">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="unity_ad_ids">4579491</string>
+
+    <!--Test ids-->
+    <string name="admob_app_id">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="banner_ad">ca-app-pub-3940256099942544/6300978111</string>
     <string name="banner_ad_two">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="banner_ad_three">ca-app-pub-3940256099942544/6300978111</string>-->
+    <string name="banner_ad_three">ca-app-pub-3940256099942544/6300978111</string>
 
+    <string name="google_banner_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="google_native_id">ca-app-pub-3940256099942544/2247696110</string>
+    <string name="gog_Inter_id">ca-app-pub-3940256099942544/1033173712</string>
+
+
+    <string name="meta_banner_test">IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID</string>
+    <string name="meta_intersial_test">IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID</string>
+    <string name="meta_native_test">ca-app-pub-3940256099942544/1033173712</string>
+
+   <!-- <string name="admob_app_id">ca-app-pub-2957577039807154~2089406596</string>
     <string name="banner_ad">ca-app-pub-2957577039807154/2253058123</string>
     <string name="banner_ad_two">ca-app-pub-2957577039807154/5214904011</string>
-    <string name="banner_ad_three">ca-app-pub-2957577039807154/7696956496</string>
+    <string name="banner_ad_three">ca-app-pub-2957577039807154/7696956496</string>-->
 
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -369,19 +382,20 @@
     <string name="enter_waist">Enter Waist Circumference</string>
     <string name="enter_wrist">Enter Wrist</string>
     <string name="feedback">Feedback</string>
-    <string name="feedback_url">contact@loopbots.com</string>
+    <string name="feedback_url">contact@hitnext.design</string>
     <string name="feet">feet</string>
     <string name="font_bold">fonts/proximanova_bold.otf</string>
     <string name="font_light">fonts/proximanova_light.otf</string>
     <string name="french">French</string>
     <string name="friday">Fri</string>
-    <string name="gcm_defaultSenderId">776761283214</string>
+ <!--   <string name="gcm_defaultSenderId">776761283214</string>-->
+    <string name="gcm_defaultSenderId">139346535638</string>
     <string name="german">German</string>
     <string name="give_feedback">Please give your feedback</string>
-    <string name="google_api_key">AIzaSyBA6dCyP4VrqVSor7tAUjWw8FThJlR6N48</string>
-    <string name="google_app_id">1:776761283214:android:f33b1f2bbbf1b489</string>
-    <string name="google_crash_reporting_api_key">AIzaSyBA6dCyP4VrqVSor7tAUjWw8FThJlR6N48</string>
-    <string name="google_storage_bucket">admob-app-id-9807796839.appspot.com</string>
+    <string name="google_api_key">AIzaSyCn-U_rUvPFzaWvMOJIcuCqn7146Ey3jGk</string>
+    <string name="google_app_id">1:139346535638:android:7ac72116cd25fe98be9577</string>
+    <string name="google_crash_reporting_api_key">AIzaSyCn-U_rUvPFzaWvMOJIcuCqn7146Ey3jGk</string>
+    <string name="google_storage_bucket">store-app-control.appspot.com</string>
     <string name="health_risk">Your probable health risk is :</string>
     <string name="health_risk_title">Health Risk</string>
     <string name="heart_rate">Your Estimated maximum heart rate is :</string>
@@ -414,8 +428,8 @@
     <string name="mmol_a">mm/ol/L</string>
     <string name="moderately_active">I am moderately active (moderate exercise or sports 3-5 days per week)</string>
     <string name="monday">Mon</string>
-    <string name="more_from_us">http://loopbots.com/moreapps/android.html</string>
-    <string name="morefromus_url">http://moreapps.loopbots.com/android.html</string>
+    <string name="more_from_us">https://Hitnext.design</string>
+    <string name="morefromus_url">https://Hitnext.design</string>
     <string name="no">no</string>
     <string name="notificationtext1">Checkout how healthy you are using all health parameter ?</string>
     <string name="notificationtext2">What is your BMI ? Calculate now.</string>
@@ -427,7 +441,7 @@
     <string name="path_password_eye_mask_visible">M2,4.27 L2,4.27 L4.54,1.73 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
     <string name="path_password_strike_through">M3.27,4.27 L19.74,20.74</string>
     <string name="portuguese">Portuguese</string>
-    <string name="project_id">admob-app-id-9807796839</string>
+    <string name="project_id">store-app-control</string>
     <string name="purchased">Purchased</string>
     <string name="rate">Rate this app</string>
     <string name="rate_app">Rate This App</string>
@@ -541,7 +555,7 @@
     <string name="day9">Day 9</string>
 
     <string name="default_notification_channel_name">30-Day workout</string>
-    <string name="default_web_client_id">189479422266-endj819hpiq9i6njiu2sb9imu6sopqi7.apps.googleusercontent.com</string>
+    <string name="default_web_client_id">139346535638-al74cpd7m59co8kqmnhmj9muchjalb5u.apps.googleusercontent.com</string>
     <string name="desc_cat_cow_stretch">Initially, be in tabletop position. Inhale, move your belly towards the floor, lift your chin up in the cow pose. Now, exhale by moving your back and belly upwards towards the ceiling in the cat pose. Repeat it.</string>
     <string name="desc_downward_facing_dog_pose">Lie down with your face, towards the ground and hands on your side. Now, with the support of your hands, lift the body and move to the table top position. Exhale and lift your hip towards the sky.</string>
     <string name="desc_dry_land_swim">Lie down with your face, towards the ground and hands stretched forward. Lift your right arm and left leg above the ground. Be in this position. Repeat the same on the other side.</string>
@@ -576,7 +590,7 @@
     <string name="fifteeneggs">*15 eggs</string>
     <string name="fifteenpieces">*15 pieces</string>
     <string name="fifteentimes">*15 times</string>
-    <string name="firebase_database_url">https://height-gain-7eb44.firebaseio.com</string>
+    <string name="firebase_database_url">https://store-app-control-default-rtdb.asia-southeast1.firebasedatabase.app</string>
     <string name="fiveoatmealcookies">5 oatmeal cookies</string>
     <string name="fivetimes">*5 times</string>
     <string name="fivewalnuts">5 Walnuts</string>

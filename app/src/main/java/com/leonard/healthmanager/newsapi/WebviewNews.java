@@ -21,7 +21,8 @@ import com.leonard.healthmanager.R;
 
 import java.net.URISyntaxException;
 
-import static com.leonard.healthmanager.general.MyApplication.bannerRandomdAdIdsGenerator;
+import static com.leonard.healthmanager.AdConstantControl.bannerAdControl;
+
 import static com.leonard.healthmanager.newsapi.NewsCast.isInternetAvailable;
 
 
@@ -40,7 +41,10 @@ public class WebviewNews extends AppCompatActivity {
         newsContentWeb = findViewById(R.id.news_content);
         layoutNoInternet = findViewById(R.id.no_internet_louyt);
         retryButton = findViewById(R.id.retry_btn);
-        googleBannerView();
+        //googleBannerView();
+        // banner ad control
+        View rootView = getWindow().getDecorView().getRootView();
+        bannerAdControl(this, R.id.normal_ad_include, rootView);
 
         urlText = getIntent().getStringExtra("url");
         newsContentWeb.getSettings().setJavaScriptEnabled(true);
@@ -104,60 +108,6 @@ public class WebviewNews extends AppCompatActivity {
         });
 
     }
-
-    private void googleBannerView () {
-        LinearLayout adContainer = findViewById(R.id.normal_ad_include);
-        com.google.android.gms.ads.AdView adView = new com.google.android.gms.ads.AdView(this);
-        adView.setAdSize(com.google.android.gms.ads.AdSize.SMART_BANNER);
-        adView.setAdUnitId(bannerRandomdAdIdsGenerator());
-
-        // Initiate a generic request to load it with an ad
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
-
-        // Place the ad view.
-        LinearLayout.LayoutParams params = new LinearLayout
-                .LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT);
-        adContainer.addView(adView, params);
-
-        adView.setAdListener(new com.google.android.gms.ads.AdListener() {
-            @Override
-            public void onAdClosed() {
-                super.onAdClosed();
-            }
-
-            @Override
-            public void onAdFailedToLoad(int i) {
-                super.onAdFailedToLoad(i);
-            }
-
-            @Override
-            public void onAdOpened() {
-                super.onAdOpened();
-            }
-
-            @Override
-            public void onAdLoaded() {
-                super.onAdLoaded();
-
-            }
-
-            @Override
-            public void onAdClicked() {
-                super.onAdClicked();
-
-            }
-
-            @Override
-            public void onAdImpression() {
-                super.onAdImpression();
-            }
-        });
-
-    }
-
-
 }
 
 

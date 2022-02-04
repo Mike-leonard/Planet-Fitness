@@ -9,6 +9,7 @@ import android.os.Build.VERSION;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.os.StrictMode.ThreadPolicy.Builder;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,7 +24,6 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -36,6 +36,11 @@ import com.leonard.healthmanager.fragment.Fragment_Walk_and_Step;
 import com.leonard.healthmanager.fragment.Fragment_Workout;
 import com.leonard.healthmanager.fragment.MainFragment;
 import com.leonard.healthmanager.fragment.Workout;
+
+import static com.leonard.healthmanager.AdConstantControl.bannerAdControl;
+import static com.leonard.healthmanager.general.Splash.isGoogleAdEnabled;
+import static com.leonard.healthmanager.utils.Constants.*;
+
 
 public class MainActivity extends AppCompatActivity implements OnNavigationItemSelectedListener {
     BottomNavigationView bottomNavigation;
@@ -133,10 +138,50 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
 
 //        MainActivity mainActivity = null;
         openFragment(MainFragment.newInstance(str2 ,str2 ,this ));
-        ((AdView) findViewById(R.id.adView)).loadAd(new AdRequest.Builder().build());
+
+
+
 
         //hsn
         onNewIntent(getIntent());
+
+        // Ad status to 1 hour
+        prefAdHourControl = getSharedPreferences("next-hour", MODE_PRIVATE);
+        // Hourly Banner ads showing
+        prefHourBanAds = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+        perHoursBannerAds = prefHourBanAds.getInt("hourly-ban-ads", 0);
+        // Hourly Intersial ads showing
+        prefHourIntAds = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+        perHoursIntersialAds = prefHourIntAds.getInt("hourly-int-ads", 0);
+        // Hourly Native ads showing
+        prefHourNatAds = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+        perHoursNativeAds = prefHourNatAds.getInt("hourly-nat-ads", 0);
+
+        // Daily banner ads
+        prefDailyBanAds = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+        dailyMaxBannerAds = prefDailyBanAds.getInt("daily-ban-ads", 0);
+        // Daily intersial ads
+        prefDailyIntAds = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+        dailyMaxIntersialAds = prefDailyIntAds.getInt("daily-int-ads", 0);
+        // Daily native ads
+        prefDailyNatAds = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+        dailyMaxNativeAds = prefDailyNatAds.getInt("daily-nat-ads", 0);
+        // Daily Ad Clicked
+        //prefDailyAdClicked = getSharedPreferences("daily-ad-click", MODE_PRIVATE);
+        prefDailyAdClicked = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+        dailyAdClicked = prefDailyAdClicked.getInt("daily-ad-click", 0);
+
+        // default app install time
+        //appInstallPref = getSharedPreferences("ins-time", MODE_PRIVATE);
+        appInstallPref = getSharedPreferences("ins-time", 0);
+
+
+
+
+        //((AdView) findViewById(R.id.adView)).loadAd(new AdRequest.Builder().build());
+        // banner ad control
+        View rootView = getWindow().getDecorView().getRootView();
+        bannerAdControl(MainActivity.this, R.id.banner_ads_play, rootView);
     }
 
     // new line of code hsn

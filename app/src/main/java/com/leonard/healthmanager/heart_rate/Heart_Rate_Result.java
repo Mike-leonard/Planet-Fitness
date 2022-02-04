@@ -24,10 +24,12 @@ import java.io.PrintStream;
 
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
+import static com.leonard.healthmanager.AdConstantControl.adControl;
+import static com.leonard.healthmanager.AdConstantControl.bannerAdControl;
+
 
 public class Heart_Rate_Result extends Activity {
     String TAG = getClass().getSimpleName();
-    AdView adView;
     GlobalFunction globalFunction;
     ImageView iv_close;
     SharedPreferenceManager sharedPreferenceManager;
@@ -48,16 +50,16 @@ public class Heart_Rate_Result extends Activity {
         this.sharedPreferenceManager = new SharedPreferenceManager(this);
         this.globalFunction = new GlobalFunction(this);
         this.typefaceManager = new TypefaceManager(getAssets(), this);
-        this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
+        //this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
         this.iv_close = (ImageView) findViewById(R.id.iv_close);
         this.tv_ans_heartrate = (TextView) findViewById(R.id.tv_ans_heartrate);
         this.tv_heartrate_chart = (TextView) findViewById(R.id.tv_heartrate_chart);
         this.tv_ans_heartrate.setTypeface(this.typefaceManager.getLight());
         this.tv_heartrate_chart.setTypeface(this.typefaceManager.getBold());
-        this.adView = (AdView) findViewById(R.id.adView);
-        AdView mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        // banner ad control
+        View rootView = getWindow().getDecorView().getRootView();
+        bannerAdControl(this, R.id.normal_ad_include, rootView);
+
         if (VERSION.SDK_INT >= 21) {
             getWindow().addFlags(67108864);
         }
@@ -76,7 +78,7 @@ public class Heart_Rate_Result extends Activity {
                 sb.append(random);
                 printStream.println(sb.toString());
                 if (random == 2) {
-                    Heart_Rate_Result.this.showIntertitial();
+                    adControl(Heart_Rate_Result.this);
                     return;
                 }
                 Heart_Rate_Result.this.startActivity(new Intent(Heart_Rate_Result.this, Heart_Rate_Chart.class));
@@ -89,61 +91,7 @@ public class Heart_Rate_Result extends Activity {
         });
     }
 
-    public void showIntertitial() {
-        if (this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
-            startActivity(new Intent(this, Heart_Rate_Chart.class));
-        } else if (MyApplication.interstitial == null || !MyApplication.interstitial.isLoaded()) {
-            if (!MyApplication.interstitial.isLoading()) {
-                ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                    public void onNoResponse() {
-                    }
-
-                    public void onResponseObtained() {
-                        MyApplication.interstitial.loadAd(new Builder().build());
-                    }
-                });
-            }
-            startActivity(new Intent(this, Heart_Rate_Chart.class));
-        } else {
-            MyApplication.interstitial.show();
-        }
-    }
-
-
     public void onResume() {
         super.onResume();
-        if (!this.sharedPreferenceManager.get_Remove_Ad().booleanValue() && MyApplication.interstitial != null && !MyApplication.interstitial.isLoaded() && !MyApplication.interstitial.isLoading()) {
-            ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                public void onNoResponse() {
-                }
-
-                public void onResponseObtained() {
-                    MyApplication.interstitial.loadAd(new Builder().build());
-                }
-            });
-        }
-        if (!this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
-            MyApplication.interstitial.setAdListener(new AdListener() {
-                public void onAdClosed() {
-                    super.onAdClosed();
-                    MyApplication.interstitial.loadAd(new Builder().build());
-                    Heart_Rate_Result.this.startActivity(new Intent(Heart_Rate_Result.this, Heart_Rate_Chart.class));
-                }
-
-                public void onAdFailedToLoad(int i) {
-                    super.onAdFailedToLoad(i);
-                    if (MyApplication.interstitial != null && !MyApplication.interstitial.isLoading()) {
-                        ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                            public void onNoResponse() {
-                            }
-
-                            public void onResponseObtained() {
-                                MyApplication.interstitial.loadAd(new Builder().build());
-                            }
-                        });
-                    }
-                }
-            });
-        }
     }
 }

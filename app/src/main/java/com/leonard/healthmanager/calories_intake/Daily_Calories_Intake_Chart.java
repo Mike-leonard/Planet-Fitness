@@ -20,11 +20,13 @@ import com.leonard.healthmanager.utils.TypefaceManager;
 
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
+import static com.leonard.healthmanager.AdConstantControl.bannerAdControl;
+
 
 public class Daily_Calories_Intake_Chart extends Activity {
     String TAG = getClass().getSimpleName();
     TextView active1;
-    AdView adView;
+    //AdView adView;
     TextView age1;
     Bundle extras;
     int gain;
@@ -62,7 +64,7 @@ public class Daily_Calories_Intake_Chart extends Activity {
         this.sharedPreferenceManager = new SharedPreferenceManager(this);
         this.globalFunction = new GlobalFunction(this);
         this.typefaceManager = new TypefaceManager(getAssets(), this);
-        this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
+        //this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
         this.iv_back = (ImageView) findViewById(R.id.iv_back);
         this.tv_title = (TextView) findViewById(R.id.tv_title);
         this.tv_maintain = (TextView) findViewById(R.id.tv_maintain);
@@ -80,10 +82,15 @@ public class Daily_Calories_Intake_Chart extends Activity {
         this.tv_sedentary1 = (TextView) findViewById(R.id.tv_sedentary1);
         this.tv_lowactivity1 = (TextView) findViewById(R.id.tv_lowactivity1);
         this.active1 = (TextView) findViewById(R.id.active1);
-        this.adView = (AdView) findViewById(R.id.adView);
+        /*this.adView = (AdView) findViewById(R.id.adView);
         AdView mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        mAdView.loadAd(adRequest);*/
+
+        // banner ad control
+        View rootView = getWindow().getDecorView().getRootView();
+        bannerAdControl(this, R.id.normal_ad_include, rootView);
+
         this.tv_title.setTypeface(this.typefaceManager.getBold());
         this.tv_maintain.setTypeface(this.typefaceManager.getLight());
         this.tv_gain.setTypeface(this.typefaceManager.getLight());
@@ -103,7 +110,7 @@ public class Daily_Calories_Intake_Chart extends Activity {
         if (VERSION.SDK_INT >= 21) {
             getWindow().addFlags(67108864);
         }
-        if (this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
+       /* if (this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
             this.adView.setVisibility(8);
         } else {
             this.adView.setVisibility(0);
@@ -119,7 +126,7 @@ public class Daily_Calories_Intake_Chart extends Activity {
                     Daily_Calories_Intake_Chart.this.adView.setVisibility(8);
                 }
             });
-        }
+        }*/
         this.extras = getIntent().getExtras();
         this.maintain = this.extras.getInt("maintain");
         this.gain = this.extras.getInt("gain");
@@ -166,10 +173,10 @@ public class Daily_Calories_Intake_Chart extends Activity {
 
     public void onResume() {
         super.onResume();
-        if (!this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
+       /* if (!this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
             this.adView.setVisibility(0);
         } else {
             this.adView.setVisibility(8);
-        }
+        }*/
     }
 }

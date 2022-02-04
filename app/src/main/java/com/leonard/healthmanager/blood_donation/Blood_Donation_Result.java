@@ -19,10 +19,11 @@ import com.leonard.healthmanager.utils.TypefaceManager;
 
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
+import static com.leonard.healthmanager.AdConstantControl.bannerAdControl;
+
 
 public class Blood_Donation_Result extends Activity {
     String TAG = getClass().getSimpleName();
-    AdView adView;
     Bundle extras;
     String flag;
     GlobalFunction globalFunction;
@@ -48,13 +49,14 @@ public class Blood_Donation_Result extends Activity {
         this.globalFunction = new GlobalFunction(this);
         this.sharedPreferenceManager = new SharedPreferenceManager(this);
         this.typefaceManager = new TypefaceManager(getAssets(), this);
-        this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
+        //this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
         this.tv_prev_date = (TextView) findViewById(R.id.tv_prev_date);
         this.tv_next_date = (TextView) findViewById(R.id.tv_next_date);
-        this.adView = (AdView) findViewById(R.id.adView);
-        AdView mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+
+        // banner ad control
+        View rootView = getWindow().getDecorView().getRootView();
+        bannerAdControl(this, R.id.normal_ad_include, rootView);
+
         this.iv_close = (ImageView) findViewById(R.id.iv_close);
         this.rl_main = (RelativeLayout) findViewById(R.id.rl_main);
         this.tv_prev_date.setTypeface(this.typefaceManager.getLight());
@@ -68,23 +70,7 @@ public class Blood_Donation_Result extends Activity {
                 Blood_Donation_Result.this.onBackPressed();
             }
         });
-        if (this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
-            this.adView.setVisibility(8);
-        } else {
-            this.adView.setVisibility(0);
-            this.adView.loadAd(new Builder().build());
-            this.adView.setAdListener(new AdListener() {
-                public void onAdLoaded() {
-                    super.onAdLoaded();
-                    Blood_Donation_Result.this.adView.setVisibility(0);
-                }
 
-                public void onAdFailedToLoad(int i) {
-                    super.onAdFailedToLoad(i);
-                    Blood_Donation_Result.this.adView.setVisibility(8);
-                }
-            });
-        }
         if (this.flag.equals("0")) {
             TextView textView = this.tv_prev_date;
             StringBuilder sb = new StringBuilder();
@@ -119,10 +105,5 @@ public class Blood_Donation_Result extends Activity {
 
     public void onResume() {
         super.onResume();
-        if (!this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
-            this.adView.setVisibility(0);
-        } else {
-            this.adView.setVisibility(8);
-        }
     }
 }

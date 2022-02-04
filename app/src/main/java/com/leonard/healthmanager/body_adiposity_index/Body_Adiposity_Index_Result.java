@@ -26,10 +26,12 @@ import java.io.PrintStream;
 
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
+import static com.leonard.healthmanager.AdConstantControl.adControl;
+import static com.leonard.healthmanager.AdConstantControl.bannerAdControl;
+
 
 public class Body_Adiposity_Index_Result extends Activity {
     String TAG = getClass().getSimpleName();
-    AdView adView;
     String bai;
     Bundle extras;
     GlobalFunction globalFunction;
@@ -54,12 +56,12 @@ public class Body_Adiposity_Index_Result extends Activity {
         this.typefaceManager = new TypefaceManager(getAssets(), this);
         this.sharedPreferenceManager = new SharedPreferenceManager(this);
         this.globalFunction = new GlobalFunction(this);
-        this.adView = (AdView) findViewById(R.id.adView);
-        AdView mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        // banner ad control
+        View rootView = getWindow().getDecorView().getRootView();
+        bannerAdControl(this, R.id.normal_ad_include, rootView);
+
         this.iv_close = (ImageView) findViewById(R.id.iv_close);
-        this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
+        //this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
         this.extras = getIntent().getExtras();
         this.bai = this.extras.getString("bai");
         this.rl_main = (RelativeLayout) findViewById(R.id.rl_main);
@@ -90,7 +92,7 @@ public class Body_Adiposity_Index_Result extends Activity {
                 sb.append(random);
                 printStream.println(sb.toString());
                 if (random == 2) {
-                    Body_Adiposity_Index_Result.this.showIntertitial();
+                    adControl(Body_Adiposity_Index_Result.this);
                     return;
                 }
                 Body_Adiposity_Index_Result.this.startActivity(new Intent(Body_Adiposity_Index_Result.this, Body_Adiposity_Index_Chart.class));
@@ -103,61 +105,8 @@ public class Body_Adiposity_Index_Result extends Activity {
         });
     }
 
-    public void showIntertitial() {
-        if (this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
-            startActivity(new Intent(this, Body_Adiposity_Index_Chart.class));
-        } else if (MyApplication.interstitial == null || !MyApplication.interstitial.isLoaded()) {
-            if (!MyApplication.interstitial.isLoading()) {
-                ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                    public void onNoResponse() {
-                    }
-
-                    public void onResponseObtained() {
-                        MyApplication.interstitial.loadAd(new Builder().build());
-                    }
-                });
-            }
-            startActivity(new Intent(this, Body_Adiposity_Index_Chart.class));
-        } else {
-            MyApplication.interstitial.show();
-        }
-    }
-
 
     public void onResume() {
         super.onResume();
-        if (!this.sharedPreferenceManager.get_Remove_Ad().booleanValue() && MyApplication.interstitial != null && !MyApplication.interstitial.isLoaded() && !MyApplication.interstitial.isLoading()) {
-            ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                public void onNoResponse() {
-                }
-
-                public void onResponseObtained() {
-                    MyApplication.interstitial.loadAd(new Builder().build());
-                }
-            });
-        }
-        if (!this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
-            MyApplication.interstitial.setAdListener(new AdListener() {
-                public void onAdClosed() {
-                    super.onAdClosed();
-                    MyApplication.interstitial.loadAd(new Builder().build());
-                    Body_Adiposity_Index_Result.this.startActivity(new Intent(Body_Adiposity_Index_Result.this, Body_Adiposity_Index_Chart.class));
-                }
-
-                public void onAdFailedToLoad(int i) {
-                    super.onAdFailedToLoad(i);
-                    if (MyApplication.interstitial != null && !MyApplication.interstitial.isLoading()) {
-                        ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                            public void onNoResponse() {
-                            }
-
-                            public void onResponseObtained() {
-                                MyApplication.interstitial.loadAd(new Builder().build());
-                            }
-                        });
-                    }
-                }
-            });
-        }
     }
 }

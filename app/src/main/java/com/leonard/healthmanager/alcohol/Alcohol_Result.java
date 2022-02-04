@@ -23,11 +23,13 @@ import java.io.PrintStream;
 
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
+import static com.leonard.healthmanager.AdConstantControl.adControl;
+import static com.leonard.healthmanager.AdConstantControl.bannerAdControl;
+
 
 public class Alcohol_Result extends Activity {
     Double BACinPer;
     String TAG = getClass().getSimpleName();
-    AdView adView;
     Bundle extras;
     GlobalFunction globalFunction;
     ImageView iv_close;
@@ -49,14 +51,14 @@ public class Alcohol_Result extends Activity {
         this.globalFunction = new GlobalFunction(this);
         this.sharedPreferenceManager = new SharedPreferenceManager(this);
         this.typefaceManager = new TypefaceManager(getAssets(), this);
-        this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
+        //this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
         this.tv_alcohol_result = (TextView) findViewById(R.id.tv_alcohol_result);
         this.tv_alcohol_result_chart = (TextView) findViewById(R.id.tv_alcohol_result_chart);
         this.iv_close = (ImageView) findViewById(R.id.iv_close);
-        this.adView = (AdView) findViewById(R.id.adView);
-        AdView mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+
+        // banner ad control
+        View rootView = getWindow().getDecorView().getRootView();
+        bannerAdControl(this, R.id.normal_ad_include, rootView);
 
         this.tv_alcohol_result.setTypeface(this.typefaceManager.getLight());
         this.tv_alcohol_result_chart.setTypeface(this.typefaceManager.getBold());
@@ -84,7 +86,7 @@ public class Alcohol_Result extends Activity {
                 sb.append(random);
                 printStream.println(sb.toString());
                 if (random == 2) {
-                    Alcohol_Result.this.showIntertitial();
+                    adControl(Alcohol_Result.this);
                     return;
                 }
                 Alcohol_Result.this.startActivity(new Intent(Alcohol_Result.this, Alcohol_Chart.class));
@@ -100,58 +102,5 @@ public class Alcohol_Result extends Activity {
 
     public void onResume() {
         super.onResume();
-        if (!this.sharedPreferenceManager.get_Remove_Ad().booleanValue() && MyApplication.interstitial != null && !MyApplication.interstitial.isLoaded() && !MyApplication.interstitial.isLoading()) {
-            ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                public void onNoResponse() {
-                }
-
-                public void onResponseObtained() {
-                    MyApplication.interstitial.loadAd(new Builder().build());
-                }
-            });
-        }
-        if (!this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
-            MyApplication.interstitial.setAdListener(new AdListener() {
-                public void onAdClosed() {
-                    super.onAdClosed();
-                    MyApplication.interstitial.loadAd(new Builder().build());
-                    Alcohol_Result.this.startActivity(new Intent(Alcohol_Result.this, Alcohol_Chart.class));
-                }
-
-                public void onAdFailedToLoad(int i) {
-                    super.onAdFailedToLoad(i);
-                    if (MyApplication.interstitial != null && !MyApplication.interstitial.isLoading()) {
-                        ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                            public void onNoResponse() {
-                            }
-
-                            public void onResponseObtained() {
-                                MyApplication.interstitial.loadAd(new Builder().build());
-                            }
-                        });
-                    }
-                }
-            });
-        }
-    }
-
-    public void showIntertitial() {
-        if (this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
-            startActivity(new Intent(this, Alcohol_Chart.class));
-        } else if (MyApplication.interstitial == null || !MyApplication.interstitial.isLoaded()) {
-            if (!MyApplication.interstitial.isLoading()) {
-                ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                    public void onNoResponse() {
-                    }
-
-                    public void onResponseObtained() {
-                        MyApplication.interstitial.loadAd(new Builder().build());
-                    }
-                });
-            }
-            startActivity(new Intent(this, Alcohol_Chart.class));
-        } else {
-            MyApplication.interstitial.show();
-        }
     }
 }

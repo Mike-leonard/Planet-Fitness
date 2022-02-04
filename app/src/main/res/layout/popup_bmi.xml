@@ -77,10 +77,19 @@
         android:text="@string/View_Chart"
         android:textColor="@color/white" />
 
-    <include
+   <!-- <include
         android:id="@+id/ad_layout"
         layout="@layout/native_ad_popup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_bmichart" />-->
+
+    <LinearLayout
+        android:id="@+id/normal_ad_include"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
         android:layout_below="@+id/tv_bmichart" />
+
 </RelativeLayout>

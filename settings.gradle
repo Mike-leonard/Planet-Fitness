@@ -1,2 +1,3 @@
+include ':unity-ads'
 rootProject.name='Planet Fitness'
 include ':app'

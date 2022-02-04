@@ -27,10 +27,12 @@ import java.io.PrintStream;
 
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
+import static com.leonard.healthmanager.AdConstantControl.adControl;
+import static com.leonard.healthmanager.AdConstantControl.bannerAdControl;
+
 
 public class Waist_Hip_Ratio_Result extends Activity {
     String TAG = getClass().getSimpleName();
-    AdView adView;
     Bundle extras;
     GlobalFunction globalFunction;
     String health_risk;
@@ -57,15 +59,15 @@ public class Waist_Hip_Ratio_Result extends Activity {
         this.typefaceManager = new TypefaceManager(getAssets(), this);
         this.sharedPreferenceManager = new SharedPreferenceManager(this);
         this.globalFunction = new GlobalFunction(this);
-        this.adView = (AdView) findViewById(R.id.adView);
-        AdView mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        // banner ad control
+        View rootView = getWindow().getDecorView().getRootView();
+        bannerAdControl(this, R.id.normal_ad_include, rootView);
+
         this.rl_main = (RelativeLayout) findViewById(R.id.rl_main);
         this.iv_close = (ImageView) findViewById(R.id.iv_close);
         this.iv_imoji = (ImageView) findViewById(R.id.iv_imoji);
 //        this.rl_main.setBackgroundResource(R.drawable.popup_background_gradient1);
-        this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
+        //this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
         this.extras = getIntent().getExtras();
         this.whr = Double.valueOf(this.extras.getString("whr"));
         this.health_risk = this.extras.getString("health_risk");
@@ -114,7 +116,8 @@ public class Waist_Hip_Ratio_Result extends Activity {
                 sb.append(random);
                 printStream.println(sb.toString());
                 if (random == 2) {
-                    Waist_Hip_Ratio_Result.this.showIntertitial();
+                    //showIntertitial
+                    adControl(Waist_Hip_Ratio_Result.this);
                     return;
                 }
                 Waist_Hip_Ratio_Result.this.startActivity(new Intent(Waist_Hip_Ratio_Result.this, Waist_Hip_Ratio_Chart.class));
@@ -127,61 +130,10 @@ public class Waist_Hip_Ratio_Result extends Activity {
         });
     }
 
-    public void showIntertitial() {
-        if (this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
-            startActivity(new Intent(this, Waist_Hip_Ratio_Chart.class));
-        } else if (MyApplication.interstitial == null || !MyApplication.interstitial.isLoaded()) {
-            if (!MyApplication.interstitial.isLoading()) {
-                ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                    public void onNoResponse() {
-                    }
 
-                    public void onResponseObtained() {
-                        MyApplication.interstitial.loadAd(new Builder().build());
-                    }
-                });
-            }
-            startActivity(new Intent(this, Waist_Hip_Ratio_Chart.class));
-        } else {
-            MyApplication.interstitial.show();
-        }
-    }
 
 
     public void onResume() {
         super.onResume();
-        if (!this.sharedPreferenceManager.get_Remove_Ad().booleanValue() && MyApplication.interstitial != null && !MyApplication.interstitial.isLoaded() && !MyApplication.interstitial.isLoading()) {
-            ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                public void onNoResponse() {
-                }
-
-                public void onResponseObtained() {
-                    MyApplication.interstitial.loadAd(new Builder().build());
-                }
-            });
-        }
-        if (!this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
-            MyApplication.interstitial.setAdListener(new AdListener() {
-                public void onAdClosed() {
-                    super.onAdClosed();
-                    MyApplication.interstitial.loadAd(new Builder().build());
-                    Waist_Hip_Ratio_Result.this.startActivity(new Intent(Waist_Hip_Ratio_Result.this, Waist_Hip_Ratio_Chart.class));
-                }
-
-                public void onAdFailedToLoad(int i) {
-                    super.onAdFailedToLoad(i);
-                    if (MyApplication.interstitial != null && !MyApplication.interstitial.isLoading()) {
-                        ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                            public void onNoResponse() {
-                            }
-
-                            public void onResponseObtained() {
-                                MyApplication.interstitial.loadAd(new Builder().build());
-                            }
-                        });
-                    }
-                }
-            });
-        }
     }
 }

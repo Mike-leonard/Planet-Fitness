@@ -41,10 +41,12 @@ import java.util.Locale;
 
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
+import static com.leonard.healthmanager.AdConstantControl.adControl;
+import static com.leonard.healthmanager.AdConstantControl.bannerAdControl;
+
 
 public class Menstrual_Ovulation_Calculator extends Activity {
     String TAG = getClass().getSimpleName();
-    AdView adView;
     ArrayAdapter<String> adapter_time;
     ArrayList<String> arraylist_time = new ArrayList<>();
     String curr_date;
@@ -87,13 +89,14 @@ public class Menstrual_Ovulation_Calculator extends Activity {
         this.mFCalendarView = (SNPCalendarView) findViewById(R.id.mFCalendarView);
         this.tv_cycle_days = (TextView) findViewById(R.id.tv_cycle_days);
         this.tv_calculate_mco = (TextView) findViewById(R.id.tv_calculate_mco);
-        this.adView = (AdView) findViewById(R.id.adView);
-        AdView mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+
+        // banner ad control
+        View rootView = getWindow().getDecorView().getRootView();
+        bannerAdControl(this, R.id.normal_ad_include, rootView);
+
         this.iv_back = (ImageView) findViewById(R.id.iv_back);
         this.tv_menstrual = (TextView) findViewById(R.id.tv_menstrual);
-        this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
+        //this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
         this.tv_menstrual.setTypeface(this.typefaceManager.getBold());
         this.tv_calculate_mco.setTypeface(this.typefaceManager.getBold());
         this.tv_menstrual.setFocusable(true);
@@ -124,7 +127,7 @@ public class Menstrual_Ovulation_Calculator extends Activity {
                     sb.append(random);
                     printStream.println(sb.toString());
                     if (random == 2) {
-                        Menstrual_Ovulation_Calculator.this.showIntertitial();
+                        adControl(Menstrual_Ovulation_Calculator.this);
                         return;
                     }
                     Intent intent = new Intent(Menstrual_Ovulation_Calculator.this, Menstrual_and_ovulation_Result.class);
@@ -378,80 +381,10 @@ public class Menstrual_Ovulation_Calculator extends Activity {
     }
 
     public void onBackPressed() {
-        this.adView.setVisibility(8);
         ActivityCompat.finishAfterTransition(this);
     }
 
-    public void showIntertitial() {
-        if (this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
-            Intent intent = new Intent(this, Menstrual_and_ovulation_Result.class);
-            intent.putExtra("nextdate_menstrual", this.nextdate_menstrual);
-            intent.putExtra("nextdate1_ovulation", this.nextdate1_ovulation);
-            intent.putExtra("nextdate2_ovulation", this.nextdate2_ovulation);
-            intent.putExtra("curr_date", this.curr_date);
-            startActivity(intent);
-        } else if (MyApplication.interstitial == null || !MyApplication.interstitial.isLoaded()) {
-            if (!MyApplication.interstitial.isLoading()) {
-                ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                    public void onNoResponse() {
-                    }
-
-                    public void onResponseObtained() {
-                        MyApplication.interstitial.loadAd(new Builder().build());
-                    }
-                });
-            }
-            Intent intent2 = new Intent(this, Menstrual_and_ovulation_Result.class);
-            intent2.putExtra("nextdate_menstrual", this.nextdate_menstrual);
-            intent2.putExtra("nextdate1_ovulation", this.nextdate1_ovulation);
-            intent2.putExtra("nextdate2_ovulation", this.nextdate2_ovulation);
-            intent2.putExtra("curr_date", this.curr_date);
-            startActivity(intent2);
-        } else {
-            MyApplication.interstitial.show();
-        }
-    }
-
-
     public void onResume() {
         super.onResume();
-        if (!this.sharedPreferenceManager.get_Remove_Ad().booleanValue() && MyApplication.interstitial != null && !MyApplication.interstitial.isLoaded() && !MyApplication.interstitial.isLoading()) {
-            ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                public void onNoResponse() {
-                }
-
-                public void onResponseObtained() {
-                    MyApplication.interstitial.loadAd(new Builder().build());
-                }
-            });
-        }
-        if (!this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
-            MyApplication.interstitial.setAdListener(new AdListener() {
-                public void onAdClosed() {
-                    super.onAdClosed();
-                    MyApplication.interstitial.loadAd(new Builder().build());
-                    Intent intent = new Intent(Menstrual_Ovulation_Calculator.this, Menstrual_and_ovulation_Result.class);
-                    intent.putExtra("nextdate_menstrual", Menstrual_Ovulation_Calculator.this.nextdate_menstrual);
-                    intent.putExtra("nextdate1_ovulation", Menstrual_Ovulation_Calculator.this.nextdate1_ovulation);
-                    intent.putExtra("nextdate2_ovulation", Menstrual_Ovulation_Calculator.this.nextdate2_ovulation);
-                    intent.putExtra("curr_date", Menstrual_Ovulation_Calculator.this.curr_date);
-                    Menstrual_Ovulation_Calculator.this.startActivity(intent);
-                }
-
-                public void onAdFailedToLoad(int i) {
-                    super.onAdFailedToLoad(i);
-                    if (MyApplication.interstitial != null && !MyApplication.interstitial.isLoading()) {
-                        ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                            public void onNoResponse() {
-                            }
-
-                            public void onResponseObtained() {
-                                MyApplication.interstitial.loadAd(new Builder().build());
-                            }
-                        });
-                    }
-                }
-            });
-        }
     }
 }

@@ -34,10 +34,12 @@ import java.util.Locale;
 
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
+import static com.leonard.healthmanager.AdConstantControl.adControl;
+import static com.leonard.healthmanager.AdConstantControl.bannerAdControl;
+
 
 public class Pregnancy_Due_Date_Calculator extends Activity {
     String TAG = getClass().getSimpleName();
-    AdView adView;
     String eligieble_date;
     GlobalFunction globalFunction;
     ImageView iv_back;
@@ -64,16 +66,16 @@ public class Pregnancy_Due_Date_Calculator extends Activity {
         this.globalFunction = new GlobalFunction(this);
         this.typefaceManager = new TypefaceManager(getAssets(), this);
         this.globalFunction.set_locale_language();
-        this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
+        //this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
         this.iv_back = (ImageView) findViewById(R.id.iv_back);
         this.mFCalendarView = (SNPCalendarView) findViewById(R.id.mFCalendarView);
         this.tv_pregnancy = (TextView) findViewById(R.id.tv_pregnancy);
         this.tv_search_date = (TextView) findViewById(R.id.tv_search_date);
         this.tv_date = (TextView) findViewById(R.id.tv_date);
-        this.adView = (AdView) findViewById(R.id.adView);
-        AdView mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        // banner ad control
+        View rootView = getWindow().getDecorView().getRootView();
+        bannerAdControl(Pregnancy_Due_Date_Calculator.this, R.id.normal_ad_include, rootView);
+
         this.tv_date.setFocusable(true);
         this.tv_date.setFocusableInTouchMode(true);
         this.tv_date.requestFocus();
@@ -103,7 +105,7 @@ public class Pregnancy_Due_Date_Calculator extends Activity {
                 sb.append(random);
                 printStream.println(sb.toString());
                 if (random == 2) {
-                    Pregnancy_Due_Date_Calculator.this.showIntertitial();
+                    adControl(Pregnancy_Due_Date_Calculator.this);
                     return;
                 }
                 Intent intent = new Intent(Pregnancy_Due_Date_Calculator.this, Blood_Donation_Result.class);
@@ -173,77 +175,11 @@ public class Pregnancy_Due_Date_Calculator extends Activity {
     }
 
     public void onBackPressed() {
-        this.adView.setVisibility(8);
         ActivityCompat.finishAfterTransition(this);
     }
 
 
     public void onResume() {
         super.onResume();
-        if (!this.sharedPreferenceManager.get_Remove_Ad().booleanValue() && MyApplication.interstitial != null && !MyApplication.interstitial.isLoaded() && !MyApplication.interstitial.isLoading()) {
-            ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                public void onNoResponse() {
-                }
-
-                public void onResponseObtained() {
-                    MyApplication.interstitial.loadAd(new Builder().build());
-                }
-            });
-        }
-        if (!this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
-            MyApplication.interstitial.setAdListener(new AdListener() {
-                public void onAdClosed() {
-                    super.onAdClosed();
-                    MyApplication.interstitial.loadAd(new Builder().build());
-                    Intent intent = new Intent(Pregnancy_Due_Date_Calculator.this, Blood_Donation_Result.class);
-                    intent.putExtra("prevdate", Pregnancy_Due_Date_Calculator.this.prev_date);
-                    intent.putExtra("nextdate", Pregnancy_Due_Date_Calculator.this.eligieble_date);
-                    intent.putExtra("flag", "1");
-                    Pregnancy_Due_Date_Calculator.this.startActivity(intent);
-                }
-
-                public void onAdFailedToLoad(int i) {
-                    super.onAdFailedToLoad(i);
-                    if (MyApplication.interstitial != null && !MyApplication.interstitial.isLoading()) {
-                        ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                            public void onNoResponse() {
-                            }
-
-                            public void onResponseObtained() {
-                                MyApplication.interstitial.loadAd(new Builder().build());
-                            }
-                        });
-                    }
-                }
-            });
-        }
-    }
-
-    public void showIntertitial() {
-        if (this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
-            Intent intent = new Intent(this, Blood_Donation_Result.class);
-            intent.putExtra("prevdate", this.prev_date);
-            intent.putExtra("nextdate", this.eligieble_date);
-            intent.putExtra("flag", "1");
-            startActivity(intent);
-        } else if (MyApplication.interstitial == null || !MyApplication.interstitial.isLoaded()) {
-            if (!MyApplication.interstitial.isLoading()) {
-                ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                    public void onNoResponse() {
-                    }
-
-                    public void onResponseObtained() {
-                        MyApplication.interstitial.loadAd(new Builder().build());
-                    }
-                });
-            }
-            Intent intent2 = new Intent(this, Blood_Donation_Result.class);
-            intent2.putExtra("prevdate", this.prev_date);
-            intent2.putExtra("nextdate", this.eligieble_date);
-            intent2.putExtra("flag", "1");
-            startActivity(intent2);
-        } else {
-            MyApplication.interstitial.show();
-        }
     }
 }

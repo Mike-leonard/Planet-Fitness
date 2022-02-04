@@ -121,7 +121,7 @@ public class Home_page extends Fragment {
 
     public void onResume() {
         super.onResume();
-        if (!this.sharedPreferenceManager.get_Remove_Ad().booleanValue() && MyApplication.interstitial != null && !MyApplication.interstitial.isLoaded() && !MyApplication.interstitial.isLoading()) {
+   /*     if (!this.sharedPreferenceManager.get_Remove_Ad().booleanValue() && MyApplication.interstitial != null && !MyApplication.interstitial.isLoaded() && !MyApplication.interstitial.isLoading()) {
             MyApplication.interstitial.loadAd(new Builder().build());
         }
         if (!this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
@@ -139,11 +139,11 @@ public class Home_page extends Fragment {
                     }
                 }
             });
-        }
+        }*/
     }
 
 
-    public void showIntertitial() {
+/*    public void showIntertitial() {
         if (this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
 //            startActivity(new Intent(this, About_Us.class));
         } else if (MyApplication.interstitial == null || !MyApplication.interstitial.isLoaded()) {
@@ -154,7 +154,7 @@ public class Home_page extends Fragment {
         } else {
             MyApplication.interstitial.show();
         }
-    }
+    }*/
 
     public void onBackPressed() {
         if (this.doubleBackToExitPressedOnce) {

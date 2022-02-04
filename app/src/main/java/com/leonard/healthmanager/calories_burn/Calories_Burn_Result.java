@@ -25,10 +25,12 @@ import java.io.PrintStream;
 
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
+import static com.leonard.healthmanager.AdConstantControl.adControl;
+import static com.leonard.healthmanager.AdConstantControl.bannerAdControl;
+
 
 public class Calories_Burn_Result extends Activity {
     String TAG = getClass().getSimpleName();
-    AdView adView;
     float caloriesburn;
     Bundle extras;
     GlobalFunction globalFunction;
@@ -54,7 +56,7 @@ public class Calories_Burn_Result extends Activity {
         this.globalFunction = new GlobalFunction(this);
         this.sharedPreferenceManager = new SharedPreferenceManager(this);
         this.typefaceManager = new TypefaceManager(getAssets(), this);
-        this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
+        //this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
         this.iv_close = (ImageView) findViewById(R.id.iv_close);
         this.tv_ans_calburn = (TextView) findViewById(R.id.tv_ans_calburn);
         this.tv_calburn = (TextView) findViewById(R.id.tv_calburn);
@@ -67,10 +69,11 @@ public class Calories_Burn_Result extends Activity {
         if (VERSION.SDK_INT >= 21) {
             getWindow().addFlags(67108864);
         }
-        this.adView = (AdView) findViewById(R.id.adView);
-        AdView mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+
+        // banner ad control
+        View rootView = getWindow().getDecorView().getRootView();
+        bannerAdControl(this, R.id.normal_ad_include, rootView);
+
         this.extras = getIntent().getExtras();
         this.caloriesburn = this.extras.getFloat("caloriesburn");
         this.tips = this.extras.getString("tips");
@@ -98,7 +101,7 @@ public class Calories_Burn_Result extends Activity {
                 sb.append(random);
                 printStream.println(sb.toString());
                 if (random == 2) {
-                    Calories_Burn_Result.this.showIntertitial();
+                    adControl(Calories_Burn_Result.this);
                     return;
                 }
                 Calories_Burn_Result.this.startActivity(new Intent(Calories_Burn_Result.this, Calories_Burn_Chart.class));
@@ -114,58 +117,5 @@ public class Calories_Burn_Result extends Activity {
 
     public void onResume() {
         super.onResume();
-        if (!this.sharedPreferenceManager.get_Remove_Ad().booleanValue() && MyApplication.interstitial != null && !MyApplication.interstitial.isLoaded() && !MyApplication.interstitial.isLoading()) {
-            ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                public void onNoResponse() {
-                }
-
-                public void onResponseObtained() {
-                    MyApplication.interstitial.loadAd(new Builder().build());
-                }
-            });
-        }
-        if (!this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
-            MyApplication.interstitial.setAdListener(new AdListener() {
-                public void onAdClosed() {
-                    super.onAdClosed();
-                    MyApplication.interstitial.loadAd(new Builder().build());
-                    Calories_Burn_Result.this.startActivity(new Intent(Calories_Burn_Result.this, Calories_Burn_Chart.class));
-                }
-
-                public void onAdFailedToLoad(int i) {
-                    super.onAdFailedToLoad(i);
-                    if (MyApplication.interstitial != null && !MyApplication.interstitial.isLoading()) {
-                        ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                            public void onNoResponse() {
-                            }
-
-                            public void onResponseObtained() {
-                                MyApplication.interstitial.loadAd(new Builder().build());
-                            }
-                        });
-                    }
-                }
-            });
-        }
-    }
-
-    public void showIntertitial() {
-        if (this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
-            startActivity(new Intent(this, Calories_Burn_Chart.class));
-        } else if (MyApplication.interstitial == null || !MyApplication.interstitial.isLoaded()) {
-            if (!MyApplication.interstitial.isLoading()) {
-                ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                    public void onNoResponse() {
-                    }
-
-                    public void onResponseObtained() {
-                        MyApplication.interstitial.loadAd(new Builder().build());
-                    }
-                });
-            }
-            startActivity(new Intent(this, Calories_Burn_Chart.class));
-        } else {
-            MyApplication.interstitial.show();
-        }
     }
 }

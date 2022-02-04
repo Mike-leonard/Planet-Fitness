@@ -29,7 +29,7 @@ public class GlobalFunction {
 
     public GlobalFunction(Activity activity2) {
         this.activity = activity2;
-        this.mFirebaseAnalytics = FirebaseAnalytics.getInstance(activity2);
+        //this.mFirebaseAnalytics = FirebaseAnalytics.getInstance(activity2);
         this.sharedPreferenceManager = new SharedPreferenceManager(activity2);
     }
 

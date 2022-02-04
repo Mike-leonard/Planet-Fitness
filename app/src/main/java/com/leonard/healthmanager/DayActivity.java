@@ -38,7 +38,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static com.leonard.healthmanager.general.MyApplication.intersialsRandomdAdIdsGenerator;
+import static com.leonard.healthmanager.AdConstantControl.adControl;
 
 public class DayActivity extends AppCompatActivity {
     public LinearLayout container;
@@ -57,16 +57,16 @@ public class DayActivity extends AppCompatActivity {
     public int[] t = {R.array.day1_cycles, R.array.day2_cycles, R.array.day3_cycles, R.array.day4_cycles, R.array.day5_cycles, R.array.day6_cycles, R.array.day7_cycles, R.array.day8_cycles, R.array.day9_cycles, R.array.day10_cycles, R.array.day11_cycles, R.array.day12_cycles, R.array.day13_cycles, R.array.day14_cycles, R.array.day15_cycles, R.array.day16_cycles, R.array.day17_cycles, R.array.day18_cycles, R.array.day19_cycles, R.array.day20_cycles, R.array.day21_cycles, R.array.day22_cycles, R.array.day23_cycles, R.array.day24_cycles, R.array.day25_cycles, R.array.day26_cycles, R.array.day27_cycles, R.array.day28_cycles, R.array.day29_cycles, R.array.day30_cycles};
     public int u = -1;
     public ArrayList<WorkoutData> v;
-    public InterstitialAd w;
-    public AdRequest x;
+    //public InterstitialAd w;
+    //public AdRequest x;
     public Intent y;
 
 
-    public void requestNewInterstitial() {
+   /* public void requestNewInterstitial() {
         this.w.loadAd(this.x);
-    }
+    }*/
 
-    private void setAdmodAds() {
+ /*   private void setAdmodAds() {
         this.w = new InterstitialAd(this);
         //hsn
         //this.w.setAdUnitId(getString(R.string.interstitial_key));
@@ -81,7 +81,7 @@ public class DayActivity extends AppCompatActivity {
             }
         });
         requestNewInterstitial();
-    }
+    }*/
 
     public void b() {
         this.r = new HashMap<>();
@@ -188,7 +188,7 @@ public class DayActivity extends AppCompatActivity {
         this.k = (RecyclerView) findViewById(R.id.recyclerAllDaysList);
         this.l = (Button) findViewById(R.id.buttonTwo);
         this.m = new LinearLayoutManager(this, 1, false);
-        setAdmodAds();
+        //setAdmodAds();
         c();
         b();
         Bundle extras = getIntent().getExtras();
@@ -240,10 +240,11 @@ public class DayActivity extends AppCompatActivity {
                 dayActivity3.p = databaseOperations.getExcDayProgress(dayActivity3.o);
                 DayActivity dayActivity4 = DayActivity.this;
                 dayActivity4.y.putExtra("progress", dayActivity4.p);
-                if (DayActivity.this.w.isLoaded()) {
+                /*if (DayActivity.this.w.isLoaded()) {
                     DayActivity.this.w.show();
                     return;
-                }
+                }*/
+                adControl(DayActivity.this);
                 DayActivity dayActivity5 = DayActivity.this;
                 dayActivity5.startActivity(dayActivity5.y);
             }

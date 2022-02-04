@@ -50,11 +50,11 @@ import java.util.ArrayList;
 
 import kr.pe.burt.android.lib.faimageview.FAImageView;
 
-import static com.leonard.healthmanager.general.MyApplication.intersialsRandomdAdIdsGenerator;
+import static com.leonard.healthmanager.AdConstantControl.adControl;
 
 public class MainExcerciseActivity extends AppCompatActivity {
-    public AdRequest A;
-    public AdRequest B;
+    //public AdRequest A;
+    //public AdRequest B;
     public boolean C;
     public Toolbar D;
 
@@ -123,8 +123,8 @@ public class MainExcerciseActivity extends AppCompatActivity {
     public ImageView volume;
     public int w;
     public MyApplication x;
-    public InterstitialAd y;
-    public InterstitialAd z;
+    //public InterstitialAd y;
+    //public InterstitialAd z;
 
     public MainExcerciseActivity() {
         Boolean valueOf = Boolean.valueOf(false);
@@ -306,9 +306,10 @@ public class MainExcerciseActivity extends AppCompatActivity {
                     intent3.putExtra("totalExc", i2);
                     intent3.putExtra("totalTime", i3);
                     MainExcerciseActivity.this.startActivity(intent3);
-                    if (MainExcerciseActivity.this.y.isLoaded()) {
+                   /* if (MainExcerciseActivity.this.y.isLoaded()) {
                         MainExcerciseActivity.this.y.show();
-                    }
+                    }*/
+                    adControl(MainExcerciseActivity.this);
                 }
                 StringBuilder sb5 = new StringBuilder();
                 sb5.append("excCouner: ");
@@ -504,7 +505,7 @@ public class MainExcerciseActivity extends AppCompatActivity {
     }
 
 
-    public void requestNewInterstitial() {
+/*    public void requestNewInterstitial() {
         this.y.loadAd(this.A);
     }
 
@@ -535,7 +536,7 @@ public class MainExcerciseActivity extends AppCompatActivity {
             }
         });
         requestNewInterstitial1();
-    }
+    }*/
 
     public void a(long j) {
         String upperCase = ((WorkoutData) this.n.get(this.excCouner)).getExcName().replace("_", " ").toUpperCase();
@@ -649,9 +650,10 @@ public class MainExcerciseActivity extends AppCompatActivity {
             intent.addFlags(603979776);
             startActivity(intent);
             onSuperBackPressed();
-            if (this.z.isLoaded()) {
+            /*if (this.z.isLoaded()) {
                 this.z.show();
-            }
+            }*/
+            adControl(MainExcerciseActivity.this);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -702,7 +704,7 @@ public class MainExcerciseActivity extends AppCompatActivity {
             }
         });
         this.n = (ArrayList) getIntent().getExtras().getSerializable("workoutDataList");
-        setAdmodAds();
+        //setAdmodAds();
         Bundle extras = getIntent().getExtras();
         extras.getClass();
         this.day = extras.getString("day");

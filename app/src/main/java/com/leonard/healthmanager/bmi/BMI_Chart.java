@@ -20,10 +20,11 @@ import com.leonard.healthmanager.utils.TypefaceManager;
 
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
+import static com.leonard.healthmanager.AdConstantControl.bannerAdControl;
+
 
 public class BMI_Chart extends Activity {
     String TAG = getClass().getSimpleName();
-    AdView adView;
     GlobalFunction globalFunction;
     ImageView iv_back;
     SharedPreferenceManager sharedPreferenceManager;
@@ -70,11 +71,7 @@ public class BMI_Chart extends Activity {
         this.typefaceManager = new TypefaceManager(getAssets(), this);
         this.sharedPreferenceManager = new SharedPreferenceManager(this);
         this.globalFunction = new GlobalFunction(this);
-        this.adView = (AdView) findViewById(R.id.adView);
-        AdView mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
-        this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
+        //this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
         this.tv_title = (TextView) findViewById(R.id.tv_title);
         this.iv_back = (ImageView) findViewById(R.id.iv_back);
         this.tv_age_17 = (TextView) findViewById(R.id.tv_age_17);
@@ -136,28 +133,15 @@ public class BMI_Chart extends Activity {
         if (VERSION.SDK_INT >= 21) {
             getWindow().addFlags(67108864);
         }
-        if (this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
-            this.adView.setVisibility(8);
-        } else {
-            this.adView.setVisibility(0);
-            this.adView.loadAd(new Builder().build());
-            this.adView.setAdListener(new AdListener() {
-                public void onAdLoaded() {
-                    super.onAdLoaded();
-                    BMI_Chart.this.adView.setVisibility(0);
-                }
 
-                public void onAdFailedToLoad(int i) {
-                    super.onAdFailedToLoad(i);
-                    BMI_Chart.this.adView.setVisibility(8);
-                }
-            });
-        }
         this.iv_back.setOnClickListener(new OnClickListener() {
             public void onClick(View view) {
                 BMI_Chart.this.onBackPressed();
             }
         });
+        // banner ad control
+        View rootView = getWindow().getDecorView().getRootView();
+        bannerAdControl(this, R.id.normal_ad_include, rootView);
     }
 
     public boolean onOptionsItemSelected(MenuItem menuItem) {
@@ -171,10 +155,5 @@ public class BMI_Chart extends Activity {
 
     public void onResume() {
         super.onResume();
-        if (!this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
-            this.adView.setVisibility(0);
-        } else {
-            this.adView.setVisibility(8);
-        }
     }
 }

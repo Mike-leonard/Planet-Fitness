@@ -31,10 +31,12 @@ import java.io.PrintStream;
 
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
+import static com.leonard.healthmanager.AdConstantControl.adControl;
+import static com.leonard.healthmanager.AdConstantControl.bannerAdControl;
+
 
 public class Smokincost_Calculator extends AppCompatActivity {
     String TAG = getClass().getSimpleName();
-    AdView adView;
     EditText et_cig_inpack;
     EditText et_cig_price;
     EditText et_cig_smoked;
@@ -63,15 +65,15 @@ public class Smokincost_Calculator extends AppCompatActivity {
         this.globalFunction = new GlobalFunction(this);
         this.typefaceManager = new TypefaceManager(getAssets(), this);
         this.globalFunction.set_locale_language();
-        this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
+        //this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
         this.et_cig_smoked = (EditText) findViewById(R.id.et_cig_smoked);
         this.et_cig_inpack = (EditText) findViewById(R.id.et_cig_inpack);
         this.et_cig_price = (EditText) findViewById(R.id.et_cig_price);
-        this.adView = (AdView) findViewById(R.id.adView);
-        AdView mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
         this.tv_count_smoking_cost = (TextView) findViewById(R.id.tv_count_smoking_cost);
+        // banner ad control
+        View rootView = getWindow().getDecorView().getRootView();
+        bannerAdControl(this, R.id.normal_ad_include, rootView);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -101,7 +103,7 @@ public class Smokincost_Calculator extends AppCompatActivity {
                     sb.append(random);
                     printStream.println(sb.toString());
                     if (random == 2) {
-                        Smokincost_Calculator.this.showIntertitial();
+                        adControl(Smokincost_Calculator.this);
                     } else {
                         Smokincost_Calculator.this.calculate_smoking_cost();
                     }
@@ -146,54 +148,7 @@ public class Smokincost_Calculator extends AppCompatActivity {
         finish();
     }
 
-    public void showIntertitial() {
-        if (this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
-            calculate_smoking_cost();
-        } else if (MyApplication.interstitial == null || !MyApplication.interstitial.isLoaded()) {
-            if (!MyApplication.interstitial.isLoading()) {
-                MyApplication.interstitial.loadAd(new Builder().build());
-            }
-            calculate_smoking_cost();
-        } else {
-            MyApplication.interstitial.show();
-        }
-    }
-
-
     public void onResume() {
         super.onResume();
-        if (!this.sharedPreferenceManager.get_Remove_Ad().booleanValue() && MyApplication.interstitial != null && !MyApplication.interstitial.isLoaded() && !MyApplication.interstitial.isLoading()) {
-            ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                public void onNoResponse() {
-                }
-
-                public void onResponseObtained() {
-                    MyApplication.interstitial.loadAd(new Builder().build());
-                }
-            });
-        }
-        if (!this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
-            MyApplication.interstitial.setAdListener(new AdListener() {
-                public void onAdClosed() {
-                    super.onAdClosed();
-                    MyApplication.interstitial.loadAd(new Builder().build());
-                    Smokincost_Calculator.this.calculate_smoking_cost();
-                }
-
-                public void onAdFailedToLoad(int i) {
-                    super.onAdFailedToLoad(i);
-                    if (MyApplication.interstitial != null && !MyApplication.interstitial.isLoading()) {
-                        ConnectionBuddy.getInstance().hasNetworkConnection(new NetworkRequestCheckListener() {
-                            public void onNoResponse() {
-                            }
-
-                            public void onResponseObtained() {
-                                MyApplication.interstitial.loadAd(new Builder().build());
-                            }
-                        });
-                    }
-                }
-            });
-        }
     }
 }

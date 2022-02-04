@@ -29,7 +29,7 @@ import org.json.JSONObject;
 
 import kr.pe.burt.android.lib.faimageview.FAImageView;
 
-import static com.leonard.healthmanager.general.MyApplication.nativeRandomdAdIdGenerator;
+import static com.leonard.healthmanager.AdConstantControl.nativeAdControl;
 
 public class ExcDetailsActivity extends AppCompatActivity {
     public int Dayvalue;
@@ -102,12 +102,12 @@ public class ExcDetailsActivity extends AppCompatActivity {
         this.q = displayMetrics.widthPixels;
     }
 
-    public void b() {
+  /*  public void b() {
         this.nativeAdContainer = (LinearLayout) findViewById(R.id.nativeAdContainer);
         this.o = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         this.admobAdsObject = new AdmobAds(this.n, this.nativeAdContainer, nativeRandomdAdIdGenerator());
         this.admobAdsObject.refreshAd();
-    }
+    }*/
 
     public void onBackPressed() {
         super.onBackPressed();
@@ -172,7 +172,12 @@ public class ExcDetailsActivity extends AppCompatActivity {
         this.animImageFull.startAnimation();
         this.l.setText(this.k);
         getScreenHeightWidth();
-        b();
+        //b();
+
+        // Native ad control
+        View rootView = getWindow().getDecorView().getRootView();
+        nativeAdControl(ExcDetailsActivity.this, R.id.nativeAdContainer, rootView);
+
         this.m = (TextView) findViewById(R.id.numberpicker_cycles);
         if (upperCase.equalsIgnoreCase("plank")) {
             textView = this.m;

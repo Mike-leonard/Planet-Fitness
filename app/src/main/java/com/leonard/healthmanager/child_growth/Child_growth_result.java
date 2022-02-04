@@ -19,10 +19,11 @@ import com.leonard.healthmanager.utils.TypefaceManager;
 
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
+import static com.leonard.healthmanager.AdConstantControl.bannerAdControl;
+
 
 public class Child_growth_result extends Activity {
     String TAG = getClass().getSimpleName();
-    AdView adView;
     String age;
     Bundle extras;
     GlobalFunction globalFunction;
@@ -47,7 +48,7 @@ public class Child_growth_result extends Activity {
         this.sharedPreferenceManager = new SharedPreferenceManager(this);
         this.globalFunction = new GlobalFunction(this);
         this.typefaceManager = new TypefaceManager(getAssets(), this);
-        this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
+        //this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
         this.tv_ans_age = (TextView) findViewById(R.id.tv_ans_age);
         this.tv_min_heightweight = (TextView) findViewById(R.id.tv_min_heightweight);
         this.tv_max_heightweight = (TextView) findViewById(R.id.tv_max_heightweight);
@@ -58,27 +59,11 @@ public class Child_growth_result extends Activity {
         if (VERSION.SDK_INT >= 21) {
             getWindow().addFlags(67108864);
         }
-        this.adView = (AdView) findViewById(R.id.adView);
-        AdView mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
-        if (this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
-            this.adView.setVisibility(8);
-        } else {
-            this.adView.setVisibility(0);
-            this.adView.loadAd(new Builder().build());
-            this.adView.setAdListener(new AdListener() {
-                public void onAdLoaded() {
-                    super.onAdLoaded();
-                    Child_growth_result.this.adView.setVisibility(0);
-                }
 
-                public void onAdFailedToLoad(int i) {
-                    super.onAdFailedToLoad(i);
-                    Child_growth_result.this.adView.setVisibility(8);
-                }
-            });
-        }
+        // banner ad control
+        View rootView = getWindow().getDecorView().getRootView();
+        bannerAdControl(this, R.id.normal_ad_include, rootView);
+
         this.extras = getIntent().getExtras();
         this.age = this.extras.getString("age");
         this.result = this.extras.getString("result");
@@ -101,10 +86,5 @@ public class Child_growth_result extends Activity {
 
     public void onResume() {
         super.onResume();
-        if (!this.sharedPreferenceManager.get_Remove_Ad().booleanValue()) {
-            this.adView.setVisibility(0);
-        } else {
-            this.adView.setVisibility(8);
-        }
     }
 }
