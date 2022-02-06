@@ -20,11 +20,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdRequest.Builder;
-import com.google.android.gms.ads.InterstitialAd;
 import com.leonard.healthmanager.adapters.IndividualDayAdapter;
 import com.leonard.healthmanager.adapters.WorkoutData;
 import com.leonard.healthmanager.database.DatabaseOperations;

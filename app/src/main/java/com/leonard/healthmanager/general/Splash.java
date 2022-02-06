@@ -45,7 +45,7 @@ public class Splash extends Activity  {
         setContentView(R.layout.splash);
 
         Calendar rightNow = Calendar.getInstance();
-        if ((rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY) ||
+        if ((rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) ||
                 (rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) ||
                 (rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) ||
                 //(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY)||

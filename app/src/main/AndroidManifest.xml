@@ -96,10 +96,13 @@
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme1" />
+        <!--Newly Added-->
+        <!--tools:ignore="Instantiatable"-->
         <activity
             android:name=".general.Home_page"
             android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
+            android:windowSoftInputMode="adjustPan"
+            tools:ignore="Instantiatable">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -780,7 +783,7 @@
             android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
             android:enabled="true"
             android:exported="false" />
-        <receiver
+        <!--<receiver
             android:name="com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver"
             android:enabled="true"
             android:exported="true"
@@ -788,7 +791,7 @@
             <intent-filter>
                 <action android:name="com.android.vending.INSTALL_REFERRER" />
             </intent-filter>
-        </receiver>
+        </receiver>-->
 
         <service
             android:name="com.google.android.gms.measurement.AppMeasurementService"
@@ -859,7 +862,8 @@
         <activity
             android:name=".fragment.Workout"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="Instantiatable" />
         <activity
             android:name=".DayActivity"
             android:screenOrientation="portrait"
@@ -925,7 +929,8 @@
         <activity
             android:name=".WalkandStep.activities.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme_walk.NoActionBar_walk" />
+            android:theme="@style/AppTheme_walk.NoActionBar_walk"
+            tools:ignore="Instantiatable" />
         <activity
             android:name=".WalkandStep.activities.TrainingActivity"
             android:label="@string/activity_title_training"
@@ -992,11 +997,11 @@
         <activity
             android:name=".newsapi.NewsCast"
             android:label="Planet Fitness - News"
-            android:theme="@style/MotivationTheme"></activity>
+            android:theme="@style/MotivationTheme"/>
 
         <activity android:name=".newsapi.WebviewNews"
             android:label="Planet Fitness - News"
-            android:theme="@style/MotivationTheme"></activity>
+            android:theme="@style/MotivationTheme"/>
 
         <receiver android:name=".WalkandStep.receivers.OnBootCompletedBroadcastReceiver">
             <intent-filter>

@@ -12,17 +12,29 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdLoader.Builder;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.VideoController.VideoLifecycleCallbacks;
+import com.google.android.gms.ads.VideoController;
 import com.google.android.gms.ads.VideoOptions;
-import com.google.android.gms.ads.formats.MediaView;
-import com.google.android.gms.ads.formats.NativeAdOptions;
-import com.google.android.gms.ads.formats.UnifiedNativeAd;
-import com.google.android.gms.ads.formats.UnifiedNativeAd.OnUnifiedNativeAdLoadedListener;
-import com.google.android.gms.ads.formats.UnifiedNativeAdView;
+import com.google.android.gms.ads.nativead.NativeAd;
+import com.google.android.gms.ads.nativead.NativeAdView;
+import org.jetbrains.annotations.NotNull;
+
+import static com.leonard.healthmanager.utils.Constants.dailyAdClicked;
+import static com.leonard.healthmanager.utils.Constants.dailyAdClickedEditor;
+import static com.leonard.healthmanager.utils.Constants.dailyMaxNativeAds;
+import static com.leonard.healthmanager.utils.Constants.dailyNatEditor;
+import static com.leonard.healthmanager.utils.Constants.hourNatEditor;
+import static com.leonard.healthmanager.utils.Constants.perHoursNativeAds;
+import static com.leonard.healthmanager.utils.Constants.prefDailyAdClicked;
+import static com.leonard.healthmanager.utils.Constants.prefDailyNatAds;
+import static com.leonard.healthmanager.utils.Constants.prefHourNatAds;
+
 
 public class AdmobAds {
     public String ADMOB_AD_UNIT_ID = "";
@@ -30,7 +42,7 @@ public class AdmobAds {
     public boolean admobAdLoaded_dialog;
     public Context context;
     public LinearLayout nativeAdContainer;
-    public UnifiedNativeAd unifiedNativeAdObject_dialog;
+    public NativeAd unifiedNativeAdObject_dialog;
 
     public AdmobAds(Context context2, LinearLayout linearLayout, String str) {
         this.context = context2;
@@ -47,7 +59,7 @@ public class AdmobAds {
 
     public void displayAdmobAdOnLoad_Dialog(LinearLayout linearLayout) {
         linearLayout.setVisibility(View.VISIBLE);
-        UnifiedNativeAdView unifiedNativeAdView = (UnifiedNativeAdView) LayoutInflater.from(this.context).inflate(R.layout.ad_unified_dialog, null);
+        NativeAdView unifiedNativeAdView = (NativeAdView) LayoutInflater.from(this.context).inflate(R.layout.ad_unified_dialog, null);
         populateUnifiedNativeAdView_dialog(this.unifiedNativeAdObject_dialog, unifiedNativeAdView);
         linearLayout.addView(unifiedNativeAdView);
     }
@@ -70,16 +82,22 @@ public class AdmobAds {
         return false;
     }
 
-    public void populateUnifiedNativeAdView(UnifiedNativeAd unifiedNativeAd, UnifiedNativeAdView unifiedNativeAdView) {
+    public void populateUnifiedNativeAdView(NativeAd unifiedNativeAd, NativeAdView unifiedNativeAdView) {
         int i;
         View view;
-        unifiedNativeAd.getVideoController().setVideoLifecycleCallbacks(new VideoLifecycleCallbacks() {
-            public void onVideoEnd() {
-                super.onVideoEnd();
-            }
+
+        unifiedNativeAd.getMediaContent().getVideoController()
+                .setVideoLifecycleCallbacks(new
+                VideoController.VideoLifecycleCallbacks() {
+                    @Override
+                    public void onVideoEnd() {
+                        super.onVideoEnd();
+                    }
         });
+
         int i2 = this.context.getResources().getDisplayMetrics().heightPixels;
-        MediaView mediaView = (MediaView) unifiedNativeAdView.findViewById(R.id.popup_appinstall_image);
+        com.google.android.gms.ads.nativead.MediaView mediaView = (com.google.android.gms.ads.nativead.MediaView) unifiedNativeAdView.findViewById(R.id.popup_appinstall_image);
+
         LayoutParams layoutParams = mediaView.getLayoutParams();
         layoutParams.height = (int) (((float) i2) / 3.0f);
         mediaView.setLayoutParams(layoutParams);
@@ -104,16 +122,19 @@ public class AdmobAds {
         unifiedNativeAdView.setNativeAd(unifiedNativeAd);
     }
 
-    public void populateUnifiedNativeAdView_dialog(UnifiedNativeAd unifiedNativeAd, UnifiedNativeAdView unifiedNativeAdView) {
+    public void populateUnifiedNativeAdView_dialog(NativeAd unifiedNativeAd, NativeAdView unifiedNativeAdView) {
         int i;
         View view;
-        unifiedNativeAd.getVideoController().setVideoLifecycleCallbacks(new VideoLifecycleCallbacks() {
-            public void onVideoEnd() {
-                super.onVideoEnd();
-            }
+        unifiedNativeAd.getMediaContent().getVideoController()
+                .setVideoLifecycleCallbacks(new
+                VideoController.VideoLifecycleCallbacks() {
+                    @Override
+                    public void onVideoEnd() {
+                        super.onVideoEnd();
+                    }
         });
         int i2 = this.context.getResources().getDisplayMetrics().heightPixels;
-        MediaView mediaView = (MediaView) unifiedNativeAdView.findViewById(R.id.popup_appinstall_image_dialog);
+        com.google.android.gms.ads.nativead.MediaView mediaView = (com.google.android.gms.ads.nativead.MediaView) unifiedNativeAdView.findViewById(R.id.popup_appinstall_image_dialog);
         LayoutParams layoutParams = mediaView.getLayoutParams();
         layoutParams.height = (int) (((float) i2) / 3.0f);
         mediaView.setLayoutParams(layoutParams);
@@ -140,19 +161,49 @@ public class AdmobAds {
     public void refreshAd() {
         if (isConnectedToInternet()) {
             Builder builder = new Builder(this.context, this.ADMOB_AD_UNIT_ID);
-            builder.forUnifiedNativeAd(new OnUnifiedNativeAdLoadedListener() {
-                public void onUnifiedNativeAdLoaded(UnifiedNativeAd unifiedNativeAd) {
-                    UnifiedNativeAdView unifiedNativeAdView = (UnifiedNativeAdView) LayoutInflater.from(AdmobAds.this.context).inflate(R.layout.ad_unified, null);
-                    AdmobAds.this.populateUnifiedNativeAdView(unifiedNativeAd, unifiedNativeAdView);
+            builder.forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
+                @Override
+                public void onNativeAdLoaded(@NonNull @NotNull NativeAd nativeAd) {
+                    NativeAdView unifiedNativeAdView = (NativeAdView) LayoutInflater.from(AdmobAds.this.context).inflate(R.layout.ad_unified, null);
+                    AdmobAds.this.populateUnifiedNativeAdView(nativeAd, unifiedNativeAdView);
                     AdmobAds.this.nativeAdContainer.setVisibility(View.VISIBLE);
                     AdmobAds.this.nativeAdContainer.setBackgroundResource(R.drawable.shape_roundedwhite);
                     AdmobAds.this.nativeAdContainer.addView(unifiedNativeAdView);
                 }
             });
-            builder.withNativeAdOptions(new NativeAdOptions.Builder().setVideoOptions(new VideoOptions.Builder().setStartMuted(true).build()).build());
+            builder.withNativeAdOptions(new
+                    com.google.android.gms.ads.nativead.NativeAdOptions
+                            .Builder().setVideoOptions(new
+                    VideoOptions.Builder().setStartMuted(true).build()).build());
+
             builder.withAdListener(new AdListener() {
-                public void onAdFailedToLoad(int i) {
+                @Override
+                public void onAdFailedToLoad(@NonNull @NotNull LoadAdError loadAdError) {
+                    super.onAdFailedToLoad(loadAdError);
                     AdmobAds.this.refreshAd();
+                }
+
+                @Override
+                public void onAdClicked() {
+                    super.onAdClicked();
+                    dailyAdClicked++;
+                    dailyAdClickedEditor = prefDailyAdClicked.edit();
+                    dailyAdClickedEditor.putInt("daily-ad-click", dailyAdClicked);
+                    dailyAdClickedEditor.commit();
+                }
+
+                @Override
+                public void onAdLoaded() {
+                    super.onAdLoaded();
+                    perHoursNativeAds++;
+                    dailyMaxNativeAds++;
+
+                    hourNatEditor = prefHourNatAds.edit();
+                    dailyNatEditor = prefDailyNatAds.edit();
+                    hourNatEditor.putInt("hourly-nat-ads", perHoursNativeAds);
+                    dailyNatEditor.putInt("daily-nat-ads", dailyMaxNativeAds);
+                    hourNatEditor.commit();
+                    dailyNatEditor.commit();
                 }
             }).build().loadAd(new AdRequest.Builder().build());
         }
@@ -161,13 +212,18 @@ public class AdmobAds {
     public boolean refreshAd_dialog() {
         if (isConnectedToInternet()) {
             Builder builder = new Builder(this.context, this.ADMOB_AD_UNIT_ID);
-            builder.forUnifiedNativeAd(new OnUnifiedNativeAdLoadedListener() {
-                public void onUnifiedNativeAdLoaded(UnifiedNativeAd unifiedNativeAd) {
+            builder.forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
+                @Override
+                public void onNativeAdLoaded(@NonNull @NotNull NativeAd nativeAd) {
                     AdmobAds.this.admobAdLoaded_dialog = true;
-                    AdmobAds.this.unifiedNativeAdObject_dialog = unifiedNativeAd;
+                    AdmobAds.this.unifiedNativeAdObject_dialog = nativeAd;
                 }
             });
-            builder.withNativeAdOptions(new NativeAdOptions.Builder().setVideoOptions(new VideoOptions.Builder().setStartMuted(true).build()).build());
+
+            builder.withNativeAdOptions(new
+                    com.google.android.gms.ads.nativead.NativeAdOptions
+                            .Builder().setVideoOptions(new
+                    VideoOptions.Builder().setStartMuted(true).build()).build());
             builder.withAdListener(new AdListener() {
                 public void onAdFailedToLoad(int i) {
                     AdmobAds.this.admobAdLoaded_dialog = false;

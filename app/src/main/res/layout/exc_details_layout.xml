@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:textAlignment="center"
+                android:gravity="center_horizontal"
                 android:layout_marginRight="50dp"
                 android:fontFamily="@font/roboto_black"
                 android:text="Toolbar Title"

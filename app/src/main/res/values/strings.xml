@@ -2,11 +2,9 @@
     <string name="app_name">Planet Fitness</string>
 
 
-
-    <string name="unity_ad_ids">4579491</string>
-
     <!--Test ids-->
-    <string name="admob_app_id">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="admob_app_id">ca-app-pub-2957577039807154~2089406596</string>
+    <!--<string name="admob_app_id">ca-app-pub-3940256099942544~3347511713</string>-->
     <string name="banner_ad">ca-app-pub-3940256099942544/6300978111</string>
     <string name="banner_ad_two">ca-app-pub-3940256099942544/6300978111</string>
     <string name="banner_ad_three">ca-app-pub-3940256099942544/6300978111</string>
@@ -14,16 +12,6 @@
     <string name="google_banner_id">ca-app-pub-3940256099942544/6300978111</string>
     <string name="google_native_id">ca-app-pub-3940256099942544/2247696110</string>
     <string name="gog_Inter_id">ca-app-pub-3940256099942544/1033173712</string>
-
-
-    <string name="meta_banner_test">IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID</string>
-    <string name="meta_intersial_test">IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID</string>
-    <string name="meta_native_test">ca-app-pub-3940256099942544/1033173712</string>
-
-   <!-- <string name="admob_app_id">ca-app-pub-2957577039807154~2089406596</string>
-    <string name="banner_ad">ca-app-pub-2957577039807154/2253058123</string>
-    <string name="banner_ad_two">ca-app-pub-2957577039807154/5214904011</string>
-    <string name="banner_ad_three">ca-app-pub-2957577039807154/7696956496</string>-->
 
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>

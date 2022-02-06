@@ -48,21 +48,6 @@ public class MyApplication extends Application implements ActivityLifecycleCallb
     public static MyApplication absWomenApplication;
     public TextToSpeech textToSpeech;
 
-    public static String admobAppID = "ca-app-pub-2957577039807154~2089406596";
-    public static String unityAppID = "";
-    public static String metaAppID = "";
-
-    public static String admobBannerId = "ca-app-pub-2957577039807154/5453936536";
-    public static String admobIntersialId = "ca-app-pub-2957577039807154/4041137731";
-    public static String admobNativeId = "ca-app-pub-2957577039807154/8372099131";
-
-    public static String metaBannerId = "";
-    public static String metaIntersialId = "";
-    public static String metaNativeId = "";
-
-
-
-
     public static MyApplication getInstance() {
         return absWomenApplication;
     }

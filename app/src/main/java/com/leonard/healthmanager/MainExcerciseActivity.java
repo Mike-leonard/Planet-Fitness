@@ -32,13 +32,8 @@ import androidx.core.content.ContextCompat;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar;
-
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdRequest.Builder;
-import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.ads.formats.AdChoicesView;
 import com.google.android.gms.ads.formats.NativeAd;
+import com.google.android.gms.ads.nativead.AdChoicesView;
 import com.google.gson.Gson;
 import com.leonard.healthmanager.adapters.WorkoutData;
 import com.leonard.healthmanager.database.DatabaseOperations;
@@ -562,13 +557,13 @@ public class MainExcerciseActivity extends AppCompatActivity {
         }
         CountDownTimer r2 = new CountDownTimer(j, 1000) {
             public void onFinish() {
-                MainExcerciseActivity.this.restScreen.setVisibility(8);
+                MainExcerciseActivity.this.restScreen.setVisibility(View.VISIBLE);
                 MainExcerciseActivity.this.F = Boolean.valueOf(false);
                 try {
                     long length = (long) (((((WorkoutData) MainExcerciseActivity.this.n.get(MainExcerciseActivity.this.excCouner)).getImageIdList().length > 2 ? ((WorkoutData) MainExcerciseActivity.this.n.get(MainExcerciseActivity.this.excCouner)).getImageIdList().length * ((WorkoutData) MainExcerciseActivity.this.n.get(MainExcerciseActivity.this.excCouner)).getExcCycles() : ((WorkoutData) MainExcerciseActivity.this.n.get(MainExcerciseActivity.this.excCouner)).getExcCycles()) + 1) * 1000);
                     MainExcerciseActivity.this.l = length;
-                    MainExcerciseActivity.this.pauseMainExcersise.setVisibility(0);
-                    MainExcerciseActivity.this.resumeMainExcersise.setVisibility(8);
+                    MainExcerciseActivity.this.pauseMainExcersise.setVisibility(View.INVISIBLE);
+                    MainExcerciseActivity.this.resumeMainExcersise.setVisibility(View.VISIBLE);
                     MainExcerciseActivity.this.mainExcTimer(length, MainExcerciseActivity.this.mainExcCounter, MainExcerciseActivity.this.k);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -619,8 +614,8 @@ public class MainExcerciseActivity extends AppCompatActivity {
             this.tvProgressMax.setText(String.valueOf(((WorkoutData) this.n.get(this.excCouner)).getExcCycles()));
             long calculateExTime = calculateExTime(this.excCouner);
             this.l = calculateExTime;
-            this.pauseMainExcersise.setVisibility(0);
-            this.resumeMainExcersise.setVisibility(8);
+            this.pauseMainExcersise.setVisibility(View.INVISIBLE);
+            this.resumeMainExcersise.setVisibility(View.VISIBLE);
             double excDayProgress = (double) this.databaseOperations.getExcDayProgress(this.day);
             double size = (double) ((float) this.n.size());
             Double.isNaN(size);
@@ -631,7 +626,7 @@ public class MainExcerciseActivity extends AppCompatActivity {
             mainExcTimer(calculateExTime, 1, 1.0f);
             return;
         }
-        Toast.makeText(this.x, "This is first exercise", 0).show();
+        Toast.makeText(this.x, "This is first exercise", Toast.LENGTH_SHORT).show();
     }
 
     public  void a(MaterialDialog materialDialog, DialogAction dialogAction) {
@@ -780,8 +775,8 @@ public class MainExcerciseActivity extends AppCompatActivity {
                 }
                 MainExcerciseActivity.this.restTimer.cancel();
                 MainExcerciseActivity.this.restTimer.onFinish();
-                MainExcerciseActivity.this.pauseRestTime.setVisibility(0);
-                MainExcerciseActivity.this.resumRestTime.setVisibility(8);
+                MainExcerciseActivity.this.pauseRestTime.setVisibility(View.INVISIBLE);
+                MainExcerciseActivity.this.resumRestTime.setVisibility(View.VISIBLE);
             }
         });
         this.skip.setOnClickListener(new OnClickListener() {
@@ -831,15 +826,15 @@ public class MainExcerciseActivity extends AppCompatActivity {
         });
         this.pauseRestTime.setOnClickListener(new OnClickListener() {
             public void onClick(View view) {
-                MainExcerciseActivity.this.pauseRestTime.setVisibility(8);
-                MainExcerciseActivity.this.resumRestTime.setVisibility(0);
+                MainExcerciseActivity.this.pauseRestTime.setVisibility(View.VISIBLE);
+                MainExcerciseActivity.this.resumRestTime.setVisibility(View.INVISIBLE);
                 MainExcerciseActivity.this.restTimer.cancel();
             }
         });
         this.resumRestTime.setOnClickListener(new OnClickListener() {
             public void onClick(View view) {
-                MainExcerciseActivity.this.pauseRestTime.setVisibility(0);
-                MainExcerciseActivity.this.resumRestTime.setVisibility(8);
+                MainExcerciseActivity.this.pauseRestTime.setVisibility(View.INVISIBLE);
+                MainExcerciseActivity.this.resumRestTime.setVisibility(View.VISIBLE);
                 MainExcerciseActivity mainExcerciseActivity = MainExcerciseActivity.this;
                 mainExcerciseActivity.a(mainExcerciseActivity.s1);
             }
@@ -852,8 +847,8 @@ public class MainExcerciseActivity extends AppCompatActivity {
                 sb.append("mainExcProgress ");
                 sb.append(MainExcerciseActivity.this.k);
                 Log.i("pauseMainExcersise", sb.toString());
-                MainExcerciseActivity.this.pauseMainExcersise.setVisibility(8);
-                MainExcerciseActivity.this.resumeMainExcersise.setVisibility(0);
+                MainExcerciseActivity.this.pauseMainExcersise.setVisibility(View.VISIBLE);
+                MainExcerciseActivity.this.resumeMainExcersise.setVisibility(View.INVISIBLE);
                 MainExcerciseActivity.this.excersiseTimer.cancel();
                 MainExcerciseActivity.this.animImageFull.stopAnimation();
             }
@@ -866,8 +861,8 @@ public class MainExcerciseActivity extends AppCompatActivity {
                 sb.append("mainExcProgress ");
                 sb.append(MainExcerciseActivity.this.k);
                 Log.i("resumeMainExcersise", sb.toString());
-                MainExcerciseActivity.this.pauseMainExcersise.setVisibility(0);
-                MainExcerciseActivity.this.resumeMainExcersise.setVisibility(8);
+                MainExcerciseActivity.this.pauseMainExcersise.setVisibility(View.INVISIBLE);
+                MainExcerciseActivity.this.resumeMainExcersise.setVisibility(View.VISIBLE);
                 MainExcerciseActivity mainExcerciseActivity = MainExcerciseActivity.this;
                 mainExcerciseActivity.mainExcTimer(mainExcerciseActivity.s1 - 1000, MainExcerciseActivity.this.mainExcCounter, MainExcerciseActivity.this.k);
             }
@@ -923,17 +918,17 @@ public class MainExcerciseActivity extends AppCompatActivity {
             this.i--;
         }
         this.playPause.setBackgroundResource(R.drawable.play);
-        this.resumeMainExcersise.setVisibility(0);
-        this.pauseMainExcersise.setVisibility(8);
-        this.resumRestTime.setVisibility(0);
-        this.pauseRestTime.setVisibility(8);
+        this.resumeMainExcersise.setVisibility(View.INVISIBLE);
+        this.pauseMainExcersise.setVisibility(View.VISIBLE);
+        this.resumRestTime.setVisibility(View.INVISIBLE);
+        this.pauseRestTime.setVisibility(View.VISIBLE);
         this.animImageFull.stopAnimation();
     }
 
     public void onResume() {
         super.onResume();
-        this.pauseMainExcersise.setVisibility(8);
-        this.resumeMainExcersise.setVisibility(0);
+        this.pauseMainExcersise.setVisibility(View.VISIBLE);
+        this.resumeMainExcersise.setVisibility(View.INVISIBLE);
     }
 
     public void onSuperBackPressed() {
@@ -960,7 +955,7 @@ public class MainExcerciseActivity extends AppCompatActivity {
                 Log.i("readyToGoTimer", "onFinish: ");
                 MainExcerciseActivity.this.G = Boolean.valueOf(false);
                 MainExcerciseActivity.this.timerprogress.setProgress(0);
-                MainExcerciseActivity.this.readytogo_layout.setVisibility(8);
+                MainExcerciseActivity.this.readytogo_layout.setVisibility(View.VISIBLE);
                 MainExcerciseActivity mainExcerciseActivity = MainExcerciseActivity.this;
                 if (((WorkoutData) mainExcerciseActivity.n.get(mainExcerciseActivity.excCouner)).getImageIdList().length > 2) {
                     MainExcerciseActivity mainExcerciseActivity2 = MainExcerciseActivity.this;
@@ -974,8 +969,8 @@ public class MainExcerciseActivity extends AppCompatActivity {
                 long j = (long) ((i + 1) * 1000);
                 MainExcerciseActivity mainExcerciseActivity5 = MainExcerciseActivity.this;
                 mainExcerciseActivity5.l = j;
-                mainExcerciseActivity5.pauseMainExcersise.setVisibility(0);
-                MainExcerciseActivity.this.resumeMainExcersise.setVisibility(8);
+                mainExcerciseActivity5.pauseMainExcersise.setVisibility(View.INVISIBLE);
+                MainExcerciseActivity.this.resumeMainExcersise.setVisibility(View.VISIBLE);
                 MainExcerciseActivity mainExcerciseActivity6 = MainExcerciseActivity.this;
                 mainExcerciseActivity6.mainExcTimer(j, mainExcerciseActivity6.mainExcCounter, MainExcerciseActivity.this.k);
             }

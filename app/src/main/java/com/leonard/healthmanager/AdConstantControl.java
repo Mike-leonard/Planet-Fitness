@@ -12,24 +12,22 @@ import android.widget.RelativeLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-/*import com.facebook.ads.AbstractAdListener;
-import com.facebook.ads.AdError;
-import com.facebook.ads.AdView;
-import com.facebook.ads.AudienceNetworkAds;*/
+import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
-/*import com.google.android.gms.ads.FullScreenContentCallback;
-import com.google.android.gms.ads.LoadAdError;*/
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.OnPaidEventListener;
-import com.google.android.gms.ads.ResponseInfo;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 /*import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;*/
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.leonard.healthmanager.utils.Constants;
 import com.unity3d.ads.IUnityAdsListener;
 import com.unity3d.ads.UnityAds;
 import com.unity3d.services.banners.BannerErrorInfo;
@@ -69,27 +67,26 @@ import static com.unity3d.services.core.properties.ClientProperties.getApplicati
 public class AdConstantControl {
     private static String intersialUnityPlacement = "Interstitial_Android";
     private static String bannerUnityPlacement = "Banner_Android";
-    private static boolean testMode = true;
+    private static boolean testMode = false;
 
 
     public static void adNetworkIntializeRequest (Activity act) {
 
-       /* MobileAds.initialize(act, new OnInitializationCompleteListener() {
+        MobileAds.initialize(act, new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(@NonNull @NotNull InitializationStatus initializationStatus) {
 
             }
-        });*/
-        MobileAds.initialize(act);
+        });
         /*UnityAds.initialize((Context) act,
                 act.getString(R.string.unity_ad_ids),
                 true,  unityAdsListener);*/
 
         //AudienceNetworkAds.initialize(act);
 
-        UnityAds.initialize(act, act.getString(R.string.unity_ad_ids), unityAdsListener, testMode);
+        UnityAds.initialize(act, Constants.unityAppID, unityAdsListener, testMode);
         // for banner ads
-        UnityAds.initialize(act, act.getString(R.string.unity_ad_ids),
+        UnityAds.initialize(act, Constants.unityAppID,
                 null, testMode , true);
     }
 
@@ -180,7 +177,7 @@ public class AdConstantControl {
                         if (perHoursIntersialAds < 10 ) {
                             // daily ad clicked
                             if(dailyAdClicked < 2) {
-                                //googleIntersialAds(act);
+                                googleIntersialAds(act);
                             } else { // ad Clicked
                                 unityAdDisplay(act);
                             }
@@ -188,12 +185,6 @@ public class AdConstantControl {
                             unityAdDisplay(act);
                         }
                     } else { // jokon current time boro hoi jaibo
-
-                        /*Long nextOneHour = tsLong + 3600;
-                        adHourEditor = prefAdHourControl.edit();
-                        adHourEditor.putLong("next-hour", nextOneHour);
-                        adHourEditor.commit();*/
-
                         // per hour ad reset
                         perHoursIntersialAds = 0;
                         hourIntEditor = prefHourIntAds.edit();
@@ -207,23 +198,11 @@ public class AdConstantControl {
                     unityAdDisplay(act);
                 }
             } else { // next day update
-
-                /*Long nextOneDay = tsLong + 86400;
-                appInstallEditor = appInstallPref.edit();
-                appInstallEditor.putLong("ins-time", nextOneDay);
-                appInstallEditor.commit();*/
-
                 // daily ad reset
                 dailyMaxIntersialAds = 0;
                 dailyIntEditor = prefDailyIntAds.edit();
                 dailyIntEditor.putInt("daily-int-ads", dailyMaxIntersialAds);
                 dailyIntEditor.commit();
-
-                // Daily ad Click reset
-               /* dailyAdClicked = 0;
-                dailyAdClickedEditor = prefDailyAdClicked.edit();
-                dailyAdClickedEditor.putInt("daily-ad-click", dailyAdClicked);
-                dailyAdClickedEditor.commit();*/
             }
 
         } else {   // google ad  disabled statement
@@ -245,7 +224,7 @@ public class AdConstantControl {
             if (appInstallTime > tsLong) {
                 if (dailyMaxNativeAds < 120) {
                     if (nextHour > tsLong) {
-                        if (perHoursNativeAds < 15 ) {
+                        if (perHoursNativeAds < 18 ) {
                             if(dailyAdClicked < 2) {
                                 // naive ad show
                                 a(act, layout_id, view);
@@ -279,7 +258,8 @@ public class AdConstantControl {
         com.google.android.gms.ads.AdView adView = new
                 com.google.android.gms.ads.AdView(getApplicationContext());
         adView.setAdSize(AdSize.BANNER);
-        adView.setAdUnitId(getApplicationContext().getString(R.string.google_banner_id));
+        //adView.setAdUnitId(getApplicationContext().getString(R.string.google_banner_id));
+        adView.setAdUnitId(Constants.admobBannerId);
 
         // Initiate a generic request to load it with an ad
         AdRequest adRequest = new AdRequest.Builder().build();
@@ -299,8 +279,8 @@ public class AdConstantControl {
             }
 
             @Override
-            public void onAdFailedToLoad(int i) {
-                super.onAdFailedToLoad(i);
+            public void onAdFailedToLoad(@NonNull @NotNull LoadAdError loadAdError) {
+                super.onAdFailedToLoad(loadAdError);
                 unityBannerAdShower(act, layout_id, v);
             }
 
@@ -339,261 +319,69 @@ public class AdConstantControl {
     }
 
     // Google Intersial ads
-   /* private static void googleIntersialAds (Activity act) {
-
+    private static void googleIntersialAds (Activity act) {
         AdRequest adRequest = new AdRequest.Builder().build();
 
         final InterstitialAd[] mInterGoogle = {null};
-        mInterGoogle[0].load(act, getApplicationContext().getString(R.string.gog_Inter_id),
+        //mInterGoogle[0].load(act, getApplicationContext().getString(R.string.gog_Inter_id),
+        mInterGoogle[0].load(act, Constants.admobIntersialId,
                 adRequest, new InterstitialAdLoadCallback() {
                     @Override
                     public void onAdLoaded(@NonNull @NotNull InterstitialAd interstitialAd) {
                         super.onAdLoaded(interstitialAd);
-                        if (mInterGoogle[0] != null) {
+                        if (interstitialAd != null) {
+                            mInterGoogle[0] = interstitialAd;
                             mInterGoogle[0].show(act);
                         }
+                        interstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                            @Override
+                            public void onAdImpression() {
+                                super.onAdImpression();
+                                perHoursIntersialAds++;
+                                dailyMaxIntersialAds++;
+                                hourIntEditor = prefHourIntAds.edit();
+                                dailyIntEditor = prefDailyIntAds.edit();
+                                hourIntEditor.putInt("hourly-int-ads", perHoursIntersialAds);
+                                dailyIntEditor.putInt("daily-int-ads", dailyMaxIntersialAds);
+                                hourIntEditor.commit();
+                                dailyIntEditor.commit();
+                            }
+
+                            @Override
+                            public void onAdClicked() {
+                                super.onAdClicked();
+                                dailyAdClicked++;
+                                dailyAdClickedEditor = prefDailyAdClicked.edit();
+                                dailyAdClickedEditor.putInt("daily-ad-click", dailyAdClicked);
+                                dailyAdClickedEditor.commit();
+                            }
+                            @Override
+                            public void onAdFailedToShowFullScreenContent(@NonNull @NotNull AdError adError) {
+                                super.onAdFailedToShowFullScreenContent(adError);
+                            }
+
+                            @Override
+                            public void onAdShowedFullScreenContent() {
+                                super.onAdShowedFullScreenContent();
+                                mInterGoogle[0] = null;
+                            }
+
+                            @Override
+                            public void onAdDismissedFullScreenContent() {
+                                super.onAdDismissedFullScreenContent();
+                            }
+                        });
                     }
 
                     @Override
                     public void onAdFailedToLoad(@NonNull @NotNull LoadAdError loadAdError) {
                         super.onAdFailedToLoad(loadAdError);
+                        mInterGoogle[0] = null;
                         unityAdDisplay(act);
                     }
+
                 });
-
-
-        mInterGoogle[0].setFullScreenContentCallback(new FullScreenContentCallback(){
-            @Override
-            public void onAdDismissedFullScreenContent() {
-                // Called when fullscreen content is dismissed.
-                Log.d("TAG", "The ad was dismissed.");
-            }
-
-            @Override
-            public void onAdFailedToShowFullScreenContent(@NonNull @NotNull com.google.android.gms.ads.AdError adError) {
-                super.onAdFailedToShowFullScreenContent(adError);
-            }
-
-            @Override
-            public void onAdClicked() {
-                super.onAdClicked();
-            }
-
-            @Override
-            public void onAdImpression() {
-                super.onAdImpression();
-            }
-
-            @Override
-            public void onAdShowedFullScreenContent() {
-                // Called when fullscreen content is shown.
-                // Make sure to set your reference to null so you don't
-                // show it a second time.
-                mInterGoogle[0] = null;
-                Log.d("TAG", "The ad was shown.");
-            }
-        });
-        *//*InterstitialAd mInterGoogle;
-        mInterGoogle = new InterstitialAd() {
-            @NonNull
-            @NotNull
-            @Override
-            public String getAdUnitId() {
-                return getApplicationContext().getString(R.string.gog_Inter_id);
-            }
-
-            @Override
-            public void show(@NonNull @NotNull Activity activity) {
-
-            }
-
-            @Override
-            public void setFullScreenContentCallback(@Nullable @org.jetbrains.annotations.Nullable FullScreenContentCallback fullScreenContentCallback) {
-
-            }
-
-            @Nullable
-            @org.jetbrains.annotations.Nullable
-            @Override
-            public FullScreenContentCallback getFullScreenContentCallback() {
-                return null;
-            }
-
-            @Override
-            public void setImmersiveMode(boolean b) {
-
-            }
-
-            @NonNull
-            @NotNull
-            @Override
-            public ResponseInfo getResponseInfo() {
-                return null;
-            }
-
-            @Override
-            public void setOnPaidEventListener(@Nullable @org.jetbrains.annotations.Nullable OnPaidEventListener onPaidEventListener) {
-
-            }
-
-            @Nullable
-            @org.jetbrains.annotations.Nullable
-            @Override
-            public OnPaidEventListener getOnPaidEventListener() {
-                return null;
-            }
-        };*//*
-
-
-        *//*mInterGoogle.setAdUnitId(getApplicationContext().getString(R.string.gog_Inter_id));
-        mInterGoogle.loadAd(adRequest);
-        mInterGoogle.setAdListener(new AdListener() {
-            @Override
-            public void onAdClosed() {
-                super.onAdClosed();
-            }
-
-            @Override
-            public void onAdFailedToLoad(int i) {
-                super.onAdFailedToLoad(i);
-                unityAdDisplay(act);
-            }
-
-            @Override
-            public void onAdLeftApplication() {
-                super.onAdLeftApplication();
-            }
-
-            @Override
-            public void onAdOpened() {
-                super.onAdOpened();
-            }
-
-            @Override
-            public void onAdLoaded() {
-                super.onAdLoaded();
-                if (mInterGoogle.isLoaded()) {
-                    mInterGoogle.show();
-                    perHoursIntersialAds++;
-                    dailyMaxIntersialAds++;
-
-                    hourIntEditor = prefHourIntAds.edit();
-                    dailyIntEditor = prefDailyIntAds.edit();
-                    hourIntEditor.putInt("hourly-int-ads", perHoursIntersialAds);
-                    dailyIntEditor.putInt("daily-int-ads", dailyMaxIntersialAds);
-                    hourIntEditor.commit();
-                    dailyIntEditor.commit();
-
-                }
-            }
-
-            @Override
-            public void onAdClicked() {
-                super.onAdClicked();
-                dailyAdClicked++;
-
-                // then turn off google ads
-                // set a click timestamp
-                dailyAdClickedEditor = prefDailyAdClicked.edit();
-                dailyAdClickedEditor.putInt("daily-ad-click", dailyAdClicked);
-                dailyAdClickedEditor.commit();
-            }
-
-            @Override
-            public void onAdImpression() {
-                super.onAdImpression();
-            }
-        });*//*
-    }*/
-
-
-    /*private static void fbBannerView (Activity act, int layout_id, View v) {
-        LinearLayout adContainer = v.findViewById(layout_id);
-       *//* AdView adView = new AdView(Torpito.this,
-                "IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID", AdSize.BANNER_HEIGHT_50);*//*
-        *//*AdView adView = new AdView(FocBanBook.this,
-                "864858330777025_870780956851429", AdSize.BANNER_HEIGHT_50); *//*
-        AdView adView = new AdView(act,
-                getApplicationContext().getString(R.string.meta_banner_test),
-                com.facebook.ads.AdSize.BANNER_HEIGHT_50);
-
-        // Place the ad view.
-        LinearLayout.LayoutParams params = new LinearLayout
-                .LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT);
-        adContainer.addView(adView, params);
-
-        com.facebook.ads.AdListener adListener = new com.facebook.ads.AdListener() {
-            @Override
-            public void onError(com.facebook.ads.Ad ad, AdError adError) {
-
-            }
-
-            @Override
-            public void onAdLoaded(com.facebook.ads.Ad ad) {
-            }
-
-            @Override
-            public void onAdClicked(com.facebook.ads.Ad ad) {
-            }
-
-            @Override
-            public void onLoggingImpression(com.facebook.ads.Ad ad) {
-
-            }
-        };
-        AdView.AdViewLoadConfig loadAdConfig = adView.buildLoadAdConfig()
-                .withAdListener(adListener)
-                .build();
-        adView.loadAd(loadAdConfig);
     }
-    private static void facebookInterstitial (Activity act) {
-      *//*  InterstitialAd interstitialAd = new InterstitialAd(FocImpBook.this,
-                "864858330777025_870781660184692");*//*
-        com.facebook.ads.InterstitialAd interstitialAd
-                = new com.facebook.ads.InterstitialAd(act,
-                getApplicationContext().getString(R.string.meta_intersial_test));
-
-        *//*InterstitialAd interstitialAd = new InterstitialAd(FocImpBook.this,
-                "IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID");*//*
-
-        AbstractAdListener adListener = new AbstractAdListener() {
-            @Override
-            public void onError(com.facebook.ads.Ad ad, AdError error) {
-                Log.e("aderr", String.valueOf(error.getErrorMessage()));
-                super.onError(ad, error);
-            }
-
-            @Override
-            public void onAdLoaded(com.facebook.ads.Ad ad) {
-                super.onAdLoaded(ad);
-                if (interstitialAd.isAdLoaded()){
-                    interstitialAd.show();
-                }
-            }
-
-            @Override
-            public void onAdClicked(com.facebook.ads.Ad ad) {
-                super.onAdClicked(ad);
-            }
-
-            @Override
-            public void onInterstitialDisplayed(com.facebook.ads.Ad ad) {
-                super.onInterstitialDisplayed(ad);
-            }
-
-            @Override
-            public void onInterstitialDismissed(com.facebook.ads.Ad ad) {
-                super.onInterstitialDismissed(ad);
-            }
-        };
-        com.facebook.ads.InterstitialAd.InterstitialLoadAdConfig interstitialLoadAdConfig = interstitialAd.buildLoadAdConfig()
-                .withAdListener(adListener)
-                .build();
-        interstitialAd.loadAd(interstitialLoadAdConfig);
-    }*/
-
-
 
     // Unity Banner Ads
     private static void unityBannerAdShower (Activity act, int layout_id, View v) {
@@ -667,8 +455,8 @@ public class AdConstantControl {
         LinearLayout nativeAdContainer = view.findViewById(layout_id);
 
         AdmobAds admobAdsObject = null;
-        admobAdsObject = new AdmobAds(act, nativeAdContainer,
-                getApplicationContext().getString(R.string.google_native_id));
+        admobAdsObject = new AdmobAds(act, nativeAdContainer, Constants.admobNativeId);
+                //getApplicationContext().getString(R.string.google_native_id));
         admobAdsObject.refreshAd();
     }
 }
