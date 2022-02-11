@@ -128,7 +128,7 @@ public class Child_Growth_Calculator extends Activity {
                     sb2.append(" : \n");
                     sb2.append(split[0]);
                     child_Growth_Calculator.putext_val = sb2.toString();
-                    int random = ((int) (Math.random() * 2.0d)) + 1;
+                    int random = ((int) (Math.random() * 3.0d)) + 1;
                     PrintStream printStream = System.out;
                     StringBuilder sb3 = new StringBuilder();
                     sb3.append("random_number==>");
@@ -162,7 +162,7 @@ public class Child_Growth_Calculator extends Activity {
                 sb.append(" : \n");
                 sb.append(split[1]);
                 child_Growth_Calculator.putext_val = sb.toString();
-                int random = ((int) (Math.random() * 2.0d)) + 1;
+                int random = ((int) (Math.random() * 3.0d)) + 1;
                 PrintStream printStream = System.out;
                 StringBuilder sb2 = new StringBuilder();
                 sb2.append("random_number==>");
@@ -194,7 +194,7 @@ public class Child_Growth_Calculator extends Activity {
                     sb.append(" : \n");
                     sb.append(split[2]);
                     child_Growth_Calculator.putext_val = sb.toString();
-                    int random = ((int) (Math.random() * 2.0d)) + 1;
+                    int random = ((int) (Math.random() * 3.0d)) + 1;
                     PrintStream printStream = System.out;
                     StringBuilder sb2 = new StringBuilder();
                     sb2.append("random_number==>");

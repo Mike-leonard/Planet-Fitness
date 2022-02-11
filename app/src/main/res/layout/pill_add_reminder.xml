@@ -56,7 +56,7 @@
         android:layout_marginRight="@dimen/text_15"
         android:orientation="horizontal"
         app:cardCornerRadius="20dp"
-        app:cardElevation="20dip">
+        android:elevation="20dp">
     <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
@@ -73,34 +73,38 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
-            <com.getbase.floatingactionbutton.FloatingActionButton
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/starred1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:onClick="selectFab1"
-                fab:fab_icon="@drawable/ic_notifications_off_grey600_24dp"
-                android:background="@drawable/a1_grad"
-                app:fab_size="normal"
+                android:src="@drawable/ic_baseline_notifications_off_24"
+                app:backgroundTint="#009ED2"
+                app:borderWidth="0dp"
+                app:fabSize="normal"
                 android:layout_alignParentLeft="true"
                 android:layout_marginTop="10dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="8dp"/>
 
 
-            <com.getbase.floatingactionbutton.FloatingActionButton
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/starred2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:onClick="selectFab2"
-                fab:fab_icon="@drawable/ic_notifications_on_white_24dp"
-                android:background="@drawable/a1_grad"
-                app:fab_size="normal"
+                android:src="@drawable/ic_notifications_on_white_24dp"
+                app:fabSize="normal"
+                app:backgroundTint="#009ED2"
+                app:borderWidth="0dp"
                 android:layout_alignParentLeft="true"
                 android:layout_marginTop="10dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="8dp"/>
+
+
             </RelativeLayout>
 
             <TextView

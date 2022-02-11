@@ -40,7 +40,6 @@ public class Splash extends Activity  {
         super.onCreate(bundle);
         this.globalFunction = new GlobalFunction(this);
         this.sharedPreferenceManager = new SharedPreferenceManager(this);
-        //MobileAds.initialize(this, getResources().getString(R.string.admob_app_id));
         adNetworkIntializeRequest(Splash.this);
         setContentView(R.layout.splash);
 
@@ -48,7 +47,7 @@ public class Splash extends Activity  {
         if ((rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) ||
                 (rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) ||
                 (rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) ||
-                //(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY)||
+                (rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY)||
                 (rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY) ||
                 (rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY)
         ) {

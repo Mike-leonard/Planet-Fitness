@@ -131,7 +131,7 @@ public class Children_Height_Growth_Prediction_Calculator extends Activity {
                     Children_Height_Growth_Prediction_Calculator.this.inserted_fathers_height = Float.parseFloat(Children_Height_Growth_Prediction_Calculator.this.et_fathers_height.getText().toString());
                     Children_Height_Growth_Prediction_Calculator.this.mothers_height_unit = Children_Height_Growth_Prediction_Calculator.this.tv_heightunit_mother.getText().toString();
                     Children_Height_Growth_Prediction_Calculator.this.fathers_height_unit = Children_Height_Growth_Prediction_Calculator.this.tv_heightunit_father.getText().toString();
-                    int random = ((int) (Math.random() * 2.0d)) + 1;
+                    int random = ((int) (Math.random() * 3.0d)) + 1;
                     PrintStream printStream = System.out;
                     StringBuilder sb = new StringBuilder();
                     sb.append("random_number==>");

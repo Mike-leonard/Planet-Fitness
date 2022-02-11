@@ -27,11 +27,8 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdRequest.Builder;
-import com.google.android.gms.ads.AdView;
-import com.google.firebase.analytics.FirebaseAnalytics.Param;
+
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.leonard.healthmanager.R;
 import com.leonard.healthmanager.general.MyApplication;
 import com.leonard.healthmanager.utils.GlobalFunction;
@@ -114,7 +111,7 @@ public class Smoking_Risk_Calculator extends Activity {
         this.tv_enddate.setText(this.end_date);
         this.tv_smoking_risk.setTypeface(this.typefaceManager.getBold());
         this.tv_search_bloodsmokingrisk.setTypeface(this.typefaceManager.getBold());
-        //this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
+        this.globalFunction.sendAnalyticsData(this.TAG, this.TAG);
         if (VERSION.SDK_INT >= 21) {
             getWindow().addFlags(67108864);
         }
@@ -131,10 +128,10 @@ public class Smoking_Risk_Calculator extends Activity {
         this.tv_search_bloodsmokingrisk.setOnClickListener(new OnClickListener() {
             public void onClick(View view) {
                 if (Smoking_Risk_Calculator.this.et_no_of_cigarettes.getText().toString().trim().equals("")) {
-                    Toast.makeText(Smoking_Risk_Calculator.this, Smoking_Risk_Calculator.this.getString(R.string.Enter_no_of_cigarettes), 0).show();
+                    Toast.makeText(Smoking_Risk_Calculator.this, Smoking_Risk_Calculator.this.getString(R.string.Enter_no_of_cigarettes), Toast.LENGTH_SHORT).show();
                     return;
                 }
-                int random = ((int) (Math.random() * 2.0d)) + 1;
+                int random = ((int) (Math.random() * 3.0d)) + 1;
                 PrintStream printStream = System.out;
                 StringBuilder sb = new StringBuilder();
                 sb.append("random_number==>");
@@ -168,9 +165,9 @@ public class Smoking_Risk_Calculator extends Activity {
                             sb.append("-");
                             sb.append(i);
                             smoking_Risk_Calculator.start_date = sb.toString();
-                            String str = Param.START_DATE;
+                            String str = FirebaseAnalytics.Param.START_DATE;
                             StringBuilder sb2 = new StringBuilder();
-                            sb2.append(Param.START_DATE);
+                            sb2.append(FirebaseAnalytics.Param.START_DATE);
                             sb2.append(Smoking_Risk_Calculator.this.start_date);
                             Log.d(str, sb2.toString());
                             Smoking_Risk_Calculator.this.tv_startdate.setText(Smoking_Risk_Calculator.this.start_date);
@@ -203,9 +200,9 @@ public class Smoking_Risk_Calculator extends Activity {
                         sb.append(i);
                         smoking_Risk_Calculator.end_date = sb.toString();
                         Smoking_Risk_Calculator.this.tv_enddate.setText(Smoking_Risk_Calculator.this.end_date);
-                        String str = Param.END_DATE;
+                        String str = FirebaseAnalytics.Param.END_DATE;
                         StringBuilder sb2 = new StringBuilder();
-                        sb2.append(Param.END_DATE);
+                        sb2.append(FirebaseAnalytics.Param.END_DATE);
                         sb2.append(Smoking_Risk_Calculator.this.end_date);
                         Log.d(str, sb2.toString());
                     }
@@ -282,14 +279,14 @@ public class Smoking_Risk_Calculator extends Activity {
 
                     e2.printStackTrace();
                     date2 = date3;
-                    String str = Param.START_DATE;
+                    String str = FirebaseAnalytics.Param.START_DATE;
                     StringBuilder sb = new StringBuilder();
-                    sb.append(Param.START_DATE);
+                    sb.append(FirebaseAnalytics.Param.START_DATE);
                     sb.append(date);
                     Log.d(str, sb.toString());
-                    String str2 = Param.END_DATE;
+                    String str2 = FirebaseAnalytics.Param.END_DATE;
                     StringBuilder sb2 = new StringBuilder();
-                    sb2.append(Param.END_DATE);
+                    sb2.append(FirebaseAnalytics.Param.END_DATE);
                     sb2.append(date2);
                     Log.d(str2, sb2.toString());
                     this.total_days = (int) (((((date2.getTime() - date.getTime()) / 1000) / 60) / 60) / 24);
@@ -309,14 +306,14 @@ public class Smoking_Risk_Calculator extends Activity {
                 date = null;
                 e3.printStackTrace();
                 date2 = date3;
-                String str3 = Param.START_DATE;
+                String str3 = FirebaseAnalytics.Param.START_DATE;
                 StringBuilder sb4 = new StringBuilder();
-                sb4.append(Param.START_DATE);
+                sb4.append(FirebaseAnalytics.Param.START_DATE);
                 sb4.append(date);
                 Log.d(str3, sb4.toString());
-                String str22 = Param.END_DATE;
+                String str22 = FirebaseAnalytics.Param.END_DATE;
                 StringBuilder sb22 = new StringBuilder();
-                sb22.append(Param.END_DATE);
+                sb22.append(FirebaseAnalytics.Param.END_DATE);
                 sb22.append(date2);
                 Log.d(str22, sb22.toString());
                 this.total_days = (int) (((((date2.getTime() - date.getTime()) / 1000) / 60) / 60) / 24);
@@ -331,14 +328,14 @@ public class Smoking_Risk_Calculator extends Activity {
                 sb32.append(this.msg);
                 Log.d("msg->", sb32.toString());
             }
-            String str32 = Param.START_DATE;
+            String str32 = FirebaseAnalytics.Param.START_DATE;
             StringBuilder sb42 = new StringBuilder();
-            sb42.append(Param.START_DATE);
+            sb42.append(FirebaseAnalytics.Param.START_DATE);
             sb42.append(date);
             Log.d(str32, sb42.toString());
-            String str222 = Param.END_DATE;
+            String str222 = FirebaseAnalytics.Param.END_DATE;
             StringBuilder sb222 = new StringBuilder();
-            sb222.append(Param.END_DATE);
+            sb222.append(FirebaseAnalytics.Param.END_DATE);
             sb222.append(date2);
             Log.d(str222, sb222.toString());
             this.total_days = (int) (((((date2.getTime() - date.getTime()) / 1000) / 60) / 60) / 24);
@@ -348,7 +345,7 @@ public class Smoking_Risk_Calculator extends Activity {
             this.totalTimehr = this.totalTimeMin / 60;
             if (this.totalTimehr < 0) {
                 this.msg = getString(R.string.Please_select_valid_date);
-                Toast.makeText(getApplicationContext(), this.msg, 0).show();
+                Toast.makeText(getApplicationContext(), this.msg, Toast.LENGTH_SHORT).show();
             } else {
                 StringBuilder sb5 = new StringBuilder();
                 sb5.append(getString(R.string.The_fact_that_you_smoked));

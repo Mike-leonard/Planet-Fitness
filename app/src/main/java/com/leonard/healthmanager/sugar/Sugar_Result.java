@@ -91,7 +91,7 @@ public class Sugar_Result extends Activity {
         }
         this.tv_bloodsugar_chart.setOnClickListener(new OnClickListener() {
             public void onClick(View view) {
-                int random = ((int) (Math.random() * 2.0d)) + 1;
+                int random = ((int) (Math.random() * 3.0d)) + 1;
                 PrintStream printStream = System.out;
                 StringBuilder sb = new StringBuilder();
                 sb.append("random_number==>");

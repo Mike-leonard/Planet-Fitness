@@ -78,12 +78,6 @@ public class AdConstantControl {
 
             }
         });
-        /*UnityAds.initialize((Context) act,
-                act.getString(R.string.unity_ad_ids),
-                true,  unityAdsListener);*/
-
-        //AudienceNetworkAds.initialize(act);
-
         UnityAds.initialize(act, Constants.unityAppID, unityAdsListener, testMode);
         // for banner ads
         UnityAds.initialize(act, Constants.unityAppID,
@@ -122,10 +116,20 @@ public class AdConstantControl {
                         adHourEditor.commit();
 
                         // per hour ad reset
+                        perHoursBannerAds = 0;
+                        hourBanEditor = prefHourBanAds.edit();
+                        hourBanEditor.putInt("hourly-ban-ads", perHoursBannerAds);
+                        hourBanEditor.commit();
+
+                        // per hour intersial reset
                         perHoursIntersialAds = 0;
                         hourIntEditor = prefHourIntAds.edit();
-                        hourIntEditor.putInt("hourly-int-ads", perHoursIntersialAds);
-                        hourIntEditor.commit();
+                        hourIntEditor.putInt("hourly-int-ads", perHoursIntersialAds).commit();
+
+                        // per hour native ad reset
+                        perHoursNativeAds = 0;
+                        hourNatEditor = prefHourNatAds.edit();
+                        hourNatEditor.putInt("hourly-nat-ads", perHoursNativeAds).commit();
                         // update next hour timestamp
                         // reset perHourIntersials
                         Log.d("nextHour", "Else-Next-hour");
@@ -145,6 +149,16 @@ public class AdConstantControl {
                 dailyBanEditor = prefDailyBanAds.edit();
                 dailyBanEditor.putInt("daily-ban-ads", dailyMaxBannerAds);
                 dailyBanEditor.commit();
+
+                // daily intersial reset
+                dailyMaxIntersialAds = 0;
+                dailyIntEditor = prefDailyIntAds.edit();
+                dailyIntEditor.putInt("daily-int-ads", dailyMaxIntersialAds).commit();
+
+                // daily native ad reset
+                dailyMaxNativeAds = 0;
+                dailyNatEditor = prefDailyNatAds.edit();
+                dailyNatEditor.putInt("daily-nat-ads", dailyMaxNativeAds).commit();
 
                 // Daily ad Click reset
                 dailyAdClicked = 0;
@@ -441,6 +455,7 @@ public class AdConstantControl {
 
         @Override
         public void onUnityAdsFinish(String s, UnityAds.FinishState finishState) {
+
         }
 
         @Override

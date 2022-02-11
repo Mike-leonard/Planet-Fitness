@@ -170,7 +170,7 @@ public class Daily_Calories_Intake_Calculator extends Activity {
                     }
                     Daily_Calories_Intake_Calculator.this.age = Integer.parseInt(Daily_Calories_Intake_Calculator.this.et_age.getText().toString());
                     Daily_Calories_Intake_Calculator.this.gender = Daily_Calories_Intake_Calculator.this.tv_gender.getText().toString().trim();
-                    int random = ((int) (Math.random() * 2.0d)) + 1;
+                    int random = ((int) (Math.random() * 3.0d)) + 1;
                     PrintStream printStream = System.out;
                     StringBuilder sb = new StringBuilder();
                     sb.append("random_number==>");

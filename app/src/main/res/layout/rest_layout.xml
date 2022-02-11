@@ -60,7 +60,7 @@
         android:layout_marginRight="@dimen/text_15"
         android:orientation="horizontal"
         app:cardCornerRadius="20dp"
-        app:cardElevation="20dip">
+        android:elevation="20dp">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/collapsingLayout"

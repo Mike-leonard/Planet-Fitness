@@ -92,7 +92,7 @@ public class Blood_Donation_Calculator extends Activity {
         get_eligieble_date(this.todays_date);
         this.tv_search_date.setOnClickListener(new OnClickListener() {
             public void onClick(View view) {
-                int random = ((int) (Math.random() * 2.0d)) + 1;
+                int random = ((int) (Math.random() * 3.0d)) + 1;
                 PrintStream printStream = System.out;
                 StringBuilder sb = new StringBuilder();
                 sb.append("random_number==>");

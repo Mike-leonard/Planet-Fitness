@@ -38,7 +38,7 @@
         android:layout_marginRight="@dimen/text_15"
         android:orientation="horizontal"
         android:background="@drawable/a2_grad_black"
-        app:cardElevation="20dip">
+        android:elevation="20dp">
 
 
         <ScrollView

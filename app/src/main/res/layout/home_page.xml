@@ -46,7 +46,7 @@
         android:layout_marginRight="20dp"
         android:orientation="horizontal"
         app:cardCornerRadius="20dp"
-        app:cardElevation="20dip">
+        android:elevation="20dp">
 
         <RelativeLayout
             android:layout_width="match_parent"

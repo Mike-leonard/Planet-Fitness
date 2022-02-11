@@ -15,8 +15,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
-import com.google.firebase.analytics.FirebaseAnalytics;
-import com.google.firebase.analytics.FirebaseAnalytics.Event;
 import com.leonard.healthmanager.R;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,7 +22,7 @@ import java.util.Locale;
 
 public class GlobalFunction {
     Activity activity;
-    FirebaseAnalytics mFirebaseAnalytics;
+    //FirebaseAnalytics mFirebaseAnalytics;
     SharedPreferenceManager sharedPreferenceManager;
 
     public GlobalFunction(Activity activity2) {
@@ -52,7 +50,7 @@ public class GlobalFunction {
             String str = resolveInfo.activityInfo.packageName;
             Intent intent2 = new Intent("android.intent.action.SEND");
             intent2.setType("text/plain");
-            intent2.putExtra("android.intent.extra.SUBJECT", Event.SHARE);
+            //intent2.putExtra("android.intent.extra.SUBJECT", Event.SHARE);
             if (TextUtils.equals(str, "com.facebook.katana")) {
                 intent2.putExtra("android.intent.extra.TEXT", string);
             } else {
@@ -70,11 +68,11 @@ public class GlobalFunction {
         Bundle bundle = new Bundle();
         bundle.putString("Screen_Name", str);
         bundle.putString("Text", str2);
-        FirebaseAnalytics firebaseAnalytics = this.mFirebaseAnalytics;
+        //FirebaseAnalytics firebaseAnalytics = this.mFirebaseAnalytics;
         StringBuilder sb = new StringBuilder();
         sb.append(str);
         sb.append("_logevent");
-        firebaseAnalytics.logEvent(sb.toString(), bundle);
+        //firebaseAnalytics.logEvent(sb.toString(), bundle);
     }
 
     public void set_locale_language() {

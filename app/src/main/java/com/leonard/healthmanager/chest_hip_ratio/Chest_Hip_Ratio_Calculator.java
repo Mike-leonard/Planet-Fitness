@@ -143,7 +143,7 @@ public class Chest_Hip_Ratio_Calculator extends Activity {
                     sb2.append("inserted_height");
                     sb2.append(Chest_Hip_Ratio_Calculator.this.inserted_hip);
                     Log.d("inserted_height", sb2.toString());
-                    int random = ((int) (Math.random() * 2.0d)) + 1;
+                    int random = ((int) (Math.random() * 3.0d)) + 1;
                     PrintStream printStream = System.out;
                     StringBuilder sb3 = new StringBuilder();
                     sb3.append("random_number==>");

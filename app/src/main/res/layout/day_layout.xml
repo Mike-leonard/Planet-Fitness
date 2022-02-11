@@ -80,7 +80,7 @@
             android:orientation="horizontal"
             app:cardBackgroundColor="#e1e1e1"
             app:cardCornerRadius="20dp"
-            app:cardElevation="20dip">
+            android:elevation="20dp">
 
             <TextView
                 android:layout_width="match_parent"

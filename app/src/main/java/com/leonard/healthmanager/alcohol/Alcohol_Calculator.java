@@ -166,7 +166,7 @@ public class Alcohol_Calculator extends Activity {
                     Alcohol_Calculator.this.get_weight();
                     Alcohol_Calculator.this.get_time_passed();
                     Alcohol_Calculator.this.BACinPer = (((Alcohol_Calculator.this.total_alcohol * 5.14d) / Alcohol_Calculator.this.weight) * Alcohol_Calculator.this.gender_ratio) - (Alcohol_Calculator.this.timePassed * 0.015d);
-                    int random = ((int) (Math.random() * 2.0d)) + 1;
+                    int random = ((int) (Math.random() * 3.0d)) + 1;
                     PrintStream printStream = System.out;
                     StringBuilder sb = new StringBuilder();
                     sb.append("random_number==>");

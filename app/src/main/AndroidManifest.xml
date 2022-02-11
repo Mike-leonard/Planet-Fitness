@@ -764,73 +764,7 @@
             android:name=".notification.NotificationBroadcastReciever"
             android:exported="true" />
 
-        <meta-data
-            android:name="io.fabric.ApiKey"
-            android:value="d7ea8cdd40371de71f77b4fb95e71d34fbdceba2" />
-
-        <service
-            android:name="com.google.firebase.components.ComponentDiscoveryService"
-            android:exported="false">
-            <meta-data
-                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
-                android:value="com.google.firebase.components.ComponentRegistrar" />
-            <meta-data
-                android:name="com.google.firebase.components:com.google.firebase.iid.Registrar"
-                android:value="com.google.firebase.components.ComponentRegistrar" />
-        </service>
-
-        <receiver
-            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
-            android:enabled="true"
-            android:exported="false" />
-        <!--<receiver
-            android:name="com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver"
-            android:enabled="true"
-            android:exported="true"
-            android:permission="android.permission.INSTALL_PACKAGES">
-            <intent-filter>
-                <action android:name="com.android.vending.INSTALL_REFERRER" />
-            </intent-filter>
-        </receiver>-->
-
-        <service
-            android:name="com.google.android.gms.measurement.AppMeasurementService"
-            android:enabled="true"
-            android:exported="false" />
-        <service
-            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
-            android:enabled="true"
-            android:exported="false"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
-
-        <receiver
-            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
-            android:exported="true"
-            android:permission="com.google.android.c2dm.permission.SEND">
-            <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-            </intent-filter>
-        </receiver> <!-- <service -->
-        <!-- android:name="com.google.firebase.iid.FirebaseInstanceIdService" -->
-        <!-- android:exported="true"> -->
-        <!-- <intent-filter android:priority="-500"> -->
-        <!-- <action android:name="com.google.firebase.INSTANCE_ID_EVENT" /> -->
-        <!-- </intent-filter> -->
-        <!-- </service> -->
-        <service
-            android:name="com.google.firebase.messaging.FirebaseMessagingService"
-            android:exported="true"
-            tools:replace="android:exported">
-            <intent-filter android:priority="-500">
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
-
-        <provider
-            android:name="com.google.firebase.provider.FirebaseInitProvider"
-            android:authorities="com.leonard.healthmanager.firebaseinitprovider"
-            android:exported="false"
-            android:initOrder="100" /> <!-- pill_reminder -->
+        <!-- pill_reminder -->
         <activity
             android:name=".pill_reminder.Pill_MainActivity"
             android:theme="@style/AppTheme_pill1" />

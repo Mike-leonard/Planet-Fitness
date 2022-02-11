@@ -40,7 +40,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/ad_layout"
+        android:layout_above="@+id/normal_ad_include"
         android:layout_below="@+id/rela1">
 
         <LinearLayout

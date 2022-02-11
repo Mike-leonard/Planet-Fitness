@@ -96,7 +96,7 @@ public class Smokincost_Calculator extends AppCompatActivity {
                     Smokincost_Calculator.this.no_of_cig_perday = Double.valueOf(Double.parseDouble(Smokincost_Calculator.this.et_cig_smoked.getText().toString().trim()));
                     Smokincost_Calculator.this.no_of_cig_inpack = Double.valueOf(Double.parseDouble(Smokincost_Calculator.this.et_cig_inpack.getText().toString().trim()));
                     Smokincost_Calculator.this.price_inrs = Double.valueOf(Double.parseDouble(Smokincost_Calculator.this.et_cig_price.getText().toString().trim()));
-                    int random = ((int) (Math.random() * 2.0d)) + 1;
+                    int random = ((int) (Math.random() * 3.0d)) + 1;
                     PrintStream printStream = System.out;
                     StringBuilder sb = new StringBuilder();
                     sb.append("random_number==>");

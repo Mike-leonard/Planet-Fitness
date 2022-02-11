@@ -158,7 +158,7 @@ public class Home_page extends Fragment {
 
     public void onBackPressed() {
         if (this.doubleBackToExitPressedOnce) {
-            int random = ((int) (Math.random() * 3.0d)) + 1;
+            int random = ((int) (Math.random() * 3.0d)) + 1;//no touch
             String str = TAG;
             StringBuilder sb = new StringBuilder();
             sb.append("random_number->");
@@ -172,7 +172,7 @@ public class Home_page extends Fragment {
             return;
         }
         this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(getContext(), getResources().getString(R.string.backtext), 0).show();
+        Toast.makeText(getContext(), getResources().getString(R.string.backtext), Toast.LENGTH_SHORT).show();
         new Handler().postDelayed(new Runnable() {
             public void run() {
                 Home_page.this.doubleBackToExitPressedOnce = false;

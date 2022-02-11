@@ -148,7 +148,7 @@ public class BMI_Calculator extends Activity {
                     sb3.append("age");
                     sb3.append(BMI_Calculator.this.age);
                     Log.d("age", sb3.toString());
-                    int random = ((int) (Math.random() * 2.0d)) + 1;
+                    int random = ((int) (Math.random() * 3.0d)) + 1;
                     PrintStream printStream = System.out;
                     StringBuilder sb4 = new StringBuilder();
                     sb4.append("random_number==>");

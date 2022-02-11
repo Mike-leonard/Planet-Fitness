@@ -28,8 +28,6 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog.Builder;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
-import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.gson.Gson;
 import com.leonard.healthmanager.adapters.WorkoutData;
 import com.leonard.healthmanager.database.DatabaseOperations;
@@ -373,11 +371,9 @@ public class CompletionExcActivity extends Activity {
             Log.i("debashish", sb8.toString());
             Bundle bundle2 = new Bundle();
             bundle2.putInt("open_time", this.daysCompletionConter);
-            FirebaseAnalytics instance = FirebaseAnalytics.getInstance(this);
             StringBuilder sb9 = new StringBuilder();
             sb9.append("Days_completed_beginner_");
             sb9.append(this.daysCompletionConter);
-            instance.logEvent(sb9.toString(), bundle2);
         }
     }
 }

@@ -9,10 +9,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdRequest.Builder;
-import com.google.android.gms.ads.AdView;
 import com.leonard.healthmanager.R;
 import com.leonard.healthmanager.general.MyApplication;
 import com.leonard.healthmanager.utils.GlobalFunction;
@@ -168,7 +164,7 @@ public class Bodyfat_Result extends Activity {
         this.tv_bodyfat.setText(this.result);
         this.tv_bodyfatchart.setOnClickListener(new OnClickListener() {
             public void onClick(View view) {
-                int random = ((int) (Math.random() * 2.0d)) + 1;
+                int random = ((int) (Math.random() * 3.0d)) + 1;
                 PrintStream printStream = System.out;
                 StringBuilder sb = new StringBuilder();
                 sb.append("random_number==>");

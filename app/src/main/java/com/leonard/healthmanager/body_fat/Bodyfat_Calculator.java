@@ -152,7 +152,7 @@ public class Bodyfat_Calculator extends Activity {
                     Bodyfat_Calculator.this.inserted_weight = Float.parseFloat(Bodyfat_Calculator.this.et_weight.getText().toString());
                     Bodyfat_Calculator.this.inserted_height = Float.parseFloat(Bodyfat_Calculator.this.et_height.getText().toString());
                     Bodyfat_Calculator.this.age = Integer.parseInt(Bodyfat_Calculator.this.et_age.getText().toString());
-                    int random = ((int) (Math.random() * 2.0d)) + 1;
+                    int random = ((int) (Math.random() * 3.0d)) + 1;
                     PrintStream printStream = System.out;
                     StringBuilder sb = new StringBuilder();
                     sb.append("random_number==>");

@@ -45,7 +45,6 @@
         android:layout_marginBottom="8dp"
         android:padding="8dp"
         android:src="@drawable/ic_bell"
-
         app:fabSize="mini"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/fabAdd"
@@ -111,7 +110,7 @@
             android:layout_marginBottom="20dp"
             android:orientation="horizontal"
             app:cardCornerRadius="20dp"
-            app:cardElevation="20dip">
+            android:elevation="20dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"

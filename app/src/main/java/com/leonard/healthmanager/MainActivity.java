@@ -24,8 +24,6 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.navigation.NavigationView.OnNavigationItemSelectedListener;
@@ -187,7 +185,6 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
     // new line of code hsn
     @Override
     protected void onNewIntent(Intent intent) {
-        //super.onNewIntent(intent);
         Bundle extras = intent.getExtras();
         if(extras != null){
             if(extras.containsKey("notify")) {
@@ -198,6 +195,7 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
                 openFragment(new MainFragment(this));
             }
         }
+        super.onNewIntent(intent);
     }
     // end of new line
    /* https://stackoverflow.com/questions/8610880/how-do-i-create-an-android-intent-that-carries-data/8610916#8610916
@@ -253,7 +251,7 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
             Intent intent2 = new Intent("android.intent.action.SEND");
             intent2.setType("text/plain");
             StringBuilder sb3 = new StringBuilder();
-            sb3.append("Best Planet Fitness app download now.\n Thnak You!\n  https://play.google.com/store/apps/details?id=" + getPackageName());
+            sb3.append("Best Planet Fitness app download now.\n Thnak You!\n  https://play.google.com/store/apps/details?id=");
             sb3.append(getApplicationContext().getPackageName());
             String sb4 = sb3.toString();
             intent2.putExtra(str2, "Share App");
@@ -262,7 +260,7 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         }else  if(itemId == R.id.nav_privacy)
         {
 
-            Uri uri = Uri.parse("https://leonardapp.blogspot.com/");
+            Uri uri = Uri.parse("https://www.app-privacy-policy.com/live.php?token=b3avSa6fIv4fynj1I0bChr2fHJ66vBlx");
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
 

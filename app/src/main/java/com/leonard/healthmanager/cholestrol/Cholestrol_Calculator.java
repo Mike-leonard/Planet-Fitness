@@ -118,7 +118,7 @@ public class Cholestrol_Calculator extends Activity {
                 } else if (Cholestrol_Calculator.this.et_triglyceride.getText().toString().trim().equals("")) {
                     Cholestrol_Calculator.this.et_triglyceride.setError(Cholestrol_Calculator.this.getString(R.string.enter_triglyceride));
                 } else {
-                    int random = ((int) (Math.random() * 2.0d)) + 1;
+                    int random = ((int) (Math.random() * 3.0d)) + 1;
                     PrintStream printStream = System.out;
                     StringBuilder sb = new StringBuilder();
                     sb.append("random_number==>");

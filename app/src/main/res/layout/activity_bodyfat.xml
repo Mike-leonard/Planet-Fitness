@@ -37,23 +37,18 @@
         android:layout_marginRight="@dimen/text_15"
         android:orientation="horizontal"
         android:background="@drawable/a2_grad_black"
-        app:cardElevation="20dip">
-
-
-
-
+        android:elevation="20dp">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/ad_layout"
+        android:layout_marginTop="10dp"
         android:layout_below="@+id/tv_bodyfat">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_margin="20dp"
             android:orientation="vertical">
 
 
@@ -90,6 +85,15 @@
                 android:text="@string/Body_Fat_Calculator"
                 android:textColor="@color/white"
                 android:textSize="@dimen/textsize_16" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="20dp"
+            android:orientation="vertical">
+
+
 
             <LinearLayout
                 android:id="@+id/llbodyfat"
@@ -129,8 +133,6 @@
                     android:textColorHint="@color/black"
                     android:textSize="@dimen/textsize_14" />
             </LinearLayout>
-            `
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -212,8 +214,7 @@
                 android:id="@+id/tv_search_bodyfat"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="20dp"
-
+                android:layout_marginTop="10dp"
                 android:background="@drawable/a3_grad"
                 android:gravity="center"
                 android:paddingLeft="10dp"
@@ -221,6 +222,7 @@
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
                 android:textSize="@dimen/textsize_14" />
+        </LinearLayout>
         </LinearLayout>
     </ScrollView>
     </LinearLayout>

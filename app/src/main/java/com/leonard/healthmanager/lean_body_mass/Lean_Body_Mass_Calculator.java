@@ -149,7 +149,7 @@ public class Lean_Body_Mass_Calculator extends Activity {
                     sb2.append("inserted_height");
                     sb2.append(Lean_Body_Mass_Calculator.this.inserted_height);
                     Log.d("inserted_height", sb2.toString());
-                    int random = ((int) (Math.random() * 2.0d)) + 1;
+                    int random = ((int) (Math.random() * 3.0d)) + 1;
                     PrintStream printStream = System.out;
                     StringBuilder sb3 = new StringBuilder();
                     sb3.append("random_number==>");

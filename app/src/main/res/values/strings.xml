@@ -320,7 +320,6 @@
     <string name="bai_male">Body Adiposity Index for Male</string>
     <string name="bai_title">Body Adiposity Index Calculator</string>
 
-    <string name="base64">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqpT5VjzACxnM3QpZVYzu4yGF7xlSlRULtMxZkXzDDLN3p9eGUJwIRAM8a5FnYXW/LbyF6GSW94juXPoVZsODku6z2AIRIogHU2VeGZfDCtNmtffpYy7ddSZs9mjMFCBn/N9dAE+Jtanc+NZDYHmDJP4VzpE5SC/2TolJObSTZYVYjcxymUkLdWyZh58EpCx+cnZGzxVwup+ow2BpPjGAo3HLjQCGqS+1Uk2TbaTlhUFAnbp0PYJzZa13NFxiHN2dmHDjlLNo32+MpfOMGI0jmBzAiBRk47JDQH65qIYo4IqBgjIw2Txp7l+LetzmK5euZAUZewrvbqJZy5gytLqsYQIDAQAB</string>
     <string name="blood_volume_Calculator">Blood Volume Calculator</string>
     <string name="bmr_Calculator">BMR Calculator</string>
     <string name="body_surface_Area">Body Surface Area Calculator</string>
@@ -376,14 +375,8 @@
     <string name="font_light">fonts/proximanova_light.otf</string>
     <string name="french">French</string>
     <string name="friday">Fri</string>
- <!--   <string name="gcm_defaultSenderId">776761283214</string>-->
-    <string name="gcm_defaultSenderId">139346535638</string>
     <string name="german">German</string>
     <string name="give_feedback">Please give your feedback</string>
-    <string name="google_api_key">AIzaSyCn-U_rUvPFzaWvMOJIcuCqn7146Ey3jGk</string>
-    <string name="google_app_id">1:139346535638:android:7ac72116cd25fe98be9577</string>
-    <string name="google_crash_reporting_api_key">AIzaSyCn-U_rUvPFzaWvMOJIcuCqn7146Ey3jGk</string>
-    <string name="google_storage_bucket">store-app-control.appspot.com</string>
     <string name="health_risk">Your probable health risk is :</string>
     <string name="health_risk_title">Health Risk</string>
     <string name="heart_rate">Your Estimated maximum heart rate is :</string>
@@ -429,7 +422,6 @@
     <string name="path_password_eye_mask_visible">M2,4.27 L2,4.27 L4.54,1.73 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
     <string name="path_password_strike_through">M3.27,4.27 L19.74,20.74</string>
     <string name="portuguese">Portuguese</string>
-    <string name="project_id">store-app-control</string>
     <string name="purchased">Purchased</string>
     <string name="rate">Rate this app</string>
     <string name="rate_app">Rate This App</string>
@@ -543,7 +535,6 @@
     <string name="day9">Day 9</string>
 
     <string name="default_notification_channel_name">30-Day workout</string>
-    <string name="default_web_client_id">139346535638-al74cpd7m59co8kqmnhmj9muchjalb5u.apps.googleusercontent.com</string>
     <string name="desc_cat_cow_stretch">Initially, be in tabletop position. Inhale, move your belly towards the floor, lift your chin up in the cow pose. Now, exhale by moving your back and belly upwards towards the ceiling in the cat pose. Repeat it.</string>
     <string name="desc_downward_facing_dog_pose">Lie down with your face, towards the ground and hands on your side. Now, with the support of your hands, lift the body and move to the table top position. Exhale and lift your hip towards the sky.</string>
     <string name="desc_dry_land_swim">Lie down with your face, towards the ground and hands stretched forward. Lift your right arm and left leg above the ground. Be in this position. Repeat the same on the other side.</string>
@@ -578,7 +569,6 @@
     <string name="fifteeneggs">*15 eggs</string>
     <string name="fifteenpieces">*15 pieces</string>
     <string name="fifteentimes">*15 times</string>
-    <string name="firebase_database_url">https://store-app-control-default-rtdb.asia-southeast1.firebasedatabase.app</string>
     <string name="fiveoatmealcookies">5 oatmeal cookies</string>
     <string name="fivetimes">*5 times</string>
     <string name="fivewalnuts">5 Walnuts</string>

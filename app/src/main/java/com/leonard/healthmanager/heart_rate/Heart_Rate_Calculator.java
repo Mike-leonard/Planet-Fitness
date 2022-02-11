@@ -112,7 +112,7 @@ public class Heart_Rate_Calculator extends Activity {
                 } else {
                     Heart_Rate_Calculator.age = Integer.parseInt(Heart_Rate_Calculator.this.et_age.getText().toString().trim());
                     Heart_Rate_Calculator.avg_resting_rate = Integer.parseInt(Heart_Rate_Calculator.this.et_heart_rate.getText().toString().trim());
-                    int random = ((int) (Math.random() * 2.0d)) + 1;
+                    int random = ((int) (Math.random() * 3.0d)) + 1;
                     PrintStream printStream = System.out;
                     StringBuilder sb = new StringBuilder();
                     sb.append("random_number==>");

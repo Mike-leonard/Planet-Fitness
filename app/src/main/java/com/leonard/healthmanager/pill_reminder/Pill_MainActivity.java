@@ -23,7 +23,7 @@ import com.amulyakhare.textdrawable.util.ColorGenerator;
 import com.bignerdranch.android.multiselector.ModalMultiSelectorCallback;
 import com.bignerdranch.android.multiselector.MultiSelector;
 import com.bignerdranch.android.multiselector.SwappingHolder;
-import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.leonard.healthmanager.R;
 
 import java.text.DateFormat;
@@ -186,6 +186,7 @@ public class Pill_MainActivity extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         mAdapter.setItemCount(getDefaultItemCount());
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     // Recreate recycler view
@@ -390,7 +391,8 @@ public class Pill_MainActivity extends AppCompatActivity {
                 if(active.equals("true")){
 //                    mActiveImage.setImageResource(R.drawable.ic_notifications_on_white_24dp);
                 }else if (active.equals("false")) {
-//                    mActiveImage.setImageResource(R.drawable.ic_notifications_off_grey600_24dp);
+//                    mActiveImage.setImageResource(R.drawable.ic_notifications_off_grey600_24dp); deletd
+//                    mActiveImage.setImageResource(R.drawable.ic_baseline_notifications_off_24);
                 }
             }
         }
